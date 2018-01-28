@@ -59,13 +59,19 @@ body {
 	justify-content: center; /* Aligns horizontally centre. */
 }
 
-.playerContainer {padding: 3px;}
-
-/* Image classes for logo on the left of player name. */
+/* Image classes for logos. */
 .nameLogo {content: url('../images/player-logo.png');}
 .twitchLogo {content: url('../images/twitch-logo.png');}
+.playerFlag {content: url('../images/flag.png');} /* Flag image is changed dynamically. */
+.playerCoOp {content: url('../images/team-icon.png');}
+.mcat {content: url('../images/mcat.png');}
 
+.playerContainer {padding: 3px;}
 .playerLogo {padding-right: 17px;} /* Space between player logo on left and player name text. */
+.playerFlag, .playerCoOp {padding-left: 3px;}
+
+/* Makes these images fill up all the space they can. */
+.playerLogo, .playerFlag, .playerCoOp, .mCat {height: 100%; box-sizing: border-box;}
 
 .playerText, .musicTickerText {
 	/* In case the player name is really long, stop it from ruining the box and just hide the end. */
@@ -75,24 +81,19 @@ body {
 	flex: auto;
 }
 
-.playerFlag {content: url('../images/flag.png');} /* Flag image is changed dynamically to something else. */
-.playerCoOp {content: url('../images/team-icon.png');}
-.mcat {content: url('../images/mcat.png');}
-
-.playerFlag, .playerCoOp {padding-left: 3px;}
-
 /* Turns logo/flag/co-op icon and finish time container off by default. */
 /*.playerContainer div, .playerContainer img {opacity: 0;}*/ /* Using opacity for the fade in. */
 /*.playerFlag, .playerCoOp {display: none;}*/
 
-/* Makes these images fill up all the space they can. */
-.playerLogo, .playerFlag, .playerCoOp, .mCat {height: 100%; box-sizing: border-box;}
-
 #runInfoContainer {flex-direction: column; padding: 0 10px;}
 #gameTitle {text-align: center;}
+#gameConsole, #gameEstimate, .gameConsole {color: #bfbfbf;}
+#gameConsole::before {content: "| ";} /* Adds a line before the console name. */
 
-#timerContainer {justify-content: space-evenly; white-space: nowrap;}
+/* Default timer stuff. */
+/* space-evenly only supported on CEF 60+. */
+#timerContainer {/*justify-content: space-evenly;*/ justify-content: space-around; white-space: nowrap;}
 #timer {font-size: 69px;}
 #gameEstimate {font-size: 37px;}
-
-#gameConsole, #gameEstimate, .gameConsole {color: #bfbfbf;}
+#gameEstimate::before {content: "EST: ";}
+#gameEstimate::after {content: ":00";}

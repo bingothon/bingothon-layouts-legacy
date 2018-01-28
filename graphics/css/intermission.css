@@ -1,18 +1,3 @@
-/* ESA logo along the top. */
-#esaTopLogo {
-	left: 0px;
-	top: 0px;
-	width: 1920px;
-	height: 104px;
-}
-
-.headerTextBox {
-	outline: 0;
-	background-color: #39b0f6;
-	font-family: Bebas Kai;
-	font-size: 40px;
-}
-
 /* Webcam(s). */
 #webcam1 {
 	left: 0px;
@@ -32,6 +17,13 @@
 .musicTickerText {font-size: 26px;}
 
 /* Coming up runs stuff. */
+.headerTextBox {
+	outline: 0;
+	background-color: #39b0f6;
+	font-family: Bebas Kai;
+	font-size: 40px;
+}
+
 #comingUpRunsHeaderText {
 	left: 830px;
 	top: 104px;
@@ -54,23 +46,26 @@
 	flex-direction: column;
 	width: 1087px;
 	height: 212px;
+	
+	/* Remove the normal outlines and just use a bottom border instead. */
 	outline: 0;
 	border-bottom: 3px solid #39b0f6;
 }
 
 /* Text and stuff settings inside of the container above. */
-.comingUpRunContainer .gameWhen {
+.gameWhen {
 	font-size: 35px;
 	font-family: Bebas Kai;
 	color: #39b0f6;
 	line-height: 45px;
 }
-.comingUpRunContainer .gameTitle {font-size: 31px; line-height: 40px;}
-.comingUpRunContainer .gameCategory, .comingUpRunContainer .gameConsole, .comingUpRunContainer .gamePlayers {font-size: 21px; line-height: 37px;}
-.gamePlayers span {padding: 0 5px;}
+.gameTitle {font-size: 31px; line-height: 40px;}
+.gameCategory, .gameConsole, .gamePlayers {font-size: 21px; line-height: 37px;}
+.gamePlayers span {padding: 0 5px;} /* This is the storage for the runner names. */
+.gamePlayers img {height: 1.2em;} /* Images next to player name(s) are the same height. */
 .playerCoOp {display: inline;} /* Override the default setting for not showing this. */
-.comingUpRunContainer .gamePlayers img {height: 1.2em;} /* Images next to player name(s) are the same height. */
-.playerLogo {padding: 0;}
+.playerLogo {padding: 0;} /* Override the default padding. */
+.gameConsole::before {content: "| ";} /* Adds a line before the console name. */
 
 /* Sponsor logos. */
 #sponsorContainer {
