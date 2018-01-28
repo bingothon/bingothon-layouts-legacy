@@ -2,24 +2,24 @@
 #webcam1 {
 	left: 0px;
 	top: 0px;
-	width: 587px;
+	width: 807px;
 	height: 475px;
 }
 
 /* Game area(s). */
 .gameCapture {
-	width: 1330px;
+	width: 1110px;
 	height: 1000px;
 }
 
 #gameCapture1 {
-	left: 590px;
+	left: 810px;
 	top: 0px;
 }
 
 /* Player information stuff. */
 .playerContainer {
-	width: 587px;
+	width: 807px;
 	height: 60px;
 }
 
@@ -32,7 +32,7 @@
 #runInfoContainer {
 	left: 0px;
 	top: 541px;
-	width: 587px;
+	width: 807px;
 	height: 149px;
 }
 
@@ -43,7 +43,7 @@
 #timerContainer {
 	left: 0px;
 	top: 693px;
-	width: 587px;
+	width: 807px;
 	height: 86px;
 }
 
@@ -51,6 +51,6 @@
 #sponsorContainer {
 	left: 0px;
 	top: 782px;
-	width: 587px;
+	width: 807px;
 	height: 218px;
 }

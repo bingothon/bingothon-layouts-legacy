@@ -2,38 +2,38 @@
 #webcam1 {
 	left: 0px;
 	top: 0px;
-	width: 587px;
-	height: 475px;
+	width: 612px;
+	height: 451px;
 }
 
 /* Game area(s). */
 .gameCapture {
-	width: 1330px;
-	height: 1000px;
+	width: 1305px;
+	height: 872px;
 }
 
 #gameCapture1 {
-	left: 590px;
+	left: 615px;
 	top: 0px;
 }
 
 /* Player information stuff. */
 .playerContainer {
-	width: 587px;
+	width: 612px;
 	height: 60px;
 }
 
 #playerContainer1 {
 	left: 0px;
-	top: 478px;
+	top: 454px;
 }
 
 /* Run information stuff. */
 #runInfoContainer {
-	left: 0px;
-	top: 541px;
-	width: 587px;
-	height: 149px;
+	left: 1024px;
+	top: 875px;
+	width: 896px;
+	height: 125px;
 }
 
 #gameTitle {font-size: 31px;}
@@ -41,16 +41,21 @@
 
 /* Timer stuff. */
 #timerContainer {
-	left: 0px;
-	top: 693px;
-	width: 587px;
-	height: 86px;
+	flex-direction: column;
+	justify-content: center;
+	left: 615px;
+	top: 875px;
+	width: 406px;
+	height: 125px;
 }
+
+#timer {line-height: 57px;}
+#gameEstimate {line-height: 37px;}
 
 /* Sponsor logos. */
 #sponsorContainer {
 	left: 0px;
-	top: 782px;
-	width: 587px;
-	height: 218px;
+	top: 517px;
+	width: 612px;
+	height: 483px;
 }

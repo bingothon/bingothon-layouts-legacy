@@ -14,7 +14,6 @@ body {
 	padding: 0;
 }
 
-/* NEEDS REMOVING FOR THE ACTUAL PRODUCTION. */
 /* Background image. */
 #background {
 	position: fixed;
@@ -29,13 +28,17 @@ body {
 }
 
 /* All areas that store something. */
-/* A slightly transparent black background with 3px blue border. */
+/* A slightly transparent black background with 3px blue outline. */
 .storageBox {
 	position: fixed;
 	background-color: rgba(0,0,0,0.68);
 	outline: 3px solid #39b0f6;
 	overflow: hidden;
+	box-sizing: border-box;
 }
+
+/* Makes the game/webcam box not have a background. */
+.gameCapture, .webcam {background-color: rgba(0,0,0,0);}
 
 /* Basic flex container class which auto centres it's contents. */
 .flexContainer {
@@ -44,5 +47,39 @@ body {
 	justify-content: center; /* Aligns horizontally centre. */
 }
 
-/* Makes the game/webcam box not have a background. */
-.gameCapture, .webcam {background-color: rgba(0,0,0,0);}
+.playerContainer {padding: 3px;}
+
+/* Image classes for logo on the left of player name. */
+.nameLogo {content: url('../images/player-logo.png');}
+.twitchLogo {content: url('../images/twitch-logo.png');}
+
+.playerLogo {padding-right: 17px;} /* Space between player logo on left and player name text. */
+
+.playerText {
+	/* In case the player name is really long, stop it from ruining the box and just hide the end. */
+	overflow: hidden;
+	white-space: nowrap;
+	font-size: 28px;
+	flex: auto;
+}
+
+.playerFlag {content: url('../images/flag.png');} /* Flag image is changed dynamically to something else. */
+.playerCoOp {content: url('../images/team-icon.png');}
+
+.playerFlag, .playerCoOp {padding-left: 3px;}
+
+/* Turns logo/flag/co-op icon and finish time container off by default. */
+/*.playerContainer div, .playerContainer img {opacity: 0;}*/ /* Using opacity for the fade in. */
+/*.playerFlag, .playerCoOp {display: none;}*/
+
+/* Makes these images fill up all the space they can. */
+.playerLogo, .playerFlag, .playerCoOp {height: 100%; box-sizing: border-box;}
+
+#runInfoContainer {flex-direction: column; padding: 0 10px;}
+#gameTitle {text-align: center;}
+
+#timerContainer {justify-content: space-evenly; white-space: nowrap;}
+#timer {font-size: 69px;}
+#gameEstimate {font-size: 37px;}
+
+#gameConsole, #gameEstimate {color: #bfbfbf;}
