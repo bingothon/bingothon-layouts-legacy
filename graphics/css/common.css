@@ -27,6 +27,18 @@ body {
 	height: 1080px;
 }
 
+/* ESA logo along the top of the intermission layouts. */
+#esaTopLogo {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 1920px;
+	height: 104px;
+	background-image: url('../images/esa-logo-long.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
 /* All areas that store something. */
 /* A slightly transparent black background with 3px blue outline. */
 .storageBox {
@@ -55,7 +67,7 @@ body {
 
 .playerLogo {padding-right: 17px;} /* Space between player logo on left and player name text. */
 
-.playerText {
+.playerText, .musicTickerText {
 	/* In case the player name is really long, stop it from ruining the box and just hide the end. */
 	overflow: hidden;
 	white-space: nowrap;
@@ -65,6 +77,7 @@ body {
 
 .playerFlag {content: url('../images/flag.png');} /* Flag image is changed dynamically to something else. */
 .playerCoOp {content: url('../images/team-icon.png');}
+.mcat {content: url('../images/mcat.png');}
 
 .playerFlag, .playerCoOp {padding-left: 3px;}
 
@@ -73,7 +86,7 @@ body {
 /*.playerFlag, .playerCoOp {display: none;}*/
 
 /* Makes these images fill up all the space they can. */
-.playerLogo, .playerFlag, .playerCoOp {height: 100%; box-sizing: border-box;}
+.playerLogo, .playerFlag, .playerCoOp, .mCat {height: 100%; box-sizing: border-box;}
 
 #runInfoContainer {flex-direction: column; padding: 0 10px;}
 #gameTitle {text-align: center;}
@@ -82,4 +95,4 @@ body {
 #timer {font-size: 69px;}
 #gameEstimate {font-size: 37px;}
 
-#gameConsole, #gameEstimate {color: #bfbfbf;}
+#gameConsole, #gameEstimate, .gameConsole {color: #bfbfbf;}

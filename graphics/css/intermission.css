@@ -1,0 +1,81 @@
+/* ESA logo along the top. */
+#esaTopLogo {
+	left: 0px;
+	top: 0px;
+	width: 1920px;
+	height: 104px;
+}
+
+.headerTextBox {
+	outline: 0;
+	background-color: #39b0f6;
+	font-family: Bebas Kai;
+	font-size: 40px;
+}
+
+/* Webcam(s). */
+#webcam1 {
+	left: 0px;
+	top: 107px;
+	width: 830px;
+	height: 469px;
+}
+
+/* Music ticker stuff. */
+#musicTicker {
+	left: 0px;
+	top: 579px;
+	width: 830px;
+	height: 59px;
+}
+.mcat {padding-right: 15px;}
+.musicTickerText {font-size: 26px;}
+
+/* Coming up runs stuff. */
+#comingUpRunsHeaderText {
+	left: 830px;
+	top: 104px;
+	width: 1090px;
+	height: 51px;
+}
+
+/* The box that the "coming up runs" boxes go into. */
+#comingUpRunsBox {
+	position: fixed;
+	left: 833px;
+	top: 155px;
+	width: 1087px;
+	height: 845px;
+}
+
+/* The container each "coming up run" is in. */
+.comingUpRunContainer {
+	position: relative;
+	flex-direction: column;
+	width: 1087px;
+	height: 212px;
+	outline: 0;
+	border-bottom: 3px solid #39b0f6;
+}
+
+/* Text and stuff settings inside of the container above. */
+.comingUpRunContainer .gameWhen {
+	font-size: 35px;
+	font-family: Bebas Kai;
+	color: #39b0f6;
+	line-height: 45px;
+}
+.comingUpRunContainer .gameTitle {font-size: 31px; line-height: 40px;}
+.comingUpRunContainer .gameCategory, .comingUpRunContainer .gameConsole, .comingUpRunContainer .gamePlayers {font-size: 21px; line-height: 37px;}
+.gamePlayers span {padding: 0 5px;}
+.playerCoOp {display: inline;} /* Override the default setting for not showing this. */
+.comingUpRunContainer .gamePlayers img {height: 1.2em;} /* Images next to player name(s) are the same height. */
+.playerLogo {padding: 0;}
+
+/* Sponsor logos. */
+#sponsorContainer {
+	left: 0px;
+	top: 641px;
+	width: 830px;
+	height: 359px;
+}
