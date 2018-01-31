@@ -1,15 +1,23 @@
+/* Big ESAW logo that appears in the top left. */
+#esaBigLogo {
+	left: 0px;
+	top: 0px;
+	width: 830px;
+	height: 295px;
+}
+
 /* Webcam(s). */
 #webcam1 {
 	left: 0px;
-	top: 107px;
+	top: 298px;
 	width: 830px;
-	height: 469px;
+	height: 405px;
 }
 
 /* Music ticker stuff. */
 #musicTicker {
 	left: 0px;
-	top: 579px;
+	top: 706px;
 	width: 830px;
 	height: 59px;
 }
@@ -21,35 +29,36 @@
 	outline: 0;
 	background-color: #39b0f6;
 	font-family: Bebas Kai;
-	font-size: 40px;
+	font-size: 50px;
 }
 
 #comingUpRunsHeaderText {
 	left: 830px;
-	top: 104px;
+	top: 0px;
 	width: 1090px;
-	height: 51px;
+	height: 63px;
 }
 
 /* The box that the "coming up runs" boxes go into. */
 #comingUpRunsBox {
 	position: fixed;
-	left: 833px;
-	top: 155px;
-	width: 1087px;
-	height: 845px;
+	left: 830px;
+	top: 63px;
+	width: 1090px;
+	height: 940px;
 }
 
 /* The container each "coming up run" is in. */
 .comingUpRunContainer {
 	position: relative;
 	flex-direction: column;
-	width: 1087px;
-	height: 212px;
+	width: 1090px;
+	height: 235px;
 	
-	/* Remove the normal outlines and just use a bottom border instead. */
+	/* Remove the normal outlines and just use a bottom/left border instead. */
 	outline: 0;
 	border-bottom: 3px solid #39b0f6;
+	border-left: 3px solid #39b0f6;
 }
 
 /* Text and stuff settings inside of the container above. */
@@ -70,7 +79,7 @@
 /* Sponsor logos. */
 #sponsorContainer {
 	left: 0px;
-	top: 641px;
+	top: 768px;
 	width: 830px;
-	height: 359px;
+	height: 232px;
 }

@@ -27,16 +27,13 @@ body {
 	height: 1080px;
 }
 
-/* ESA logo along the top of the intermission layouts. */
-#esaTopLogo {
+/* Big ESAW logo that appears on places like the intermission layouts. */
+#esaBigLogo {
 	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 1920px;
-	height: 104px;
-	background-image: url('../images/esa-logo-long.png');
+	background-image: url('../images/esa-big-logo.png');
 	background-repeat: no-repeat;
 	background-size: contain;
+	background-position: center;
 }
 
 /* All areas that store something. */

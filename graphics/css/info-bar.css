@@ -1,0 +1,68 @@
+#barWrapper {
+	width: 1920px;
+	height: 80px;
+	justify-content: flex-start;
+}
+
+/* Overriding defaults we don't need from common.css */
+.storageBox {
+	background-color: rgba(0,0,0,0);
+	outline: 0;
+}
+
+/* All the containers below use these things. */
+.barContainers {
+	position: fixed;
+	height: inherit;
+	top: 0;
+}
+
+/* Black glow on the text. */
+.textGlow {
+	text-shadow: 0 0 6px black, 0 0 10px black, 0 0 14px black;
+}
+
+/* ESA Logo */
+#esaBarLogoContainer {
+	z-index: 2;
+	left: 0;
+	width: 406px;
+	background-image: url('../images/info-bar/logo-bg.png');
+	padding-right: 25px; /* This is for the shadow part of the image. */
+}
+
+#esaBarLogo {
+	height: 100%;
+	
+	/* These will be switched out by JS. */
+	/*background-image: url('../images/info-bar/esa-hashtag-logo.png');*/
+	background-image: url('../images/info-bar/esa-small-logo.png');
+}
+
+/* Donation Total */
+#donationTotalContainer {
+	font-size: 33px;
+	z-index: 1;
+	left: 406px;
+	width: 253px;
+	background-image: url('../images/info-bar/donation-total-bg.png');
+	padding-right: 25px; /* This is for the shadow part of the image. */
+}
+
+/* General Messages */
+#generalMessagesContainer {
+	z-index: 0;
+	left: 659px;
+	width: 1137px;
+	background-image: url('../images/info-bar/ticker-bg.png');
+}
+
+/* Clock */
+#clockContainer {
+	font-size: 33px;
+	z-index: 1;
+	left: 1771px;
+	width: 124px;
+	background-image: url('../images/info-bar/clock-bg.png');
+	padding-left: 25px; /* This is for the shadow part of the image. */
+}

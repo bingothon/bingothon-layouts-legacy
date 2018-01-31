@@ -18,6 +18,10 @@
     ],
     "graphics": [
       {
+        "file": "info-bar.html",
+        "width": 1920,
+        "height": 80
+      },      {
         "file": "intermission.html",
         "width": 1920,
         "height": 1080
