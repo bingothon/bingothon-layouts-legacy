@@ -1,0 +1,84 @@
+/* Big ESAW logo that appears in the top left. */
+#esaBigLogo {
+	left: 14px;
+	top: 5px;
+	width: 454px;
+	height: 250px;
+}
+
+/* Sponsor logos. */
+#sponsorContainer {
+	position: fixed;
+	background-color: black;
+	left: 1466px;
+	top: 5px;
+	width: 449px;
+	height: 170px;
+}
+
+/* A really big flex box wrapper that the information on screen goes in. */
+/* It does fill most of the screen, but that's mostly for safety; we only use the bottom area. */
+#intermissionDataWrapper {
+	/*background-color: rgba(255,255,255,0.3); /* temp color for dev */
+	
+	position: fixed;
+	display: flex;
+	left: 0;
+	top: 0;
+	width: 1920px;
+	height: 985px;
+	font-size: 27px;
+	align-items: center; /* Aligns horizontally. */
+	justify-content: flex-end; /* Aligns vertically. */
+	flex-direction: column;
+}
+
+/* Overriding defaults. */
+.storageBox {
+	position: static;
+	
+	/* Exchanging outline for a border because it's easier in this situation. */
+	outline: 0;
+	border: 3px solid #39b0f6;
+}
+
+/* Host names stuff. */
+#hostsWrapper {
+	height: 62px;
+}
+
+/* Hijacking the player container for hosts. */
+.playerContainer {
+	position: static;
+	height: 100%;
+	box-sizing: border-box;
+	border-right: 3px solid #39b0f6;
+}
+
+/* Last host doesn't need a vertical line on the right. */
+.playerContainer:last-child {
+	border-right: 0;
+}
+
+.playerText {
+	padding: 5px;
+}
+
+/* Extra data stuff. */
+#extraDataBoxWrapper {
+	margin-top: 10px;
+	height: 62px;
+}
+
+/* Box with a full blue background that fills the height of the wrapper. */
+#extraDataHeader {
+	background-color: #39b0f6;
+	font-family: Bebas Kai;
+	font-size: 37px;
+	height: 100%;
+	padding: 0 10px 0 7px;
+}
+
+#extraDataContent {
+	padding: 0 10px;
+}
