@@ -1,0 +1,65 @@
+/* Webcam(s). */
+#webcam1 {
+	left: 684px;
+	top: 720px;
+	width: 552px;
+	height: 280px;
+}
+
+/* Game area(s). */
+.gameCapture {
+	top: 0px;
+	height: 717px;
+}
+
+#gameCapture1 {
+	left: 0px;
+	width: 959px;
+}
+
+#gameCapture2 {
+	left: 962px;
+	width: 958px;
+}
+
+/* Player information stuff. */
+.playerContainer {
+	top: 720px;
+	width: 681px;
+	height: 48px;
+}
+
+#playerContainer1 {
+	left: 0px;
+}
+
+#playerContainer2 {
+	left: 1239px;
+}
+
+/* Run information stuff. */
+#runInfoContainer {
+	left: 1239px;
+	top: 771px;
+	width: 681px;
+	height: 150px;
+}
+
+#gameTitle {font-size: 31px;}
+#gameCategory, #gameConsole {font-size: 21px;}
+
+/* Timer stuff. */
+#timerContainer {
+	left: 1239px;
+	top: 924px;
+	width: 681px;
+	height: 76px;
+}
+
+/* Sponsor logos. */
+#sponsorContainer {
+	left: 0px;
+	top: 771px;
+	width: 681px;
+	height: 229px;
+}
