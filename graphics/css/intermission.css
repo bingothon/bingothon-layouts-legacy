@@ -1,9 +1,9 @@
 /* Big ESAW logo that appears in the top left. */
-#esaBigLogo {
-	left: 0px;
-	top: 0px;
-	width: 830px;
-	height: 295px;
+#esaBigLogo2 {
+	left: 30px;
+	top: 15px;
+	width: 779px;
+	height: 269px;
 }
 
 /* Webcam(s). */

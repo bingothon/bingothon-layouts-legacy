@@ -28,12 +28,19 @@ body {
 }
 
 /* Big ESAW logo that appears on places like the intermission layouts. */
-#esaBigLogo {
+.esaBigLogo {
 	position: fixed;
-	background-image: url('../images/esa-big-logo.png');
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: center;
+}
+
+#esaBigLogo1 {
+	background-image: url('../images/esa-big-logo-1.png');
+}
+
+#esaBigLogo2 {
+	background-image: url('../images/esa-big-logo-2.png');
 }
 
 /* All areas that store something. */
