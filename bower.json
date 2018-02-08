@@ -1,0 +1,6 @@
+{
+  "name": "esaw18-layouts",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}

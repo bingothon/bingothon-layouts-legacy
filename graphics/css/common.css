@@ -66,7 +66,7 @@ body {
 /* Image classes for logos. */
 .nameLogo {content: url('../images/player-logo.png');}
 .twitchLogo {content: url('../images/twitch-logo.png');}
-.playerFlag {content: url('../images/flag.png');} /* Flag image is changed dynamically. */
+/*.playerFlag {content: url('../images/flag.png');} /* Flag image is changed dynamically. */
 .playerCoOp {content: url('../images/team-icon.png');}
 .mcat {content: url('../images/mcat.png');}
 
@@ -85,14 +85,17 @@ body {
 	flex: auto;
 }
 
-/* Turns logo/flag/co-op icon and finish time container off by default. */
-/*.playerContainer div, .playerContainer img {opacity: 0;}*/ /* Using opacity for the fade in. */
-/*.playerFlag, .playerCoOp {display: none;}*/
+/* Turns flag/co-op icon off by default and sets 0 opacity on load so things fade in correctly. */
+.playerContainer div, .playerContainer img {opacity: 0;}
+.playerFlag, .playerCoOp {display: none;}
 
 #runInfoContainer {flex-direction: column; padding: 0 10px;}
 #gameTitle {text-align: center;}
 #gameConsole, #gameEstimate, .gameConsole {color: #bfbfbf;}
 #gameConsole::before {content: "| ";} /* Adds a line before the console name. */
+
+/* These elements need to be 0 opacity on load so they fade in correctly. */
+#gameTitle, #gameCategory, #gameConsole, #timer, #gameEstimate {opacity: 0;}
 
 /* Default timer stuff. */
 /* space-evenly only supported on CEF 60+. */
