@@ -123,3 +123,23 @@ body {
 .finishTimeContainer img {content: url('../images/finish-flag.gif'); height: 100%; image-rendering: pixelated;}
 
 .finishTimeContainer {opacity: 0;} /* Using opacity so the image is loaded in while invisible. */
+
+/* Sponsor logo stuff. */
+.sponsorLogo {
+	width: calc(100% - 80px);
+	height: calc(100% - 80px);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+
+.sponsorLogoCurrent {
+	position: absolute;
+	opacity: 1;
+}
+
+/* Next starts invisible so it can be faded in. */
+.sponsorLogoNext {
+	position: absolute;
+	opacity: 0;
+}

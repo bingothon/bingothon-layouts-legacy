@@ -67,6 +67,18 @@
         "width": 1920,
         "height": 1080
       }
+    ],
+    "assetCategories": [
+      {
+        "name": "sponsors",
+        "title": "Sponsor Logos",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "png",
+          "gif"
+        ]
+      }
     ]
   }
 }
