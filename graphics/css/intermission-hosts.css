@@ -9,11 +9,17 @@
 /* Sponsor logos. */
 #sponsorContainer {
 	position: fixed;
-	left: 1466px;
-	top: 5px;
+	left: 1456px;
+	top: 15px;
 	width: 449px;
 	height: 170px;
+	
+	/* Align contents to top right of cotainer. */
+	align-items: flex-start; /* Aligns vertically. */
+	justify-content: flex-end; /* Aligns horizontally. */
 }
+
+.sponsorLogo {padding: 0; /* Overriding default. */}
 
 /* A really big flex box wrapper that the information on screen goes in. */
 /* It does fill most of the screen, but that's mostly for safety; we only use the bottom area. */

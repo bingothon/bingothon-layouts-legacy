@@ -3,33 +3,30 @@ $(() => {
 	// JQuery selectors.
 	var sponsorContainer = $('#sponsorContainer');
 	
-	var sponsorRotationInit = false;
+	var init = false;
 	var sponsorImages = nodecg.Replicant('assets:sponsors');
 	sponsorImages.on('change', newVal => {
-		if (!sponsorRotationInit && newVal.length > 0) {
-			setInterval(rotateSponsors, 10000);
-			rotateSponsors();
-			sponsorRotationInit = true;
+		preloadImages(newVal);
+		
+		// If we aren't currently doing a rotation and there are logos available, start it off.
+		if (!init && newVal.length > 0) {
+			setInterval(rotateSponsors, 10000/*60000*/);
+			setTimeout(rotateSponsors, 1000); // Dirty delay to allow the preload to happen.
+			init = true;
 		}
 	});
 	
 	var index = 0;
 	function rotateSponsors() {
-		changeSponsorImage(sponsorContainer, sponsorImages.value[index].url);
+		animationChangeSponsorImage(sponsorContainer, sponsorImages.value[index].url);
 		index++;
 		if (index >= sponsorImages.value.length) index = 0;
 	}
 	
-	function changeSponsorImage(element, assetURL) {
-		$('.sponsorLogoCurrent', element).animate({'opacity': '0'}, 1000, 'linear');
-		
-		element.append('<div class="sponsorLogo sponsorLogoNext"></div>');
-		
-		$('.sponsorLogoNext', element).css('background-image', (assetURL)?'url("'+assetURL+'")':'none');
-		
-		$('.sponsorLogoNext', element).animate({'opacity': '1'}, 1000, 'linear', () => {
-			$('.sponsorLogoCurrent', element).remove();
-			$('.sponsorLogoNext', element).removeClass('sponsorLogoNext').addClass('sponsorLogoCurrent');
+	// Used to preload the sponsor images into the DOM so some JavaScript resizing works correctly.
+	function preloadImages(array) {
+		$.each(array, (i, val) => {
+			var element = $('<img>').attr('src', val.url).appendTo('body').hide();
 		});
 	}
 });

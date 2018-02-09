@@ -126,11 +126,8 @@ body {
 
 /* Sponsor logo stuff. */
 .sponsorLogo {
-	width: calc(100% - 80px);
-	height: calc(100% - 80px);
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-position: center;
+	padding: 30px;
+	box-sizing: border-box;
 }
 
 .sponsorLogoCurrent {
@@ -143,3 +140,7 @@ body {
 	position: absolute;
 	opacity: 0;
 }
+
+/* Classes to resize the sponsor images correctly. */
+.fillwidth {width: 100%; height: auto;}
+.fillheight {height: 100%; width: auto;}
