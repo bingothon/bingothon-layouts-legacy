@@ -15,11 +15,32 @@
 #gameCapture1 {
 	left: 0px;
 	width: 959px;
+	
+	/* This positions the finish time in this game feed. */
+	align-items: flex-end; /* Bottom of viewport. */
+	justify-content: flex-start; /* Left of viewport. */
 }
 
 #gameCapture2 {
 	left: 962px;
 	width: 958px;
+	
+	/* This positions the finish time in this game feed. */
+	align-items: flex-end; /* Bottom of viewport. */
+	justify-content: flex-end; /* Right of viewport. */
+}
+
+/* Finish timer stuff */
+.finishTimeContainer img {padding-right: 5px;}
+.finishTimeContainer {
+	font-size: 25px;
+	height: 30px;
+}
+#finishTimeContainer1 {
+	padding: 3px 3px 0 3px; /* No padding needed where this box touches the border. */
+}
+#finishTimeContainer2 {
+	padding: 3px 3px 0 3px; /* No padding needed where this box touches the border. */
 }
 
 /* Player information stuff. */

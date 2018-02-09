@@ -13,7 +13,6 @@ $(() => {
 	
 	var runDataActiveRun = nodecg.Replicant('runDataActiveRun', speedcontrolBundle);
 	runDataActiveRun.on('change', (newVal, oldVal) => {
-		console.log(newVal);
 		if (newVal) updateSceneFields(newVal);
 		else animationSetField(gameTitle, 'The Beginning');
 	});

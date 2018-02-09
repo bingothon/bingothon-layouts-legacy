@@ -100,7 +100,26 @@ body {
 /* Default timer stuff. */
 /* space-evenly only supported on CEF 60+. */
 #timerContainer {/*justify-content: space-evenly;*/ justify-content: space-around; white-space: nowrap;}
-#timer {font-size: 69px;}
+#timer {font-size: 65px;}
 #gameEstimate {font-size: 37px;}
 #gameEstimate::before {content: "EST: ";}
 #gameEstimate::after {content: ":00";}
+
+/* Different colours for each state the timer can be in. */
+.timer_running {color: white}
+.timer_paused, .timer_stopped {color: gray;}
+.timer_finished {color: #39b0f6;}
+
+/* Each character in the timer is in a span; setting width so the numbers appear monospaced. */
+#timer span {
+	display: inline-block;
+	width: 0.65em;
+	text-align: center;
+}
+#timer .char3, #timer .char6 {width: 0.3em;}
+
+/* Small "same colour as borders" box that appears in the game feeds when players finish in a race. */
+.finishTimeContainer {background-color: #39b0f6;}
+.finishTimeContainer img {content: url('../images/finish-flag.gif'); height: 100%; image-rendering: pixelated;}
+
+.finishTimeContainer {opacity: 0;} /* Using opacity so the image is loaded in while invisible. */
