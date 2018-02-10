@@ -52,7 +52,6 @@ $(() => {
 			// See if this needs a marquee effect to show the whole song name.
 			var songWidth = getSongDataWidth(newVal);
 			if (musicTickerText.width() <= songWidth) {
-				var duration = songWidth*12;
 				var startDelay = 3000;
 				songMarquee = musicTickerText.bind('finished', () => {
 					// Pauses the marquee on each cycle.
@@ -60,7 +59,7 @@ $(() => {
 					songMarquee.marquee('pause');
 					setTimeout(() => songMarquee.marquee('resume'), startDelay);
 				}).marquee({
-					'duration': duration,
+					'speed': 80,
 					'startVisible': true,
 					'duplicated': true,
 					'gap': 100,
