@@ -88,21 +88,24 @@ function animationChangePlayerData(selector, playerData, twitch, hideCoop, showC
 }
 
 function animationChangeSponsorImage(element, assetURL) {
-	// Fade out the current sponsor logo and add in the next logo.
-	var currentElement = $('.sponsorLogoCurrent', element);
-	currentElement.animate({'opacity': '0'}, 1000, 'linear');
+	// Add in the next sponsor logo.
 	var nextElement = $('<img class="sponsorLogo sponsorLogoNext scale">').appendTo(element);
 	nextElement.attr('src', assetURL);
-	
-	// Some code to figure out how to fit the sponsor images into the available box.
-	var containerAR = element.width()/element.height();
-	var logoAR = nextElement.width()/nextElement.height();
-	var fillClass = (containerAR > logoAR) ? 'fillheight' : 'fillwidth';
-	nextElement.addClass(fillClass);
-	
-	// Fade in next sponsor logo and change the classes.
-	nextElement.animate({'opacity': '1'}, 1000, 'linear', () => {
-		currentElement.remove();
-		nextElement.removeClass('sponsorLogoNext').addClass('sponsorLogoCurrent');
+	nextElement.on('load', () => {
+		// Fade out current sponsor logo.
+		var currentElement = $('.sponsorLogoCurrent', element);
+		currentElement.animate({'opacity': '0'}, 1000, 'linear');
+		
+		// Some code to figure out how to fit the sponsor images into the available box.
+		var containerAR = element.width()/element.height();
+		var logoAR = nextElement.width()/nextElement.height();
+		var fillClass = (containerAR > logoAR) ? 'fillheight' : 'fillwidth';
+		nextElement.addClass(fillClass);
+		
+		// Fade in next sponsor logo and change the classes.
+		nextElement.animate({'opacity': '1'}, 1000, 'linear', () => {
+			currentElement.remove();
+			nextElement.removeClass('sponsorLogoNext').addClass('sponsorLogoCurrent');
+		});
 	});
 }
