@@ -11,9 +11,18 @@ $(() => {
 	var gameEstimate = $('#timerContainer #gameEstimate');
 	var timerText = $('#timerContainer #timer');
 	
+	// Declaring other variables.
+	var runDataActiveRunCache = {};
+	
 	var runDataActiveRun = nodecg.Replicant('runDataActiveRun', speedcontrolBundle);
 	runDataActiveRun.on('change', (newVal, oldVal) => {
-		if (newVal) updateSceneFields(newVal);
+		if (newVal) {
+			// Dumb comparison to stop the data refreshing if the server restarts.
+			if (JSON.stringify(newVal) !== JSON.stringify(runDataActiveRunCache)) {
+				updateSceneFields(newVal);
+				runDataActiveRunCache = newVal;
+			}
+		}
 		else animationSetField(gameTitle, 'The Beginning');
 	});
 	

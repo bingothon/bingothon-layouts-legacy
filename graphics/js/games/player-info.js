@@ -18,10 +18,17 @@ $(() => {
 	var currentTeamsData = []; // All teams data is stored here for reference when changing.
 	var rotationTimeout; // Stores the timeout used for switching between name and twitch.
 	var init = true; // Tracks if this is the first time things are being shown since changing.
+	var runDataActiveRunCache = {};
 	
 	var runDataActiveRun = nodecg.Replicant('runDataActiveRun', speedcontrolBundle);
 	runDataActiveRun.on('change', (newVal, oldVal) => {
-		if (newVal) updateSceneFields(newVal);
+		if (newVal) {
+			// Dumb comparison to stop the data refreshing if the server restarts.
+			if (JSON.stringify(newVal) !== JSON.stringify(runDataActiveRunCache)) {
+				updateSceneFields(newVal);
+				runDataActiveRunCache = newVal;
+			}
+		}
 	});
 	
 	function updateSceneFields(runData) {
