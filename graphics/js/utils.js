@@ -1,5 +1,29 @@
 'use strict';
 
+// Get the next X runs in the schedule.
+function getNextRuns(runData, runDataArray, amount) {
+	var nextRuns = [];
+	var indexOfCurrentRun = findIndexInRunDataArray(runData, runDataArray);
+	for (var i = 1; i <= amount; i++) {
+		if (!runDataArray[indexOfCurrentRun+i]) break;
+		nextRuns.push(runDataArray[indexOfCurrentRun+i]);
+	}
+	return nextRuns;
+}
+
+// Returns how long until a run, based on the estimate of the previous run.
+function formETAUntilRun(previousRun, whenTotal) {
+	var whenString = '';
+	if (!previousRun) whenString = 'Next';
+	else {
+		var previousRunTime = previousRun.estimateS + previousRun.setupTimeS;
+		var formatted = moment.utc().second(0).to(moment.utc().second(whenTotal+previousRunTime), true);
+		whenString = 'In about '+formatted;
+		whenTotal += previousRunTime;
+	}
+	return [whenString, whenTotal];
+}
+
 // Converts milliseconds to a time string.
 function msToTime(duration) {
 	var seconds = parseInt((duration/1000)%60),

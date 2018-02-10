@@ -10,5 +10,5 @@ module.exports = function(nodecg) {
 	
 	// Initalising replicants.
 	// Doing this in an extension so we don't need to declare the options everywhere else.
-	var songData = nodecg.Replicant('songData', {defaultValue: 'No Track Playing/No Data Available'});
+	var songData = nodecg.Replicant('songData', {defaultValue: {'title': 'No Track Playing/No Data Available', 'playing': false}, persistent: false});
 }

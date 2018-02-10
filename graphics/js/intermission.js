@@ -43,14 +43,18 @@ $(() => {
 		if (!isOBS) refreshNextRunsDisplay();
 	});
 	
-	var songData = nodecg.Replicant('songData', {defaultValue: 'No Track Playing/No Data Available'});
-	songData.on('change', newVal => {
-		animationSetField(musicTickerText, newVal, () => {
+	var songData = nodecg.Replicant('songData');
+	songData.on('change', (newVal, oldVal) => {
+		// If the title didn't change, don't do anything.
+		if (oldVal && newVal.title === oldVal.title)
+			return;
+		
+		animationSetField(musicTickerText, newVal.title, () => {
 			// Destroy old marquee if it existed.
 			if (songMarquee) songMarquee.marquee('destroy');
 			
 			// See if this needs a marquee effect to show the whole song name.
-			var songWidth = getSongDataWidth(newVal);
+			var songWidth = getSongDataWidth(newVal.title);
 			if (musicTickerText.width() <= songWidth) {
 				var startDelay = 3000;
 				songMarquee = musicTickerText.bind('finished', () => {
@@ -83,12 +87,7 @@ $(() => {
 		// Checks if the run data array is actually imported yet by checking if it's an array.
 		if ($.isArray(runDataArray.value) && !refreshingNextRunsData) {
 			refreshingNextRunsData = true;
-			var indexOfCurrentRun = findIndexInRunDataArray(runDataActiveRun.value, runDataArray.value);
-			nextRuns = [];
-			for (var i = 1; i <= 4; i++) {
-				if (!runDataArray.value[indexOfCurrentRun+i]) break;
-				nextRuns.push(runDataArray.value[indexOfCurrentRun+i]);
-			}
+			nextRuns = getNextRuns(runDataActiveRun.value, runDataArray.value, 4);
 			refreshingNextRunsData = false;
 		}
 	}
@@ -104,22 +103,17 @@ $(() => {
 			// Loop through all the runs to create their HTML.
 			for (var i = 0; i < nextRuns.length; i++) {
 				// Stuff for the string that appears at the time with an ETA.
-				var whenString = '';
-				if (i === 0) whenString = 'Next';
-				else {
-					var previousRunTime = nextRuns[i-1].estimateS + nextRuns[i-1].setupTimeS;
-					var formatted = moment.utc().second(0).to(moment.utc().second(whenTotal+previousRunTime), true);
-					whenString = 'In about '+formatted;
-					whenTotal += previousRunTime;
-				}
+				var whenString = formETAUntilRun(nextRuns[i-1], whenTotal)[0];
+				whenTotal = formETAUntilRun(nextRuns[i-1], whenTotal)[1];
 				
+				// Player Name(s)
 				var players = formPlayerNamesString(nextRuns[i]);
 				
 				// Dirty hack to show co-op icon if the first team is configured to show it.
 				var showTeamIcon = nextRuns[i].teams[0] && nextRuns[i].teams[0].members.length > 1;
 				
 				// Insert the data into a copy of the container element.
-				var containerCopy = runContainerElement;
+				var containerCopy = runContainerElement.clone();
 				$('.gameWhen', containerCopy).html(whenString);
 				$('.gameTitle', containerCopy).html(nextRuns[i].game);
 				$('.gameCategory', containerCopy).html(nextRuns[i].category);

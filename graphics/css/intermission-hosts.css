@@ -50,6 +50,7 @@
 /* Host names stuff. */
 #hostsWrapper {
 	height: 62px;
+	opacity: 0; /* Invisible on load. */
 }
 
 /* Hijacking the player container for hosts. */
@@ -61,18 +62,19 @@
 }
 
 /* Last host doesn't need a vertical line on the right. */
-.playerContainer:last-child {
-	border-right: 0;
-}
+.playerContainer:last-child {border-right: 0;}
 
-.playerText {
-	padding: 5px;
-}
+.playerText {padding: 5px;}
+
+/* Overriding defaults so these things are always visible. */
+.playerContainer div, .playerContainer img {opacity: 1;}
+.playerFlag {display: inline; /*content: url('../images/flag.png');*/}
 
 /* Extra data stuff. */
 #extraDataBoxWrapper {
 	margin-top: 10px;
 	height: 62px;
+	opacity: 0; /* Invisible on load. */
 }
 
 /* Box with a full blue background that fills the height of the wrapper. */
@@ -82,6 +84,7 @@
 	font-size: 37px;
 	height: 100%;
 	padding: 0 10px 0 7px;
+	white-space: nowrap;
 }
 
 #extraDataContent {
