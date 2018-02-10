@@ -77,7 +77,7 @@ body {
 /* Makes these images fill up all the space they can. */
 .playerLogo, .playerFlag, .playerCoOp, .mCat {height: 100%; box-sizing: border-box;}
 
-.playerText, .musicTickerText {
+.playerText, #musicTickerText {
 	/* In case the player name is really long, stop it from ruining the box and just hide the end. */
 	overflow: hidden;
 	white-space: nowrap;
@@ -99,7 +99,7 @@ body {
 
 /* Default timer stuff. */
 /* space-evenly only supported on CEF 60+. */
-#timerContainer {/*justify-content: space-evenly;*/ justify-content: space-around; white-space: nowrap;}
+#timerContainer {justify-content: space-evenly; /*justify-content: space-around;*/ white-space: nowrap;}
 #timer {font-size: 65px;}
 #gameEstimate {font-size: 37px;}
 #gameEstimate::before {content: "EST: ";}

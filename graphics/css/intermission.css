@@ -22,7 +22,7 @@
 	height: 59px;
 }
 .mcat {padding-right: 15px;}
-.musicTickerText {font-size: 26px;}
+#musicTickerText {font-size: 26px;}
 
 /* Coming up runs stuff. */
 .headerTextBox {

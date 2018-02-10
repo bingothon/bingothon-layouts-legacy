@@ -1,16 +1,18 @@
 'use strict';
 
 // Simple fade out/in animation by using opacity.
-function animationSetField(selector, newHTML) {
-	$(selector).animate({'opacity': '0'}, 500, 'linear', () => {
+function animationSetField(selector, newHTML, callback) {
+	$(selector).animate({'opacity': '0'}, 1000, 'linear', () => {
 		if (newHTML) selector.html(newHTML);
-		$(selector).animate({'opacity': '1'}, 500, 'linear');
+		$(selector).animate({'opacity': '1'}, 1000, 'linear', () => {
+			if (callback) callback();
+		});
 	});
 }
 
 /*function animationFadeOutInElements(selector1, selector2) {
-	$(selector1).animate({'opacity': '0'}, 500, 'linear', function() {
-		$(selector2).animate({'opacity': '1'}, 500, 'linear');
+	$(selector1).animate({'opacity': '0'}, 1000, 'linear', function() {
+		$(selector2).animate({'opacity': '1'}, 1000, 'linear');
 	});
 }*/
 
@@ -33,7 +35,7 @@ function animationSetField(selector, newHTML) {
 // (This doesn't actually clear them, just hides the elements for now).
 function animationCleanPlayerData(selector) {
 	var elementsToFadeOut = '.playerLogo, .playerText, .playerFlag, .playerCoOp';
-	$(selector).find(elementsToFadeOut).animate({'opacity': '0'}, 500, 'linear');
+	$(selector).find(elementsToFadeOut).animate({'opacity': '0'}, 1000, 'linear');
 }
 
 function animationChangePlayerData(selector, playerData, twitch, hideCoop, showCoop) {
@@ -48,7 +50,7 @@ function animationChangePlayerData(selector, playerData, twitch, hideCoop, showC
 	if (hideCoop) elementsToFadeOut += ', .playerCoOp';
 	
 	// Do the actual fading out by going to opacity 0.
-	$(selector).find(elementsToFadeOut).animate({'opacity': '0'}, 500, 'linear');
+	$(selector).find(elementsToFadeOut).animate({'opacity': '0'}, 1000, 'linear');
 	
 	// Triggers once everything from the above animate is done.
 	$(selector).find(elementsToFadeOut).promise().done(() => {
@@ -83,7 +85,7 @@ function animationChangePlayerData(selector, playerData, twitch, hideCoop, showC
 		}
 		
 		// Do the actual fading in by going to opacity 1.
-		$(selector).find(elementsToFadeIn).animate({'opacity': '1'}, 500, 'linear');
+		$(selector).find(elementsToFadeIn).animate({'opacity': '1'}, 1000, 'linear');
 	});
 }
 
