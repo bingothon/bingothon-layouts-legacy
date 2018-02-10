@@ -4,7 +4,7 @@ $(() => {
 	var speedcontrolBundle = 'nodecg-speedcontrol';
 	
 	// JQuery selectors.
-	var comingUpRunsBox = $('#comingUpRunsBox');
+	var comingUpRunsBox = $('#comingUpRunsWrapper');
 	var musicTickerText = $('#musicTickerText');
 	
 	// Declaring other variables.

@@ -44,21 +44,21 @@
 	position: fixed;
 	left: 830px;
 	top: 63px;
-	width: 1090px;
+	width: 1087px;
 	height: 940px;
+	border-left: 3px solid #39b0f6;
 }
 
 /* The container each "coming up run" is in. */
 .comingUpRunContainer {
 	position: relative;
 	flex-direction: column;
-	width: 1090px;
+	width: 1087px;
 	height: 235px;
 	
-	/* Remove the normal outlines and just use a bottom/left border instead. */
+	/* Remove the normal outlines and just use a bottom border instead. */
 	outline: 0;
 	border-bottom: 3px solid #39b0f6;
-	border-left: 3px solid #39b0f6;
 }
 
 /* Text and stuff settings inside of the container above. */
