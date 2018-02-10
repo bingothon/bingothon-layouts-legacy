@@ -13,6 +13,7 @@ $(() => {
 	var nextRuns = []; // Can be 4 or less depending where we are in the schedule.
 	var refreshingNextRunsData = false;
 	var refreshingNextRunsDisplay = false;
+	var songMarquee;
 
 	// This might have race condition issues, not the best, will see how it goes.
 	var runContainerElement = $('<div>').load('js/intermission-upcoming-box.html');
@@ -41,6 +42,42 @@ $(() => {
 		refreshNextRunsData();
 		if (!isOBS) refreshNextRunsDisplay();
 	});
+	
+	var songData = nodecg.Replicant('songData', {defaultValue: 'No Track Playing/No Data Available'});
+	songData.on('change', newVal => {
+		animationSetField(musicTickerText, newVal, () => {
+			// Destroy old marquee if it existed.
+			if (songMarquee) songMarquee.marquee('destroy');
+			
+			// See if this needs a marquee effect to show the whole song name.
+			var songWidth = getSongDataWidth(newVal);
+			if (musicTickerText.width() <= songWidth) {
+				var duration = songWidth*12;
+				var startDelay = 3000;
+				songMarquee = musicTickerText.bind('finished', () => {
+					// Pauses the marquee on each cycle.
+					// There seems to be an in built option for this, but it doesn't work.
+					songMarquee.marquee('pause');
+					setTimeout(() => songMarquee.marquee('resume'), startDelay);
+				}).marquee({
+					'duration': duration,
+					'startVisible': true,
+					'duplicated': true,
+					'gap': 100,
+					'delayBeforeStart': startDelay
+				});
+			}
+			else songMarquee = undefined;
+		});
+	});
+	
+	// Used to get the width of supplied text for the music ticker.
+	function getSongDataWidth(text) {
+		var canvas = document.createElement('canvas');
+		var ctx = canvas.getContext('2d');
+		ctx.font = '26px Montserrat'; /* Change if layout is changed. */
+		return ctx.measureText(text).width;
+	}
 	
 	// Refresh the data about the upcoming runs (up to 4 runs).
 	function refreshNextRunsData() {
