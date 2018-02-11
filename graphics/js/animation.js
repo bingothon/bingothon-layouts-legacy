@@ -10,6 +10,20 @@ function animationSetField(selector, newHTML, callback) {
 	});
 }
 
+// Simple fade out for 1s.
+function animationFadeOutElement(selector, callback) {
+	$(selector).animate({'opacity': '0'}, 1000, 'linear', () => {
+		if (callback) callback();
+	});
+}
+
+// Simple fade in for 1s.
+function animationFadeInElement(selector, callback) {
+	$(selector).animate({'opacity': '1'}, 1000, 'linear', () => {
+		if (callback) callback();
+	});
+}
+
 /*function animationFadeOutInElements(selector1, selector2) {
 	$(selector1).animate({'opacity': '0'}, 1000, 'linear', function() {
 		$(selector2).animate({'opacity': '1'}, 1000, 'linear');

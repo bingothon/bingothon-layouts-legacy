@@ -4,15 +4,18 @@ $(() => {
 	var speedcontrolBundle = 'nodecg-speedcontrol';
 	
 	// JQuery selectors.
+	var hostsWrapper = $('#hostsWrapper');
 	var extraDataBoxWrapper = $('#extraDataBoxWrapper');
 	
 	// Declaring other variables.
 	var isOBS = (window.obsstudio) ? true : false;
-	var init = false;
+	var pageInit = false;
 	var nextRuns = []; // Can be 3 or less depending where we are in the schedule.
 	var refreshingNextRunsData = false;
 	var extraDataTime = 10000;
 	var extraDataTO;
+	var hostDisplayStatusChanging = false;
+	var hostShowTO;
 	
 	// If this is being viewed in OBS Studio, stuff in here can be triggered.
 	if (isOBS) {
@@ -29,8 +32,8 @@ $(() => {
 	var runDataArray = nodecg.Replicant('runDataArray', speedcontrolBundle);
 	var runDataActiveRun = nodecg.Replicant('runDataActiveRun', speedcontrolBundle);
 	runDataActiveRun.on('change', (newVal, oldVal) => {
-		if (!init) {
-			init = true;
+		if (!pageInit) {
+			pageInit = true;
 			refreshNextRunsData();
 			showUpcomingGame();
 		}
@@ -110,5 +113,84 @@ $(() => {
 		animationSetField(extraDataBoxWrapper, container.html(), () => {
 			extraDataTO = setTimeout(() => showUpcomingGame(true), extraDataTime)
 		});
+	}
+	
+	var hostData = nodecg.Replicant('hostData');
+	hostData.on('change', () => {
+		// If host data changes and we are showing them, refreshes the data on screen.
+		if (hostDisplayStatus.value)
+			hideHosts(() =>	showHosts());
+	});
+	
+	// Set the host display status to false/off on page load.
+	var hostDisplayInit = false;
+	var hostDisplayStatus = nodecg.Replicant('hostDisplayStatus');
+	hostDisplayStatus.on('change', () => {
+		if (!hostDisplayInit) {
+			hostDisplayStatus.value = false;
+			hostDisplayInit = true;
+		}
+	});
+	
+	// Turn on host display.
+	nodecg.listenFor('showHosts', () => {
+		if (!hostDisplayStatusChanging)
+			showHosts();
+	});
+	
+	// Temporarily turn on host display for 30s.
+	nodecg.listenFor('showHostsTemp', () => {
+		if (!hostDisplayStatusChanging) {
+			showHosts();
+			hostShowTO = setTimeout(hideHosts, 30000);
+		}
+	});	
+	
+	// Turn off host display.
+	nodecg.listenFor('hideHosts', function() {
+		if (!hostDisplayStatusChanging)
+			hideHosts();
+	});
+	
+	// Show the hosts on screen.
+	function showHosts(callback) {
+		hostDisplayStatusChanging = true;
+		hostDisplayStatus.value = true;
+		hostsWrapper.html('');
+		hostData.value.forEach(user => hostsWrapper.append(createHostContainer(user)));
+		animationFadeInElement(hostsWrapper, () => {
+			hostDisplayStatusChanging = false;
+			if (callback) callback();
+		});
+	}
+	
+	// Hide the hosts on screen.
+	function hideHosts(callback) {
+		hostDisplayStatusChanging = true;
+		hostDisplayStatus.value = false;
+		clearTimeout(hostShowTO);
+		animationFadeOutElement(hostsWrapper, () => {
+			hostDisplayStatusChanging = false;
+			if (callback) callback();
+		});
+	}
+	
+	// Creates the host element top be inserted.
+	function createHostContainer(hostData) {
+		var container = $('<div class="playerContainer flexContainer">');
+		container.append('<div class="playerText">');
+		container.append('<img class="playerFlag">');
+		
+		$('.playerText', container).html(hostData.name);
+				
+		// If the host data has a location set, will show their flag too.
+		if (hostData.region) {
+			var flagURL = 'https://www.speedrun.com/images/flags/'+hostData.region.toLowerCase()+'.png';
+			$('.playerFlag', container).attr('src', flagURL);
+			$('.playerFlag', container).on('error', e => $(e.target).hide()); // Hides flag if error loading.
+		}
+		else $('.playerFlag', container).hide();
+		
+		return container;
 	}
 });

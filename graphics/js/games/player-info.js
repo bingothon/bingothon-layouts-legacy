@@ -16,7 +16,7 @@ $(() => {
 	var displayTwitchFor = 15000; // 15 seconds
 	var teamMemberIndex = []; // Stores what team member of each team is currently being shown.
 	var currentTeamsData = []; // All teams data is stored here for reference when changing.
-	var rotationTimeout; // Stores the timeout used for switching between name and twitch.
+	var rotationTO; // Stores the timeout used for switching between name and twitch.
 	var init = true; // Tracks if this is the first time things are being shown since changing.
 	var runDataActiveRunCache = {};
 	
@@ -35,7 +35,7 @@ $(() => {
 		// Reset important stuff.
 		currentTeamsData = [];
 		teamMemberIndex = [];
-		clearTimeout(rotationTimeout);
+		clearTimeout(rotationTO);
 		init = true;
 		
 		// If there are multiple player info boxes but only 1 team and they have >1 player,
@@ -86,7 +86,7 @@ $(() => {
 		// Toggle to false if this was the first time running this function since a change.
 		if (init) init = false;
 		
-		rotationTimeout = setTimeout(showTwitchs, displayNameFor);
+		rotationTO = setTimeout(showTwitchs, displayNameFor);
 	}
 	
 	// Change to showing Twitch names.
@@ -97,7 +97,7 @@ $(() => {
 			animationChangePlayerData(playerContainers[i], currentTeamsData[i].members[index], true);
 		}
 		
-		rotationTimeout = setTimeout(rotateTeamMembers, displayTwitchFor);
+		rotationTO = setTimeout(rotateTeamMembers, displayTwitchFor);
 	}
 	
 	// Change settings to go to the next team member, if applicable.

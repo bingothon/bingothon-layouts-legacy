@@ -9,7 +9,7 @@ $(() => {
 	
 	// Declaring other variables.
 	var isOBS = (window.obsstudio) ? true : false;
-	var init = false;
+	var pageInit = false;
 	var nextRuns = []; // Can be 4 or less depending where we are in the schedule.
 	var refreshingNextRunsData = false;
 	var refreshingNextRunsDisplay = false;
@@ -30,8 +30,8 @@ $(() => {
 	var runDataArray = nodecg.Replicant('runDataArray', speedcontrolBundle);
 	var runDataActiveRun = nodecg.Replicant('runDataActiveRun', speedcontrolBundle);
 	runDataActiveRun.on('change', (newVal, oldVal) => {
-		if (!init) {
-			init = true;
+		if (!pageInit) {
+			pageInit = true;
 			refreshNextRunsData();
 			refreshNextRunsDisplay();
 		}
