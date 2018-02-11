@@ -134,21 +134,23 @@ $(() => {
 	
 	// Turn on host display.
 	nodecg.listenFor('showHosts', () => {
-		if (!hostDisplayStatusChanging)
+		if (!hostDisplayStatusChanging && !hostDisplayStatus.value) {
+			clearTimeout(hostShowTO);
 			showHosts();
+		}
 	});
 	
 	// Temporarily turn on host display for 30s.
 	nodecg.listenFor('showHostsTemp', () => {
 		if (!hostDisplayStatusChanging) {
-			showHosts();
 			hostShowTO = setTimeout(hideHosts, 30000);
+			if (!hostDisplayStatus.value) showHosts();
 		}
 	});	
 	
 	// Turn off host display.
 	nodecg.listenFor('hideHosts', function() {
-		if (!hostDisplayStatusChanging)
+		if (!hostDisplayStatusChanging && hostDisplayStatus.value)
 			hideHosts();
 	});
 	

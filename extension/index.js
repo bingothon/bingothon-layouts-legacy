@@ -13,4 +13,7 @@ module.exports = function(nodecg) {
 	var songData = nodecg.Replicant('songData', {defaultValue: {'title': 'No Track Playing/No Data Available', 'playing': false}, persistent: false});
 	var hostData = nodecg.Replicant('hostData', {defaultValue: []});
 	var hostDisplayStatus = nodecg.Replicant('hostDisplayStatus', {defaultValue: false});
+	
+	// Other extension files we need to load.
+	require('./host-api');
 }
