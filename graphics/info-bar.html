@@ -8,32 +8,38 @@
 		<link href="css/info-bar.css" rel="stylesheet"/>
 		
 		<!-- JavaScript -->
-		<!--<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="../bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="../bower_components/moment/min/moment.min.js"></script>
-		<script src="../bower_components/lodash/dist/lodash.min.js"></script>
-		<script src="../bower_components/jquery-animateNumber/jquery.animateNumber.min.js"></script>
+		<!--<script src="../bower_components/lodash/dist/lodash.min.js"></script>-->
+		<!--<script src="../bower_components/jquery-animateNumber/jquery.animateNumber.min.js"></script>-->
 		<script src="js/animation.js"></script>
-		<script src="js/intermission-utils.js"></script>
+		<script src="js/info-bar/tick-handler.js"></script>
 		<script src="js/info-bar/clock.js"></script>
-		<script src="js/info-bar/general.js"></script>-->
+		<script src="js/info-bar/esa-logo.js"></script>
+		<script src="js/info-bar/donation-total.js"></script>
 	</head>
 	<body>
 		<div id="barWrapper" class="storageBox flexContainer">
 			<!-- ESA Logo -->
 			<div id="esaBarLogoContainer" class="barContainers">
-				<div id="esaBarLogo"></div>
+				<img id="esaSmallLogo" src="images/info-bar/esa-small-logo.png">
+				<img id="esaHashtagLogo" src="images/info-bar/esa-hashtag-logo.png">
 			</div>
 			
 			<!-- Donation Total -->
 			<div id="donationTotalContainer" class="barContainers flexContainer textGlow">
-				$100,000
+				<img id="stcIcon" src="images/info-bar/stc-icon.png">
+				<img id="stcText" src="images/info-bar/stc-text.png">
+				<div id="amountText">$100</div>
 			</div>
 			
 			<!-- General Ticker Messages -->
 			<div id="generalMessagesContainer" class="barContainers"></div>
 			
 			<!-- Clock -->
-			<div id="clockContainer" class="barContainers flexContainer textGlow">04:20</div>
+			<div id="clockContainer" class="barContainers flexContainer textGlow">
+				<!-- Current Time -->
+			</div>
 		</div>
 	</body>
 </html>

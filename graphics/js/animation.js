@@ -24,11 +24,13 @@ function animationFadeInElement(selector, callback) {
 	});
 }
 
-/*function animationFadeOutInElements(selector1, selector2) {
-	$(selector1).animate({'opacity': '0'}, 1000, 'linear', function() {
-		$(selector2).animate({'opacity': '1'}, 1000, 'linear');
+// Shorthand function that combines the 2 above functions.
+function animationFadeOutInElements(selector1, selector2, callback) {
+	animationFadeOutElement(selector1);
+	animationFadeInElement(selector2, () => {
+		if (callback) callback();
 	});
-}*/
+}
 
 // Animation lasts under 1 tick (5s) so no extra callbacks are needed.
 /*function animationUpdateDonationTotal(selector, oldValue, newValue) {
@@ -105,7 +107,7 @@ function animationChangePlayerData(selector, playerData, twitch, hideCoop, showC
 
 function animationChangeSponsorImage(element, assetURL) {
 	// Add in the next sponsor logo.
-	var nextElement = $('<img class="sponsorLogo sponsorLogoNext scale">').appendTo(element);
+	var nextElement = $('<img class="sponsorLogo sponsorLogoNext">').appendTo(element);
 	nextElement.attr('src', assetURL);
 	nextElement.on('load', () => {
 		// Fade out current sponsor logo.

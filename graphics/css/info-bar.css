@@ -30,30 +30,27 @@
 	background-image: url('../images/info-bar/logo-bg.png');
 	padding-right: 25px; /* This is for the shadow part of the image. */
 }
-
-#esaBarLogo {
-	height: 100%;
-	
-	/* These will be switched out by JS. */
-	/*background-image: url('../images/info-bar/esa-hashtag-logo.png');*/
-	background-image: url('../images/info-bar/esa-small-logo.png');
-}
+#esaBarLogoContainer #esaSmallLogo {position: absolute;}
+#esaBarLogoContainer #esaHashtagLogo {position: absolute; opacity: 0;}
 
 /* Donation Total */
 #donationTotalContainer {
 	font-size: 33px;
 	z-index: 1;
 	left: 406px;
-	width: 253px;
+	width: 286px;
 	background-image: url('../images/info-bar/donation-total-bg.png');
 	padding-right: 25px; /* This is for the shadow part of the image. */
 }
+#donationTotalContainer #stcIcon {position: absolute;}
+#donationTotalContainer #stcText {position: absolute; opacity: 0;}
+#donationTotalContainer #amountText {position: absolute; padding-left: 69px;}
 
 /* General Messages */
 #generalMessagesContainer {
 	z-index: 0;
-	left: 659px;
-	width: 1137px;
+	left: 692px;
+	width: 1104px;
 	background-image: url('../images/info-bar/ticker-bg.png');
 }
 
@@ -65,4 +62,8 @@
 	width: 124px;
 	background-image: url('../images/info-bar/clock-bg.png');
 	padding-left: 25px; /* This is for the shadow part of the image. */
+}
+
+#clockContainer span {
+	width: 0.3em;
 }
