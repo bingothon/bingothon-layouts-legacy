@@ -9,7 +9,6 @@ var nodecg = require('./utils/nodecg-api-context').get();
 var statsURL = 'https://donations.esamarathon.com/1?json';
 var repeaterURL = 'https://repeater.esamarathon.com';
 var loginURL = 'https://donations.esamarathon.com/admin/login/';
-var apiURL = 'https://donations.esamarathon.com/search';
 var isFirstLogin = true;
 
 // Replicants.
@@ -33,7 +32,7 @@ request(statsURL, (err, resp, body) => {
 
 // Log into the tracker before querying stuff on it.
 loginToTracker().then(() => {
-	// logged into tracker
+	require('./tracker-bids');
 });
 
 // Tracker logins expire every 2 hours. Re-login every 90 minutes.
@@ -41,15 +40,20 @@ setInterval(loginToTracker, 90 * 60 * 1000);
 
 // Repeater socket server connecting/error stuff.
 var repeater = require('socket.io-client')(repeaterURL);
-repeater.on('connect', () => {nodecg.log.info('Connected to repeater server:', repeaterURL);});
-repeater.on('connect_error', err => {nodecg.log.warn('Repeater socket connect_error:', err);});
-repeater.on('disconnect', () => {nodecg.log.warn('Disconnected from repeater socket.');});
-repeater.on('error', err => {nodecg.log.warn('Repeater socket error:', err);});
+repeater.on('connect', () => nodecg.log.info('Connected to repeater server:', repeaterURL));
+repeater.on('connect_error', err => nodecg.log.warn('Repeater socket connect_error:', err));
+repeater.on('disconnect', () => nodecg.log.warn('Disconnected from repeater socket.'));
+repeater.on('error', err => nodecg.log.warn('Repeater socket error:', err));
 
 // Triggered when a new donation that can be shown on stream is received.
 repeater.on('donation', data => {
 	nodecg.log.info('Received new donation with ID %s.', data.id);
 	recentDonations.value.push(data);
+	
+	// Caps this replicant to 10.
+	if (recentDonations.value.length > 10)
+		recentDonations.value = recentDonations.value.slice(0, 10);
+	
 	nodecg.sendMessage('newDonation', data);
 });
 
