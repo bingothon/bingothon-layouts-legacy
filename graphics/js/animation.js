@@ -33,11 +33,11 @@ function animationFadeOutInElements(selector1, selector2, callback) {
 }
 
 // Animation lasts under 1 tick (5s) so no extra callbacks are needed.
-/*function animationUpdateDonationTotal(selector, oldValue, newValue) {
+function animationUpdateDonationTotal(selector, oldVal, newVal) {
 	$(selector)
-	.prop('number', oldValue)
+	.prop('number', oldVal)
 	.animateNumber({
-		number: newValue,
+		number: newVal,
 		numberStep: function(now, tween) {
 			var flooredNumber = Math.floor(now);
 			var target = $(tween.elem);
@@ -45,7 +45,7 @@ function animationFadeOutInElements(selector1, selector2, callback) {
 			target.html('$'+value);
 		}
 	}, 4000, 'linear');
-}*/
+}
 
 // Used to clean player containers that are not needed.
 // (This doesn't actually clear them, just hides the elements for now).

@@ -5,6 +5,7 @@
     "letteringjs": "^0.7.0",
     "moment": "^2.20.1",
     "jquery.marquee": "jQuery.Marquee#^1.5.0",
-    "async": "^2.6.0"
+    "async": "^2.6.0",
+    "jquery-animateNumber": "^0.0.14"
   }
 }

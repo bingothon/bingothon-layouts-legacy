@@ -8,7 +8,7 @@ module.exports = function(nodecg) {
 	// This must be done before any other files are `require`d.
 	nodecgAPIContext.set(nodecg);
 	
-	// Initalising replicants.
+	// Initalising some replicants.
 	// Doing this in an extension so we don't need to declare the options everywhere else.
 	var songData = nodecg.Replicant('songData', {defaultValue: {'title': 'No Track Playing/No Data Available', 'playing': false}, persistent: false});
 	var hostData = nodecg.Replicant('hostData', {defaultValue: []});
@@ -16,4 +16,5 @@ module.exports = function(nodecg) {
 	
 	// Other extension files we need to load.
 	require('./host-api');
+	require('./tracker');
 }
