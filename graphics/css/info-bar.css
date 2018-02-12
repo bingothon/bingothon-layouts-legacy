@@ -1,3 +1,11 @@
+/* Resizes Twitter's emoji correctly so they fit in with the text. */
+img.emoji {
+   height: 1em;
+   width: 1em;
+   margin: 0 .05em 0 .1em;
+   vertical-align: -0.2em;
+}
+
 #barWrapper {
 	width: 1920px;
 	height: 80px;
@@ -15,6 +23,7 @@
 	position: fixed;
 	height: inherit;
 	top: 0;
+	overflow: hidden;
 }
 
 /* Black glow on the text. */
@@ -52,6 +61,20 @@
 	left: 692px;
 	width: 1104px;
 	background-image: url('../images/info-bar/ticker-bg.png');
+	padding: 0 20px;
+	font-size: 22px;
+	line-height: 140%;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start; /* Aligns horizontally centre. */
+	justify-content: center; /* Aligns vertically centre. */
+}
+#generalMessagesContainer div {
+	white-space: nowrap;
+}
+#generalMessagesContainer .line2 {
+	/*display: none;*/ /* You would need to do this if only 1 line needed to be shown. */
 }
 
 /* Clock */

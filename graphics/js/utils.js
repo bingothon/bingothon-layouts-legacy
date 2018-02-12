@@ -65,3 +65,17 @@ function findIndexInRunDataArray(run, runDataArray) {
 	
 	return indexOfRun;
 }
+
+// Get a random integer, usually for selecting array elements.
+// You will never get max as an output.
+function getRandomInt(max) {
+	return Math.floor(Math.random()*Math.floor(max));
+}
+
+// Used to get the width of supplied text.
+function getTextWidth(text, size) {
+	var canvas = document.createElement('canvas');
+	var ctx = canvas.getContext('2d');
+	ctx.font = size+'px Montserrat'; /* Change if layout is changed. */
+	return ctx.measureText(text).width;
+}

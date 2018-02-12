@@ -54,7 +54,7 @@ $(() => {
 			if (songMarquee) songMarquee.marquee('destroy');
 			
 			// See if this needs a marquee effect to show the whole song name.
-			var songWidth = getSongDataWidth(newVal.title);
+			var songWidth = getTextWidth(newVal.title, 26);
 			if (musicTickerText.width() <= songWidth) {
 				var startDelay = 3000;
 				songMarquee = musicTickerText.bind('finished', () => {
@@ -73,14 +73,6 @@ $(() => {
 			else songMarquee = undefined;
 		});
 	});
-	
-	// Used to get the width of supplied text for the music ticker.
-	function getSongDataWidth(text) {
-		var canvas = document.createElement('canvas');
-		var ctx = canvas.getContext('2d');
-		ctx.font = '26px Montserrat'; /* Change if layout is changed. */
-		return ctx.measureText(text).width;
-	}
 	
 	// Refresh the data about the upcoming runs (up to 4 runs).
 	function refreshNextRunsData() {

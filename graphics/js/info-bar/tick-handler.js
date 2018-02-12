@@ -1,8 +1,5 @@
 'use strict';
 $(() => {
-	// The bundle name where all the run information is pulled from.
-	var speedcontrolBundle = 'nodecg-speedcontrol';
-	
 	// Declaring other variables.
 	var tickRate = 5000; // Everything changes/updates every 5 seconds.
 	
@@ -12,5 +9,6 @@ $(() => {
 	function tick() {
 		changeESALogo(); // esa-logo.js
 		changeDonationTotalStuff(); // donation-total.js
+		showTickerMessages(); // ticker-msgs.js
 	}
 });

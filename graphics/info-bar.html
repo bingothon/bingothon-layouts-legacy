@@ -8,15 +8,18 @@
 		<link href="css/info-bar.css" rel="stylesheet"/>
 		
 		<!-- JavaScript -->
+		<script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.4"></script>
 		<script src="../bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="../bower_components/moment/min/moment.min.js"></script>
 		<!--<script src="../bower_components/lodash/dist/lodash.min.js"></script>-->
 		<script src="../bower_components/jquery-animateNumber/jquery.animateNumber.min.js"></script>
+		<script src="js/utils.js"></script>
 		<script src="js/animation.js"></script>
 		<script src="js/info-bar/tick-handler.js"></script>
 		<script src="js/info-bar/clock.js"></script>
 		<script src="js/info-bar/esa-logo.js"></script>
 		<script src="js/info-bar/donation-total.js"></script>
+		<script src="js/info-bar/ticker-msgs.js"></script>
 	</head>
 	<body>
 		<div id="barWrapper" class="storageBox flexContainer">
@@ -34,7 +37,12 @@
 			</div>
 			
 			<!-- General Ticker Messages -->
-			<div id="generalMessagesContainer" class="barContainers"></div>
+			<div id="generalMessagesContainer" class="barContainers">
+				<div id="linesWrapper">
+					<div class="line1"><!-- Line 1 Text --></div>
+					<div class="line2"><!-- Line 2 Text --></div>
+				</div>
+			</div>
 			
 			<!-- Clock -->
 			<div id="clockContainer" class="barContainers flexContainer textGlow">
