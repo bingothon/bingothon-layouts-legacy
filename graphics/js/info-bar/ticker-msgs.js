@@ -42,10 +42,9 @@ nodecg.listenFor('newDonation', donation => {
 });
 
 // Cycles the actual ticker messages that can be shown.
+// Triggered every tick from tick-handler.js
 function showTickerMessages() {	
 	var retry = false; // If this becomes true, we'll run this function again.
-	
-	console.log(messageIndex);
 	
 	// Skip tick if still showing a message.
 	if (showingMessage)
@@ -80,7 +79,7 @@ function showTickerMessages() {
 	// Coming Up Run
 	if (messageIndex === 2) {
 		// Will only trigger this if there's at least 1 run still to come.
-		var indexOfCurrentRun = findIndexInRunDataArray(runDataActiveRun.value, runDataArray.value);
+		var indexOfCurrentRun = findIndexInRunDataArray(runDataActiveRun.value);
 		if (runDataArray.value[indexOfCurrentRun+1]) {
 			displayMessage();
 			// show next run code goes here
@@ -108,7 +107,7 @@ function displayMessage(l1Message, l2Message) {
 	denyMessageToChange();
 	
 	l1Message = 'This is one line.';
-	l2Message = '🤔 This is another line that spills off to the side to mimic a longer message that would need to scroll if it was actually there during the marathon.';
+	l2Message = '🤔 This is another line Kappa that spills off to the side to mimic a longer message that would need to EleGiggle scroll if it OneHand was actually PopCorn there during the marathon.';
 	//l2Message = '🤔 This is a way shorter line that needs no scrolling.';
 	
 	var amountToScroll = 0;
@@ -118,26 +117,34 @@ function displayMessage(l1Message, l2Message) {
 	
 	animationFadeOutElement(messageLinesWrapper, () => {
 		messagesLine1.html(l1Message);
-		messagesLine2.html(twemoji.parse(l2Message)); // Replace emojis with Twitter ones.
-		
 		messagesLine2.css('margin-left', '0px'); // Reset margin for scrolling if needed.
 		messagesLine2.show(); // Reset display of line 2 if we need to.
 		
 		if (!l2Message)
 			messagesLine2.hide();
 		else {
-			// Work out how much we need to move the text to make it scroll (if at all).
-			// Scrolling needs to over/undercompensate due to the padding on the container.
-			var paddingLeft = parseInt(messagesContainer.css('padding-left'));
-			var paddingRight = parseInt(messagesContainer.css('padding-right'));
-			var containerWidthWOPadding = messagesContainer.width()-paddingLeft-paddingRight;
-			
-			// We need to scroll if the message width is bigger than the container.
-			if (containerWidthWOPadding < messagesLine2.width()) {
-				amountToScroll = messagesLine2.width()-containerWidthWOPadding;
-				timeToScroll = amountToScroll*13;
+			l2Message = replaceEmotes(l2Message); // Replace emoticon names with their images.
+			l2Message = twemoji.parse(l2Message); // Replace emojis with Twitter ones.
+			messagesLine2.html(l2Message);
+		}
+		
+		// Waiting for all images to load in before measuring width.
+		// Either emojis or emoticons need to be loaded in if present.
+		messageLinesWrapper.waitForImages(() => {
+			if (l2Message) {
+				// Work out how much we need to move the text to make it scroll (if at all).
+				// Scrolling needs to over/undercompensate due to the padding on the container.
+				var paddingLeft = parseInt(messagesContainer.css('padding-left'));
+				var paddingRight = parseInt(messagesContainer.css('padding-right'));
+				var containerWidthWOPadding = messagesContainer.width()-paddingLeft-paddingRight;
+				
+				// We need to scroll if the message width is bigger than the container.
+				if (containerWidthWOPadding < messagesLine2.width()) {
+					amountToScroll = messagesLine2.width()-containerWidthWOPadding;
+					timeToScroll = amountToScroll*13;
+				}
 			}
-			
+				
 			animationFadeInElement(messageLinesWrapper, () => {
 				// Do the scrolling logic if we need to.
 				if (amountToScroll > 0) {
@@ -153,7 +160,7 @@ function displayMessage(l1Message, l2Message) {
 				else
 					setTimeout(allowMessageToChange, (amountToWait*2)+timeToShow);
 			});
-		}
+		});
 	});
 }
 

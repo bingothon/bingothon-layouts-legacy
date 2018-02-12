@@ -1,12 +1,16 @@
 'use strict';
 
+// Replicants
+var emotes = nodecg.Replicant('emotes');
+var runDataArray = nodecg.Replicant('runDataArray', 'nodecg-speedcontrol');
+
 // Get the next X runs in the schedule.
-function getNextRuns(runData, runDataArray, amount) {
+function getNextRuns(runData, amount) {
 	var nextRuns = [];
-	var indexOfCurrentRun = findIndexInRunDataArray(runData, runDataArray);
+	var indexOfCurrentRun = findIndexInRunDataArray(runData);
 	for (var i = 1; i <= amount; i++) {
-		if (!runDataArray[indexOfCurrentRun+i]) break;
-		nextRuns.push(runDataArray[indexOfCurrentRun+i]);
+		if (!runDataArray.value[indexOfCurrentRun+i]) break;
+		nextRuns.push(runDataArray.value[indexOfCurrentRun+i]);
 	}
 	return nextRuns;
 }
@@ -51,13 +55,13 @@ function formPlayerNamesString(runData) {
 }
 
 // Find array index of current run based on it's ID.
-function findIndexInRunDataArray(run, runDataArray) {
+function findIndexInRunDataArray(run) {
 	var indexOfRun = -1;
 	
 	// Completely skips this if the run variable isn't defined.
 	if (run) {
-		for (var i = 0; i < runDataArray.length; i++) {
-			if (run.runID === runDataArray[i].runID) {
+		for (var i = 0; i < runDataArray.value.length; i++) {
+			if (run.runID === runDataArray.value[i].runID) {
 				indexOfRun = i; break;
 			}
 		}
@@ -78,4 +82,14 @@ function getTextWidth(text, size) {
 	var ctx = canvas.getContext('2d');
 	ctx.font = size+'px Montserrat'; /* Change if layout is changed. */
 	return ctx.measureText(text).width;
+}
+
+// Replaces emoticon names in a text string with imgs.
+function replaceEmotes(text) {
+	var textSplit = text.split(' ');
+	for (var i = 0; i < textSplit.length; i++) {
+		if (emotes.value[textSplit[i]])
+			textSplit[i] = '<img class="emoji" draggable="false" alt="'+textSplit[i]+'" src="https://static-cdn.jtvnw.net/emoticons/v1/'+emotes.value[textSplit[i]].id+'/3.0">';
+	}
+	return textSplit.join(' ');
 }

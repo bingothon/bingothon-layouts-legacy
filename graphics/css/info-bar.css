@@ -1,9 +1,8 @@
-/* Resizes Twitter's emoji correctly so they fit in with the text. */
+/* Resizes Twitter's emoji/Twitch emotes correctly so they fit in with the text. */
 img.emoji {
-   height: 1em;
-   width: 1em;
-   margin: 0 .05em 0 .1em;
-   vertical-align: -0.2em;
+	height: 1.2em;
+	margin: 0 .05em 0 .1em;
+	vertical-align: -0.25em;
 }
 
 #barWrapper {

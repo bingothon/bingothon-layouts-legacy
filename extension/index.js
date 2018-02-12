@@ -17,4 +17,5 @@ module.exports = function(nodecg) {
 	// Other extension files we need to load.
 	require('./host-api');
 	require('./tracker');
+	require('./emotes');
 }

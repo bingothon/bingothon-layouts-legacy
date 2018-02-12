@@ -79,7 +79,7 @@ $(() => {
 		// Checks if the run data array is actually imported yet by checking if it's an array.
 		if ($.isArray(runDataArray.value) && !refreshingNextRunsData) {
 			refreshingNextRunsData = true;
-			nextRuns = getNextRuns(runDataActiveRun.value, runDataArray.value, 4);
+			nextRuns = getNextRuns(runDataActiveRun.value, 4);
 			refreshingNextRunsData = false;
 		}
 	}
