@@ -83,7 +83,20 @@ function processRawBids(bids) {
 		if (!{}.hasOwnProperty.call(parentBidsByID, id))
 			continue;
 		
-		bidsArray.push(parentBidsByID[id]);
+		var bid = parentBidsByID[id];
+		
+		// Sort bid war options from largest to smallest(?).
+		bid.options = bid.options.sort((a, b) => {
+			if (a.total > b.total)
+				return -1;
+			if (a.total < b.total)
+				return 1;
+			
+			// a must be equal to b
+			return 0;
+		});
+		
+		bidsArray.push(bid);
 	}
 	
 	return bidsArray;
