@@ -33,6 +33,7 @@ request(statsURL, (err, resp, body) => {
 // Log into the tracker before querying stuff on it.
 loginToTracker().then(() => {
 	require('./tracker-bids');
+	require('./tracker-prizes');
 });
 
 // Tracker logins expire every 2 hours. Re-login every 90 minutes.
