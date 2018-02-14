@@ -75,6 +75,10 @@ img.emoji {
 #generalMessagesContainer .line2 {
 	/*display: none;*/ /* You would need to do this if only 1 line needed to be shown. */
 }
+.messageUppercase {
+	text-transform: uppercase;
+	color: #bfbfbf;
+}
 
 /* Clock */
 #clockContainer {

@@ -11,13 +11,17 @@ var recentTopDonationTO;
 var topDonationDelay = 300000; // 5 minutes
 var showingMessage = false;
 var messageIndex = 0;
+var bidsCache = [];
+var prizeCache = [];
 
 // Choose a random index on startup.
 chooseRandomMessageIndex(true);
 
 // Replicants
 var bidsRep = nodecg.Replicant('bids');
+//bidsRep.on('change', newVal => {bidsCache = newVal}); // Refill cache on change.
 var prizesRep = nodecg.Replicant('prizes');
+//prizesRep.on('change', newVal => {prizeCache = newVal}); // Refill cache on change.
 var runDataArray = nodecg.Replicant('runDataArray', speedcontrolBundle);
 var runDataActiveRun = nodecg.Replicant('runDataActiveRun', speedcontrolBundle);
 
@@ -41,6 +45,26 @@ nodecg.listenFor('newDonation', donation => {
 	}
 });
 
+// Donation test code below.
+var donationExample = {
+	id: 1,
+	donor_visiblename: 'tester123',
+	amount: '25.00',
+	comment_state: 'APPROVED',
+	comment: 'zoton2\'s test donation which has a lot of Kappa s and a whole load of OneHand s but a bit less 4Head s and hopefully this message is quite long now.',
+	time_received: '2018-02-04 16:18:01+00:00'
+};
+
+setTimeout(() => {
+	newDonations.push(donationExample);
+	recentTopDonation = donationExample;
+	resetRecentTopDonationTimer();
+}, 30000);
+
+// Bids/prizes test code below.
+var bidsTemp = JSON.parse('[{"id":3,"name":"zoton2 finishes the tracker","total":999,"game":"Inspector Gadget: Mad Robots Invasion","category":"Any%","goal":1000},{"id":4,"name":"Language","total":20,"game":"The Simpsons: Hit & Run","category":"All Story Missions","options":[{"id":5,"parent":4,"name":"English","total":0},{"id":6,"parent":4,"name":"French","total":0},{"id":7,"parent":4,"name":"German","total":0},{"id":8,"parent":4,"name":"Spanish","total":20}]}]');
+var prizesTemp = JSON.parse('[{"id":2,"name":"Stream Deck","provided":"Elgato","minimum_bid":5,"start_timestamp":"2018-02-20T05:00:00Z","end_timestamp":"2018-02-21T11:00:00Z"}]');
+
 // Cycles the actual ticker messages that can be shown.
 // Triggered every tick from tick-handler.js
 function showTickerMessages() {	
@@ -50,39 +74,39 @@ function showTickerMessages() {
 	if (showingMessage)
 		return;
 	
+	console.log(messageIndex);
+	
 	// Showing new donations has priority.
 	if (newDonations.length > 0) {
-		// show donation code goes here
-		displayMessage();
+		showDonation(newDonations[0], true);
 		newDonations.shift(); // Remove first donation.
 		return;
 	}
 	
 	// Bids
 	if (messageIndex === 0) {
-		if (bidsRep.value.length > 0) {
-			displayMessage();
-			// show bid code goes here
-		}
-		else retry = true;
+		//if (bidsRep.value.length > 0)
+		//if (bidsTemp.length > 0)
+			//showBid();
+		//else
+			retry = true;
 	}
 	
 	// Prizes
 	if (messageIndex === 1) {
-		if (prizesRep.value.length > 0) {
-			displayMessage();
-			// show prizes code goes here
-		}
-		else retry = true;
+		//if (prizesRep.value.length > 0)
+		if (prizesTemp.length > 0)
+			showPrize();
+		else
+			retry = true;
 	}
 	
-	// Coming Up Run
+	// Upcoming Run
 	if (messageIndex === 2) {
 		// Will only trigger this if there's at least 1 run still to come.
 		var indexOfCurrentRun = findIndexInRunDataArray(runDataActiveRun.value);
 		if (runDataArray.value[indexOfCurrentRun+1]) {
-			displayMessage();
-			// show next run code goes here
+			showUpcomingRun();
 		}
 		else retry = true;
 	}
@@ -90,8 +114,7 @@ function showTickerMessages() {
 	// Recent Top Donation
 	if (messageIndex === 3) {
 		if (showRecentTopDonation && recentTopDonation) {
-			// show top donation code goes here
-			displayMessage();
+			showDonation(recentTopDonation, false);
 			resetRecentTopDonationTimer();
 		}
 		else retry = true;
@@ -102,23 +125,76 @@ function showTickerMessages() {
 		showTickerMessages();
 }
 
-// Changes and fully displays the message lines supplied.
-function displayMessage(l1Message, l2Message) {
-	denyMessageToChange();
+// Formats donations to be sent to displayMessage.
+function showDonation(donation, isNew) {
+	var user = donation.donor_visiblename;
+	var amount = ' ($'+donation.amount+')';
+	if (isNew)
+		var line1 = '<span class="messageUppercase textGlow">New Donation:</span> '+user+amount;
+	else
+		var line1 = user+amount;
 	
-	l1Message = 'This is one line.';
-	l2Message = '🤔 This is another line Kappa that spills off to the side to mimic a longer message that would need to EleGiggle scroll if it OneHand was actually PopCorn there during the marathon.';
-	//l2Message = '🤔 This is a way shorter line that needs no scrolling.';
+	// Regex removes multiple spaces/newlines from donation messages.
+	var message = donation.comment;
+	message = (message && message !== '') ? message.replace(/\s\s+|\n/g, ' ') : undefined;
+	
+	displayMessage(line1, message, 24, 20);
+}
+
+// UNFINISHED
+function showBid() {
+	// duh
+}
+
+// Handles prize cache if empty and chooses one at random to show.
+function showPrize() {
+	//if (!prizeCache.length) prizeCache = prizesRep.value; // Refill prize cache if it's empty.
+	if (!prizeCache.length) prizeCache = prizesTemp; // Refill prize cache if it's empty.
+	var random = getRandomInt(prizeCache.length);
+	var prize = prizeCache[random]; // Pick random prize from the cache.
+	prizeCache.splice(random, 1); // Remove this prize from the cache.
+	
+	var line1 = '<span class="messageUppercase textGlow">Prize Available:</span> '+prize.name;
+	var line2 = 'Provided by '+prize.provided+', minimum donation amount: $'+prize.minimum_bid.toFixed(2);
+	
+	displayMessage(line1, line2, 26, 18);
+}
+
+// UNFINISHED
+// Pick an upcoming run and display it.
+// TODO:
+// > Needs a check to make sure the scheduled time hasn't passed.
+// > Needs a cache system like bids/prizes.
+function showUpcomingRun() {
+	var nextRuns = getNextRuns(runDataActiveRun.value, 4);
+	var randomRun = nextRuns[getRandomInt(nextRuns.length)];
+	
+	var when = moment.unix(randomRun.scheduledS).fromNow();
+	var line1 = '<span class="messageUppercase textGlow">Coming Up '+when+':</span> '+randomRun.game;
+	var line2 = randomRun.category+', ran on '+randomRun.system+' by '+formPlayerNamesString(randomRun);
+	
+	displayMessage(line1, line2, 24, 20);
+}
+
+// Changes and fully displays the message lines supplied, and changes font size if specified.
+function displayMessage(l1Message, l2Message, fontSize1, fontSize2) {
+	denyMessageToChange();
 	
 	var amountToScroll = 0;
 	var amountToWait = 2000; // Waiting before/after scrolling.
 	var timeToShow = 21000-(amountToWait*2); // All messages get at least 21 seconds (excluding fades).
 	var timeToScroll = 0;
+	fontSize1 = fontSize1 || 22;
+	fontSize2 = fontSize2 || 22;
 	
 	animationFadeOutElement(messageLinesWrapper, () => {
 		messagesLine1.html(l1Message);
 		messagesLine2.css('margin-left', '0px'); // Reset margin for scrolling if needed.
 		messagesLine2.show(); // Reset display of line 2 if we need to.
+		
+		// Changing font sizes.
+		messagesLine1.css('font-size', fontSize1+'px');
+		messagesLine2.css('font-size', fontSize2+'px');
 		
 		if (!l2Message)
 			messagesLine2.hide();

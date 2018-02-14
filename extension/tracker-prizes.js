@@ -42,14 +42,18 @@ function processRawPrizes(prizes) {
 		// If there's a start run, use it's starting time.
 		if (prize.fields.startrun)
 			formattedPrize.start_timestamp = prize.fields.startrun__starttime;
-		else
+		else if (prize.fields.starttime)
 			formattedPrize.start_timestamp = prize.fields.starttime;
+		else
+			formattedPrize.start_timestamp = null;
 		
 		// If there's an ending run, use it's end time.
 		if (prize.fields.endrun)
 			formattedPrize.end_timestamp = prize.fields.endrun__endtime;
-		else
+		else if (prize.fields.endtime)
 			formattedPrize.end_timestamp = prize.fields.endtime;
+		else
+			formattedPrize.end_timestamp = null;
 		
 		prizesArray.push(formattedPrize);
 	});
