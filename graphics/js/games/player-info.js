@@ -12,8 +12,10 @@ $(() => {
 	var playerContainers = $('.playerContainer'); // Array
 	
 	// Declaring other variables.
-	var displayNameFor = 45000; // 45 seconds
-	var displayTwitchFor = 15000; // 15 seconds
+	var displayNameForOriginal = 45000; // 45 seconds
+	var displayTwitchForOriginal = 15000; // 15 seconds
+	var displayNameFor;
+	var displayTwitchFor;
 	var teamMemberIndex = []; // Stores what team member of each team is currently being shown.
 	var currentTeamsData = []; // All teams data is stored here for reference when changing.
 	var rotationTO; // Stores the timeout used for switching between name and twitch.
@@ -66,6 +68,15 @@ $(() => {
 			for (var i = currentTeamsData.length; i < playerContainers.length; i++) {
 				animationCleanPlayerData(playerContainers[i]);
 			}
+		}
+		
+		// If the first team has multiple runners, make the display timers shorter.
+		if (currentTeamsData[0] && currentTeamsData[0].members.length > 1) {
+			displayNameFor = displayNameForOriginal/2;
+			displayTwitchFor = displayTwitchForOriginal/2;
+		} else {
+			displayNameFor = displayNameForOriginal;
+			displayTwitchFor = displayTwitchForOriginal;
 		}
 		
 		showNames();
