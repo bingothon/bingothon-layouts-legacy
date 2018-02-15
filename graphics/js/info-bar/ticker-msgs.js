@@ -129,6 +129,11 @@ function showTickerMessages() {
 		displayMessage('<span class="textGlow">#ESAWinter18 benefits Save the Children</span>', null, 30, null, true);
 	}
 	
+	// Donation URL message.
+	if (messageIndex === 6) {
+		displayMessage('<span class="textGlow">Donate @ <span class="greyText">donations.esamarathon.com</span></span>', null, 30, null, true);
+	}
+	
 	chooseRandomMessageIndex();
 	if (retry)
 		showTickerMessages();
@@ -163,18 +168,21 @@ function showBid() {
 	// Normal Goal
 	if (!bid.options) {
 		var line1 = '<span class="messageUppercase textGlow">Upcoming Goal:</span> '+bid.game+' - '+bid.category;
-		var line2 = '<span class="donationBidName">'+bid.name+'</span> ('+formatDollarAmount(bid.total)+'/'+formatDollarAmount(bid.goal)+')';
+		var line2 = '<span class="greyText">'+bid.name+'</span> ('+bid.description+'): '+formatDollarAmount(bid.total)+'/'+formatDollarAmount(bid.goal);
 	}
 	
 	// Bid War
 	else {
 		var line1 = '<span class="messageUppercase textGlow">Upcoming Bid War:</span> '+bid.game+' - '+bid.category;
-		var line2 = '<span class="donationBidName">'+bid.name+':</span> ';
+		var line2 = '<span class="greyText">'+bid.name+'</span> ('+bid.description+'): ';
 		var optionsFormatted = [];
 		bid.options.forEach(option => {
 			optionsFormatted.push(option.name+' ('+formatDollarAmount(option.total)+')');
 		});
-		line2 += optionsFormatted.join('/');
+		if (!optionsFormatted.length)
+			line2 += 'No options submitted yet, be the first!'
+		else
+			line2 += optionsFormatted.join('/');
 	}
 	
 	displayMessage(line1, line2, 23, 21);
@@ -292,7 +300,7 @@ function displayMessage(l1Message, l2Message, fontSize1, fontSize2, center) {
 
 // Randomly chooses the next message type to show, excluding what was just shown.
 function chooseRandomMessageIndex(init) {
-	var messageIndexList = [0,1,2,3,4,5];
+	var messageIndexList = [0,1,2,3,4,5,6];
 	if (!init) messageIndexList.splice(messageIndex, 1);
 	messageIndex = messageIndexList[getRandomInt(messageIndexList.length)];
 }

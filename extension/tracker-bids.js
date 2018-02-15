@@ -43,12 +43,18 @@ function processRawBids(bids) {
 		if (bid.fields.parent)
 			childBids.push(bid);
 		else {
+			// We want to use the short description if possible.
+			var description = bid.fields.shortdescription;
+			if (!description || description === '')
+				description = bid.fields.description;
+			
 			var formattedParentBid = {
 				id: bid.pk,
 				name: bid.fields.name,
 				total: parseFloat(bid.fields.total),
 				game: bid.fields.speedrun__name,
-				category: bid.fields.speedrun__category
+				category: bid.fields.speedrun__category,
+				description: description
 			};
 			
 			// If the bid isn't a target, it will be a bid war.
@@ -85,16 +91,18 @@ function processRawBids(bids) {
 		
 		var bid = parentBidsByID[id];
 		
-		// Sort bid war options from largest to smallest(?).
-		bid.options = bid.options.sort((a, b) => {
-			if (a.total > b.total)
-				return -1;
-			if (a.total < b.total)
-				return 1;
-			
-			// a must be equal to b
-			return 0;
-		});
+		if (bids.options) {
+			// Sort bid war options from largest to smallest(?).
+			bid.options = bid.options.sort((a, b) => {
+				if (a.total > b.total)
+					return -1;
+				if (a.total < b.total)
+					return 1;
+				
+				// a must be equal to b
+				return 0;
+			});
+		}
 		
 		bidsArray.push(bid);
 	}
