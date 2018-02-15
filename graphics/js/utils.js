@@ -93,3 +93,12 @@ function replaceEmotes(text) {
 	}
 	return textSplit.join(' ');
 }
+
+// Formats dollar amounts to the correct string.
+function formatDollarAmount(amount, forceRemoveCents) {
+	// We drop the cents and add a comma over $1000.
+	if (amount < 1000 && !forceRemoveCents)
+		return '$'+amount.toFixed(2);
+	else
+		return '$'+Math.floor(amount).toLocaleString('en-US', {minimumFractionDigits: 0});
+}

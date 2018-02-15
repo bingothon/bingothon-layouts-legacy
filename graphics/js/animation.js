@@ -39,10 +39,9 @@ function animationUpdateDonationTotal(selector, oldVal, newVal) {
 	.animateNumber({
 		number: newVal,
 		numberStep: function(now, tween) {
-			var flooredNumber = Math.floor(now);
 			var target = $(tween.elem);
-			var value = flooredNumber.toLocaleString('en-US', {minimumFractionDigits: 0});
-			target.html('$'+value);
+			var value = formatDollarAmount(now, true)
+			target.html(value);
 		}
 	}, 4000, 'linear');
 }

@@ -84,8 +84,8 @@ function showTickerMessages() {
 	
 	// Bids
 	if (messageIndex === 0) {
-		if (bidsRep.value.length > 0)
 		//if (bidsTemp.length > 0)
+		if (bidsRep.value.length > 0)
 			showBid();
 		else
 			retry = true;
@@ -93,8 +93,8 @@ function showTickerMessages() {
 	
 	// Prizes
 	if (messageIndex === 1) {
-		if (prizesRep.value.length > 0)
 		//if (prizesTemp.length > 0)
+		if (prizesRep.value.length > 0)
 			showPrize();
 		else
 			retry = true;
@@ -137,7 +137,7 @@ function showTickerMessages() {
 // Formats donations to be sent to displayMessage.
 function showDonation(donation, isNew) {
 	var user = donation.donor_visiblename;
-	var amount = ' ($'+donation.amount+')';
+	var amount = ' ('+formatDollarAmount(donation.amount)+')';
 	if (isNew)
 		var line1 = '<span class="messageUppercase textGlow">New Donation:</span> '+user+amount;
 	else
@@ -163,7 +163,7 @@ function showBid() {
 	// Normal Goal
 	if (!bid.options) {
 		var line1 = '<span class="messageUppercase textGlow">Upcoming Goal:</span> '+bid.game+' - '+bid.category;
-		var line2 = '<span class="donationBidName">'+bid.name+'</span> ($'+bid.total.toFixed(2)+'/$'+bid.goal.toFixed(2)+')';
+		var line2 = '<span class="donationBidName">'+bid.name+'</span> ('+formatDollarAmount(bid.total)+'/'+formatDollarAmount(bid.goal)+')';
 	}
 	
 	// Bid War
@@ -172,7 +172,7 @@ function showBid() {
 		var line2 = '<span class="donationBidName">'+bid.name+':</span> ';
 		var optionsFormatted = [];
 		bid.options.forEach(option => {
-			optionsFormatted.push(option.name+' ($'+option.total.toFixed(2)+')');
+			optionsFormatted.push(option.name+' ('+formatDollarAmount(option.total)+')');
 		});
 		line2 += optionsFormatted.join('/');
 	}
@@ -189,7 +189,7 @@ function showPrize() {
 	prizeCache.splice(random, 1); // Remove this prize from the cache.
 	
 	var line1 = '<span class="messageUppercase textGlow">Prize Available:</span> '+prize.name;
-	var line2 = 'Provided by '+prize.provided+', minimum donation amount: $'+prize.minimum_bid.toFixed(2);
+	var line2 = 'Provided by '+prize.provided+', minimum donation amount: '+formatDollarAmount(prize.minimum_bid);
 	
 	displayMessage(line1, line2, 26, 18);
 }

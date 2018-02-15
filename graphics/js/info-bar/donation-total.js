@@ -34,10 +34,8 @@ function changeDonationTotalStuff() {
 	// Update donation total if needed and we're currently on the amount text.
 	else if (donationTotalLogoCurrentRotation === 0 && donationTotal.value !== lastDonationTotal) {
 		// If the page has just been loaded, just print the current value, otherwise do the animation.
-		if (!lastDonationTotal) {
-			var value = Math.floor(donationTotal.value).toLocaleString('en-US', {minimumFractionDigits: 0});
-			amountText.html('$'+value);
-		}
+		if (!lastDonationTotal)
+			amountText.html(formatDollarAmount(donationTotal.value, true));
 		else
 			animationUpdateDonationTotal(amountText, lastDonationTotal, donationTotal.value);
 		
