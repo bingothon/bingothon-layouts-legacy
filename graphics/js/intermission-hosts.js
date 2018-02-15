@@ -21,10 +21,11 @@ $(() => {
 	if (isOBS) {
 		// When we change to/away from a scene.
 		window.obsstudio.onVisibilityChange = function(active) {
-			if (active) {
+			if (active && pageInit) {
+				// Has been a bit buggy, leaving out for now.
 				// Show upcoming games from the start.
-				clearTimeout(extraDataTO);
-				showUpcomingGame(true);
+				//clearTimeout(extraDataTO);
+				//showUpcomingGame(true);
 			}
 		};
 	}

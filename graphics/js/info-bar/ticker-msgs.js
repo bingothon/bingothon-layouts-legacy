@@ -13,15 +13,16 @@ var showingMessage = false;
 var messageIndex = 0;
 var bidsCache = [];
 var prizeCache = [];
+var nextRunsCache = [];
 
 // Choose a random index on startup.
 chooseRandomMessageIndex(true);
 
 // Replicants
 var bidsRep = nodecg.Replicant('bids');
-//bidsRep.on('change', newVal => {bidsCache = newVal}); // Refill cache on change.
+bidsRep.on('change', newVal => {bidsCache = newVal}); // Refill cache on change.
 var prizesRep = nodecg.Replicant('prizes');
-//prizesRep.on('change', newVal => {prizeCache = newVal}); // Refill cache on change.
+prizesRep.on('change', newVal => {prizeCache = newVal}); // Refill cache on change.
 var runDataArray = nodecg.Replicant('runDataArray', speedcontrolBundle);
 var runDataActiveRun = nodecg.Replicant('runDataActiveRun', speedcontrolBundle);
 
@@ -46,7 +47,7 @@ nodecg.listenFor('newDonation', donation => {
 });
 
 // Donation test code below.
-var donationExample = {
+/*var donationExample = {
 	id: 1,
 	donor_visiblename: 'tester123',
 	amount: '25.00',
@@ -63,7 +64,7 @@ setTimeout(() => {
 
 // Bids/prizes test code below.
 var bidsTemp = JSON.parse('[{"id":3,"name":"zoton2 finishes the tracker","total":999,"game":"Inspector Gadget: Mad Robots Invasion","category":"Any%","goal":1000},{"id":4,"name":"Language","total":20,"game":"The Simpsons: Hit & Run","category":"All Story Missions","options":[{"id":5,"parent":4,"name":"English","total":0},{"id":6,"parent":4,"name":"French","total":0},{"id":7,"parent":4,"name":"German","total":0},{"id":8,"parent":4,"name":"Spanish","total":20}]}]');
-var prizesTemp = JSON.parse('[{"id":2,"name":"Stream Deck","provided":"Elgato","minimum_bid":5,"start_timestamp":"2018-02-20T05:00:00Z","end_timestamp":"2018-02-21T11:00:00Z"}]');
+var prizesTemp = JSON.parse('[{"id":2,"name":"Stream Deck","provided":"Elgato","minimum_bid":5,"start_timestamp":"2018-02-20T05:00:00Z","end_timestamp":"2018-02-21T11:00:00Z"}]');*/
 
 // Cycles the actual ticker messages that can be shown.
 // Triggered every tick from tick-handler.js
@@ -74,8 +75,6 @@ function showTickerMessages() {
 	if (showingMessage)
 		return;
 	
-	console.log(messageIndex);
-	
 	// Showing new donations has priority.
 	if (newDonations.length > 0) {
 		showDonation(newDonations[0], true);
@@ -85,17 +84,17 @@ function showTickerMessages() {
 	
 	// Bids
 	if (messageIndex === 0) {
-		//if (bidsRep.value.length > 0)
+		if (bidsRep.value.length > 0)
 		//if (bidsTemp.length > 0)
-			//showBid();
-		//else
+			showBid();
+		else
 			retry = true;
 	}
 	
 	// Prizes
 	if (messageIndex === 1) {
-		//if (prizesRep.value.length > 0)
-		if (prizesTemp.length > 0)
+		if (prizesRep.value.length > 0)
+		//if (prizesTemp.length > 0)
 			showPrize();
 		else
 			retry = true;
@@ -120,6 +119,16 @@ function showTickerMessages() {
 		else retry = true;
 	}
 	
+	// ESA promotional message.
+	if (messageIndex === 4) {
+		displayMessage('<span class="textGlow">This is European Speedrunner Assembly Winter 2018</span>', null, 30, null, true);
+	}
+	
+	// StC promotional message.
+	if (messageIndex === 5) {
+		displayMessage('<span class="textGlow">#ESAWinter18 benefits Save the Children</span>', null, 30, null, true);
+	}
+	
 	chooseRandomMessageIndex();
 	if (retry)
 		showTickerMessages();
@@ -141,15 +150,40 @@ function showDonation(donation, isNew) {
 	displayMessage(line1, message, 24, 20);
 }
 
-// UNFINISHED
+// Handles bids cache if empty and chooses one at random to show.
 function showBid() {
-	// duh
+	if (!bidsCache.length) bidsCache = bidsRep.value; // Refill bids cache if it's empty.
+	//if (!bidsCache.length) bidsCache = bidsTemp;
+	var random = getRandomInt(bidsCache.length);
+	var bid = bidsCache[random]; // Pick random bid from the cache.
+	bidsCache.splice(random, 1); // Remove this bid from the cache.
+	
+	var line2;
+	
+	// Normal Goal
+	if (!bid.options) {
+		var line1 = '<span class="messageUppercase textGlow">Upcoming Goal:</span> '+bid.game+' - '+bid.category;
+		var line2 = '<span class="donationBidName">'+bid.name+'</span> ($'+bid.total.toFixed(2)+'/$'+bid.goal.toFixed(2)+')';
+	}
+	
+	// Bid War
+	else {
+		var line1 = '<span class="messageUppercase textGlow">Upcoming Bid War:</span> '+bid.game+' - '+bid.category;
+		var line2 = '<span class="donationBidName">'+bid.name+':</span> ';
+		var optionsFormatted = [];
+		bid.options.forEach(option => {
+			optionsFormatted.push(option.name+' ($'+option.total.toFixed(2)+')');
+		});
+		line2 += optionsFormatted.join('/');
+	}
+	
+	displayMessage(line1, line2, 23, 21);
 }
 
 // Handles prize cache if empty and chooses one at random to show.
 function showPrize() {
-	//if (!prizeCache.length) prizeCache = prizesRep.value; // Refill prize cache if it's empty.
-	if (!prizeCache.length) prizeCache = prizesTemp; // Refill prize cache if it's empty.
+	if (!prizeCache.length) prizeCache = prizesRep.value; // Refill prize cache if it's empty.
+	//if (!prizeCache.length) prizeCache = prizesTemp;
 	var random = getRandomInt(prizeCache.length);
 	var prize = prizeCache[random]; // Pick random prize from the cache.
 	prizeCache.splice(random, 1); // Remove this prize from the cache.
@@ -160,24 +194,34 @@ function showPrize() {
 	displayMessage(line1, line2, 26, 18);
 }
 
-// UNFINISHED
 // Pick an upcoming run and display it.
-// TODO:
-// > Needs a check to make sure the scheduled time hasn't passed.
-// > Needs a cache system like bids/prizes.
 function showUpcomingRun() {
-	var nextRuns = getNextRuns(runDataActiveRun.value, 4);
-	var randomRun = nextRuns[getRandomInt(nextRuns.length)];
+	// Refill cache if empty.
+	if (!nextRunsCache.length) nextRunsCache = getNextRuns(runDataActiveRun.value, 4);
+	
+	// Need a while loop in case the run we pick can't be shown.
+	var randomRun;
+	while (!randomRun) {
+		var randomInt = getRandomInt(nextRunsCache.length);
+		
+		// Check if run is still to come, if not we need to ignore it.
+		if (nextRunsCache[randomInt].scheduledS > moment().unix())
+			randomRun = nextRunsCache[randomInt];
+		
+		nextRunsCache.splice(randomInt, 1);
+		if (!nextRunsCache.length) break;
+	}
+	if (!randomRun) return; // This shouldn't happen, just a safe guard in case.
 	
 	var when = moment.unix(randomRun.scheduledS).fromNow();
 	var line1 = '<span class="messageUppercase textGlow">Coming Up '+when+':</span> '+randomRun.game;
-	var line2 = randomRun.category+', ran on '+randomRun.system+' by '+formPlayerNamesString(randomRun);
+	var line2 = randomRun.category+', ran on '+randomRun.system+' with '+formPlayerNamesString(randomRun);
 	
 	displayMessage(line1, line2, 24, 20);
 }
 
 // Changes and fully displays the message lines supplied, and changes font size if specified.
-function displayMessage(l1Message, l2Message, fontSize1, fontSize2) {
+function displayMessage(l1Message, l2Message, fontSize1, fontSize2, center) {
 	denyMessageToChange();
 	
 	var amountToScroll = 0;
@@ -190,15 +234,21 @@ function displayMessage(l1Message, l2Message, fontSize1, fontSize2) {
 	animationFadeOutElement(messageLinesWrapper, () => {
 		messagesLine1.html(l1Message);
 		messagesLine2.css('margin-left', '0px'); // Reset margin for scrolling if needed.
-		messagesLine2.show(); // Reset display of line 2 if we need to.
 		
 		// Changing font sizes.
 		messagesLine1.css('font-size', fontSize1+'px');
 		messagesLine2.css('font-size', fontSize2+'px');
 		
+		// To center or not.
+		if (center)
+			messagesContainer.css('align-items', 'center');
+		else
+			messagesContainer.css('align-items', 'flex-start');
+		
 		if (!l2Message)
 			messagesLine2.hide();
 		else {
+			messagesLine2.show();
 			l2Message = replaceEmotes(l2Message); // Replace emoticon names with their images.
 			l2Message = twemoji.parse(l2Message); // Replace emojis with Twitter ones.
 			messagesLine2.html(l2Message);
@@ -242,7 +292,7 @@ function displayMessage(l1Message, l2Message, fontSize1, fontSize2) {
 
 // Randomly chooses the next message type to show, excluding what was just shown.
 function chooseRandomMessageIndex(init) {
-	var messageIndexList = [0,1,2,3];
+	var messageIndexList = [0,1,2,3,4,5];
 	if (!init) messageIndexList.splice(messageIndex, 1);
 	messageIndex = messageIndexList[getRandomInt(messageIndexList.length)];
 }
