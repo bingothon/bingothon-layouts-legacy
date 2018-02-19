@@ -9,7 +9,6 @@ $(() => {
 	
 	// Declaring other variables.
 	var isOBS = (window.obsstudio) ? true : false;
-	var playAds = false;
 	var pageInit = false;
 	var nextRuns = []; // Can be 4 or less depending where we are in the schedule.
 	var refreshingNextRunsData = false;
@@ -21,24 +20,23 @@ $(() => {
 	
 	// If this is being viewed in OBS Studio, stuff in here can be triggered.
 	if (isOBS) {
-		// Check if this layout can run adverts.
-		window.obsstudio.getCurrentScene(data => {
-			if (data.name.indexOf('(ads)') >= 0)
-				playAds = true;
-		}
-		
-		// When we change to/away from a scene.
-		window.obsstudio.onVisibilityChange = function(active) {
-			if (active) {
-				refreshNextRunsDisplay();
-				if (playAds) {
-					nodecg.sendMessageToBundle('playTwitchAd', 'nodecg-speedcontrol', err => {
-						if (!err) {
-							// start a graphical timer?
-						}
-					});
-				}
+		// When we change to any scene, so we need to check it's relevant.
+		window.addEventListener('obsSceneChanged', function(evt) {
+			// Check if this layout can run adverts.
+			var sceneName = evt.detail.name;
+			if (sceneName.indexOf('(ads)') >= 0) {
+				nodecg.sendMessageToBundle('playTwitchAd', 'nodecg-speedcontrol', err => {
+					if (!err) {
+						// start a graphical timer?
+					}
+				});
 			}
+		});
+		
+		// When we change to/away from a scene with this page in it.
+		window.obsstudio.onActiveChange = function(active) {
+			if (active)
+				refreshNextRunsDisplay();
 		};
 	}
 	
