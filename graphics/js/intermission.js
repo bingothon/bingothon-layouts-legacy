@@ -9,7 +9,7 @@ $(() => {
 	
 	// Declaring other variables.
 	var isOBS = (window.obsstudio) ? true : false;
-	var playAds = (window.location.hash === '#adverts') ? true : false;
+	var playAds = false;
 	var pageInit = false;
 	var nextRuns = []; // Can be 4 or less depending where we are in the schedule.
 	var refreshingNextRunsData = false;
@@ -21,6 +21,12 @@ $(() => {
 	
 	// If this is being viewed in OBS Studio, stuff in here can be triggered.
 	if (isOBS) {
+		// Check if this layout can run adverts.
+		window.obsstudio.getCurrentScene(data => {
+			if (data.name.indexOf('(ads)') >= 0)
+				playAds = true;
+		}
+		
 		// When we change to/away from a scene.
 		window.obsstudio.onVisibilityChange = function(active) {
 			if (active) {
