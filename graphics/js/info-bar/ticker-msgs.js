@@ -180,9 +180,12 @@ function showBid() {
 			optionsFormatted.push(option.name+' ('+formatDollarAmount(option.total)+')');
 		});
 		if (!optionsFormatted.length)
-			line2 += 'No options submitted yet, be the first!'
-		else
+			line2 += '<i>No options submitted yet, be the first!</i>'
+		else {
+			if (bid.allow_user_options)
+				optionsFormatted.push('<i>Or you could submit your own idea!</i>')
 			line2 += optionsFormatted.join('/');
+		}
 	}
 	
 	displayMessage(line1, line2, 23, 21);

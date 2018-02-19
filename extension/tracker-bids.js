@@ -60,6 +60,7 @@ function processRawBids(bids) {
 			// If the bid isn't a target, it will be a bid war.
 			if (!bid.fields.istarget) {
 				formattedParentBid.war = true;
+				formattedParentBid.allow_user_options = bid.fields.allowuseroptions;
 				formattedParentBid.options = [];
 			}
 			else
