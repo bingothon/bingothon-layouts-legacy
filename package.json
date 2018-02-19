@@ -68,6 +68,16 @@
         "height": 1080
       }
     ],
+    "dashboardPanels": [
+      {
+        "name": "edit-hosts",
+        "title": "Edit Hosts",
+        "width": 2,
+        "file": "edit-hosts.html",
+        "headerColor": "#008BB9",
+        "workspace": "Scene Editing"
+      }
+    ],
     "assetCategories": [
       {
         "name": "sponsors",
