@@ -60,10 +60,10 @@ setTimeout(() => {
 	newDonations.push(donationExample);
 	recentTopDonation = donationExample;
 	resetRecentTopDonationTimer();
-}, 30000);
+}, 10000);*/
 
 // Bids/prizes test code below.
-var bidsTemp = JSON.parse('[{"id":3,"name":"zoton2 finishes the tracker","total":999,"game":"Inspector Gadget: Mad Robots Invasion","category":"Any%","goal":1000},{"id":4,"name":"Language","total":20,"game":"The Simpsons: Hit & Run","category":"All Story Missions","options":[{"id":5,"parent":4,"name":"English","total":0},{"id":6,"parent":4,"name":"French","total":0},{"id":7,"parent":4,"name":"German","total":0},{"id":8,"parent":4,"name":"Spanish","total":20}]}]');
+/*var bidsTemp = JSON.parse('[{"id":3,"name":"zoton2 finishes the tracker","total":999,"game":"Inspector Gadget: Mad Robots Invasion","category":"Any%","goal":1000},{"id":4,"name":"Language","total":20,"game":"The Simpsons: Hit & Run","category":"All Story Missions","options":[{"id":5,"parent":4,"name":"English","total":0},{"id":6,"parent":4,"name":"French","total":0},{"id":7,"parent":4,"name":"German","total":0},{"id":8,"parent":4,"name":"Spanish","total":20}]}]');
 var prizesTemp = JSON.parse('[{"id":2,"name":"Stream Deck","provided":"Elgato","minimum_bid":5,"start_timestamp":"2018-02-20T05:00:00Z","end_timestamp":"2018-02-21T11:00:00Z"}]');*/
 
 // Cycles the actual ticker messages that can be shown.
@@ -142,7 +142,7 @@ function showTickerMessages() {
 // Formats donations to be sent to displayMessage.
 function showDonation(donation, isNew) {
 	var user = donation.donor_visiblename;
-	var amount = ' ('+formatDollarAmount(donation.amount)+')';
+	var amount = ' ('+formatDollarAmount(parseFloat(donation.amount))+')';
 	if (isNew)
 		var line1 = '<span class="messageUppercase textGlow">New Donation:</span> '+user+amount;
 	else
@@ -276,6 +276,10 @@ function displayMessage(l1Message, l2Message, fontSize1, fontSize2, center) {
 				if (containerWidthWOPadding < messagesLine2.width()) {
 					amountToScroll = messagesLine2.width()-containerWidthWOPadding;
 					timeToScroll = amountToScroll*13;
+					
+					// Make time to scroll the full amount of time if it's too short.
+					if (timeToScroll < timeToShow)
+						timeToScroll = timeToShow;
 				}
 			}
 				
@@ -284,10 +288,6 @@ function displayMessage(l1Message, l2Message, fontSize1, fontSize2, center) {
 				if (amountToScroll > 0) {
 					// Animate text after a delay so it scrolls and everything is seen.
 					messagesLine2.delay(amountToWait).animate({'margin-left': '-'+amountToScroll+'px'}, timeToScroll, 'linear', () => {
-						// Pad the time the message stays around if it's too short.
-						if (timeToShow > timeToScroll)
-							amountToWait += timeToShow-timeToScroll;
-						
 						setTimeout(allowMessageToChange, amountToWait);
 					});
 				}
