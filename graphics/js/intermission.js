@@ -9,6 +9,7 @@ $(() => {
 	
 	// Declaring other variables.
 	var isOBS = (window.obsstudio) ? true : false;
+	var playAds = (window.location.hash === '#adverts') ? true : false;
 	var pageInit = false;
 	var nextRuns = []; // Can be 4 or less depending where we are in the schedule.
 	var refreshingNextRunsData = false;
@@ -22,8 +23,16 @@ $(() => {
 	if (isOBS) {
 		// When we change to/away from a scene.
 		window.obsstudio.onVisibilityChange = function(active) {
-			if (active)
+			if (active) {
 				refreshNextRunsDisplay();
+				if (playAds) {
+					nodecg.sendMessageToBundle('playTwitchAd', 'nodecg-speedcontrol', err => {
+						if (!err) {
+							// start a graphical timer?
+						}
+					});
+				}
+			}
 		};
 	}
 	
