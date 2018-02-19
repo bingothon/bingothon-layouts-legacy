@@ -1,5 +1,9 @@
 'use strict';
 
+// Declaring modules.
+var chokidar = require('chokidar');
+var fs = require('fs');
+
 // Referencing other files.
 var nodecgAPIContext = require('./utils/nodecg-api-context');
 
@@ -10,6 +14,7 @@ module.exports = function(nodecg) {
 	
 	// Initalising some replicants.
 	// Doing this in an extension so we don't need to declare the options everywhere else.
+	var songs = nodecg.Replicant('songs', {defaultValue: [], persistent: false});
 	var songData = nodecg.Replicant('songData', {defaultValue: {'title': 'No Track Playing/No Data Available', 'playing': false}, persistent: false});
 	var hostData = nodecg.Replicant('hostData', {defaultValue: []});
 	var hostDisplayStatus = nodecg.Replicant('hostDisplayStatus', {defaultValue: false});
@@ -18,4 +23,15 @@ module.exports = function(nodecg) {
 	require('./host-api');
 	require('./tracker');
 	require('./emotes');
+	
+	var mp3Dir = __dirname+'/../graphics/mp3/';
+	chokidar.watch(mp3Dir).on('all', (event, path) => {
+		var songsList = [];
+		fs.readdir(mp3Dir, (err, files) => {
+			if (!err)
+				files.forEach(song => {if (song.endsWith('.mp3')) {songsList.push(song);}});
+			songs.value = songsList;
+			nodecg.log.info('Songs list was updated to reflect folder changes.');
+		});
+	});
 }

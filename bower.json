@@ -7,6 +7,7 @@
     "jquery.marquee": "jQuery.Marquee#^1.5.0",
     "async": "^2.6.0",
     "jquery-animateNumber": "^0.0.14",
-    "waitForImages": "^2.2.0"
+    "waitForImages": "^2.2.0",
+    "jsmediatags": "^3.9.0"
   }
 }
