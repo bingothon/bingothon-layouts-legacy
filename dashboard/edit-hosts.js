@@ -77,7 +77,6 @@ $(() => {
 			$('input').css('opacity',1);
 			$('.flag').css('opacity',1);
 			hostData.value = newHostData;
-			console.log(newHostData);
 		});
 	});
 	

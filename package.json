@@ -24,6 +24,11 @@
         "singleInstance": true
       },
       {
+        "file": "host-dashboard.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
         "file": "info-bar.html",
         "width": 1920,
         "height": 80

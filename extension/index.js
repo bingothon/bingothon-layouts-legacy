@@ -24,6 +24,7 @@ module.exports = function(nodecg) {
 	require('./tracker');
 	require('./emotes');
 	
+	// Get and keep an eye on the songs directory to update the replicant.
 	var mp3Dir = __dirname+'/../graphics/mp3/';
 	chokidar.watch(mp3Dir).on('all', (event, path) => {
 		var songsList = [];
@@ -31,7 +32,7 @@ module.exports = function(nodecg) {
 			if (!err)
 				files.forEach(song => {if (song.endsWith('.mp3')) {songsList.push(song);}});
 			songs.value = songsList;
-			nodecg.log.info('Songs list was updated to reflect folder changes.');
+			//nodecg.log.info('Songs list was updated to reflect folder changes.');
 		});
 	});
 }

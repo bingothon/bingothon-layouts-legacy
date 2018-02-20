@@ -2,7 +2,7 @@
 $(function() {
 	var jsmediatags = window.jsmediatags;
 	var isOBS = (window.obsstudio) ? true : false;
-	var defaultVolume = 0.1;
+	var defaultVolume = 0.5;
 	var init = false;
 	var skippingSong = false;
 	var pausingSong = false;
