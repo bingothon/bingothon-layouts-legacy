@@ -2,11 +2,12 @@
 
 // Referencing packages.
 var request = require('request');
+var moment = require('moment');
 
 // Declaring other variables.
 var nodecg = require('./utils/nodecg-api-context').get();
 var apiURL = 'https://donations.esamarathon.com/search';
-var refreshTime = 300000; // Get prizes every 5m.
+var refreshTime = 60000; // Get prizes every 1m.
 
 // Replicants.
 var prizes = nodecg.Replicant('prizes', {defaultValue: []});
@@ -54,6 +55,14 @@ function processRawPrizes(prizes) {
 			formattedPrize.end_timestamp = prize.fields.endtime;
 		else
 			formattedPrize.end_timestamp = null;
+		
+		var currentTimestamp = moment().unix();
+		var startTimestamp = moment(formattedPrize.start_timestamp).unix();
+		var endTimestamp = moment(formattedPrize.end_timestamp).unix();
+		
+		// Prize not applicable right now, so don't add it.
+		if (currentTimestamp < startTimestamp || currentTimestamp > endTimestamp)
+			return;
 		
 		prizesArray.push(formattedPrize);
 	});
