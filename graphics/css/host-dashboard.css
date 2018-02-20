@@ -63,3 +63,11 @@ body {
 	padding-top: 10px;
 	font-size: 23px;
 }
+
+.gameTime:before {
+	content: 'ESTIMATE: '
+}
+
+.gameFinal:before {
+	content: 'Final Time: '
+}

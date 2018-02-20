@@ -54,7 +54,8 @@ function processRawBids(bids) {
 				total: parseFloat(bid.fields.total),
 				game: bid.fields.speedrun__name,
 				category: bid.fields.speedrun__category,
-				description: description
+				description: description,
+				end_time: Date.parse(bid.fields.speedrun__endtime)
 			};
 			
 			// If the bid isn't a target, it will be a bid war.
@@ -107,6 +108,17 @@ function processRawBids(bids) {
 		
 		bidsArray.push(bid);
 	}
+	
+	// Sort by earliest first.
+	bidsArray = bidsArray.sort((a, b) => {
+		if (a.end_time < b.end_time)
+			return -1;
+		if (a.end_time > b.end_time)
+			return 1;
+		
+		// a must be equal to b
+		return 0;
+	});
 	
 	return bidsArray;
 }
