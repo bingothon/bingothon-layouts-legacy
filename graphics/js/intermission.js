@@ -6,6 +6,7 @@ $(() => {
 	// JQuery selectors.
 	var comingUpRunsBox = $('#comingUpRunsWrapper');
 	var musicTickerText = $('#musicTickerText');
+	var adTimerElement = $('#adTimer');
 	
 	// Declaring other variables.
 	var isOBS = (window.obsstudio) ? true : false;
@@ -14,6 +15,9 @@ $(() => {
 	var refreshingNextRunsData = false;
 	var refreshingNextRunsDisplay = false;
 	var songMarquee;
+	var adTimeout;
+	var adTicks = 0;
+	var adTime = 180;
 
 	// This might have race condition issues, not the best, will see how it goes.
 	var runContainerElement = $('<div>').load('js/intermission-upcoming-box.html');
@@ -26,9 +30,8 @@ $(() => {
 			var sceneName = evt.detail.name;
 			if (sceneName.indexOf('(ads)') >= 0) {
 				nodecg.sendMessageToBundle('playTwitchAd', 'nodecg-speedcontrol', err => {
-					if (!err) {
-						// start a graphical timer?
-					}
+					if (!err)
+						showAdTimer(true);
 				});
 			}
 		});
@@ -38,6 +41,23 @@ $(() => {
 			if (active)
 				refreshNextRunsDisplay();
 		};
+	}
+	
+	// Logic to update the timer for how long the ads have left after being triggered.
+	function showAdTimer(firstTime) {
+		if (firstTime) {
+			clearTimeout(adTimeout);
+			adTimerElement.css('opacity', '1');
+		}
+		else if (adTicks > adTime) {
+			clearTimeout(adTimeout);
+			adTimerElement.css('opacity', '0');
+			return;
+		}
+		
+		adTimerElement.html(msToTime((adTime-adTicks)*1000, true));
+		adTicks++;
+		adTimeout = setTimeout(() => showAdTimer(false), 1000);
 	}
 	
 	var runDataArray = nodecg.Replicant('runDataArray', speedcontrolBundle);

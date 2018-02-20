@@ -12,6 +12,8 @@
 	top: 298px;
 	width: 830px;
 	height: 405px;
+	align-items: flex-end; /* Aligns vertically bottom. */
+	justify-content: flex-end; /* Aligns horizontally right. */
 }
 
 /* Music ticker stuff. */
@@ -82,4 +84,11 @@
 	top: 768px;
 	width: 830px;
 	height: 232px;
+}
+
+#adTimer:before {content: 'Ad Playing:\00a0'}
+#adTimer {
+	opacity: 0;
+	padding: 5px;
+	width: 160px;
 }
