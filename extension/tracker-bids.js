@@ -93,8 +93,8 @@ function processRawBids(bids) {
 		
 		var bid = parentBidsByID[id];
 		
-		if (bids.options) {
-			// Sort bid war options from largest to smallest(?).
+		if (bid.options && bid.options.length) {
+			// Sort bid war options from largest to smallest.
 			bid.options = bid.options.sort((a, b) => {
 				if (a.total > b.total)
 					return -1;
@@ -110,7 +110,7 @@ function processRawBids(bids) {
 	}
 	
 	// Sort by earliest first.
-	bidsArray = bidsArray.sort((a, b) => {
+	bidsArray.sort((a, b) => {
 		if (a.end_time < b.end_time)
 			return -1;
 		if (a.end_time > b.end_time)
