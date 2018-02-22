@@ -64,8 +64,26 @@ $(() => {
 	
 	var runDataArray = nodecg.Replicant('runDataArray', 'nodecg-speedcontrol');
 	var runDataActiveRun = nodecg.Replicant('runDataActiveRun', 'nodecg-speedcontrol');
-	//var runFinishTimes = nodecg.Replicant('runFinishTimes', 'nodecg-speedcontrol');
+	var runFinishTimes = nodecg.Replicant('runFinishTimes', 'nodecg-speedcontrol');
+	var runFinishTimesInit = false;
+	var runDataActiveRunInit = false;
+	var runsInit = false;
+	runFinishTimes.on('change', newVal => {
+		runFinishTimesInit = true;
+		if (!runsInit && runFinishTimesInit && runDataActiveRunInit) {
+			setRuns();
+			runsInit = true;
+		}
+	});
 	runDataActiveRun.on('change', newVal => {
+		runDataActiveRunInit = true;
+		if (runFinishTimesInit && runDataActiveRunInit) {
+			setRuns();
+			runsInit = true;
+		}
+	});
+	
+	function setRuns() {
 		runsContainer.html('');
 		var indexOfCurrentRun = findIndexInRunDataArray(runDataActiveRun.value);
 		for (var i = -1; i < 3; i++) {
@@ -74,17 +92,15 @@ $(() => {
 				var runElement = runHTML.clone();
 				if (i === -1) {
 					$('.justMissed', runElement).show();
-					/*setTimeout(() => console.log(runFinishTimes.value), 5000);
-					if (runFinishTimes.value[runDataActiveRun.value.runID]) {
+					if (runFinishTimes.value[runDataActiveRun.value.runID-1]) {
+						$('.gameFinal', runElement).html(runFinishTimes.value[runDataActiveRun.value.runID-1]);
 						$('.gameFinal', runElement).show();
-						$('.gameFinal', runElement).html(runFinishTimes.value[runDataActiveRun.value.runID]);
-					}*/
+					}
 				}
 				else {
 					$('.justMissed', runElement).hide();
 					$('.gameFinal', runElement).hide();
 				}
-				$('.gameFinal', runElement).hide() // temp
 				$('.gameName', runElement).html(run.game);
 				$('.gameCategory', runElement).html(run.category);
 				$('.gameConsole', runElement).html(run.system);
@@ -93,5 +109,5 @@ $(() => {
 				runsContainer.append(runElement);
 			}
 		}
-	});
+	}
 });

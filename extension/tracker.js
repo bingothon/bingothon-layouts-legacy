@@ -62,7 +62,7 @@ repeater.on('donation', data => {
 repeater.on('total', data => {
 	var total = parseFloat(data.new_total);
 	donationTotal.value = total;
-	nodecg.log.info('Updated donation total received:', '$'+total);
+	nodecg.log.info('Updated donation total received:', '$'+total.toFixed(2));
 });
 
 // https://github.com/GamesDoneQuick/agdq18-layouts/blob/master/extension/index.js
