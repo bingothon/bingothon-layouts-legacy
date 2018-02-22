@@ -116,7 +116,9 @@ function animationChangeSponsorImage(element, assetURL) {
 		// Some code to figure out how to fit the sponsor images into the available box.
 		var containerAR = element.width()/element.height();
 		var logoAR = nextElement.width()/nextElement.height();
-		var fillClass = (containerAR > logoAR) ? 'fillheight' : 'fillwidth';
+		//console.log('containerAR: '+containerAR*1.5);
+		//console.log('logoAR: '+logoAR);
+		var fillClass = (containerAR*1.5 > logoAR) ? 'fillheight' : 'fillwidth';
 		nextElement.addClass(fillClass);
 		
 		// Fade in next sponsor logo and change the classes.
