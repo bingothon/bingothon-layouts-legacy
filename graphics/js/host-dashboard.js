@@ -7,7 +7,7 @@ $(() => {
 	var runsContainer = $('#runsContainer');
 	
 	// Declaring variables.
-	var prizeHTML = $('<div class="prize"><span class="prizeName"></span><br>Provided by <span class="prizeProvider"></span><br>minimum donation <span class="prizeMinDonation"></span></div>');
+	var prizeHTML = $('<div class="prize"><span class="prizeName"></span><br>Provided by <span class="prizeProvider"></span><br>minimum donation <span class="prizeMinDonation"></span><br>Ends: <span class="prizeEnd"></span></div>');
 	var bidHTML = $('<div class="bid"><span class="bidGame"></span><br><span class="bidName"></span></div>')
 	var runHTML = $('<div class="run"><span class="justMissed">YOU HAVE JUST WATCHED<br></span><span class="gameName"></span><br><span class="gameCategory"></span><br><span class="gameConsole"></span><br><span class="gameRunners"></span><br><span class="gameTime"></span><br><span class="gameFinal"></span></div>');
 	
@@ -26,6 +26,8 @@ $(() => {
 			$('.prizeName', prizeElement).html(prize.name);
 			$('.prizeProvider', prizeElement).html(prize.provided);
 			$('.prizeMinDonation', prizeElement).html(formatDollarAmount(prize.minimum_bid));
+			console.log(prize.end_timestamp)
+			$('.prizeEnd', prizeElement).html(moment(prize.end_timestamp).format('Do HH:mm'));
 			prizesContainer.append(prizeElement);
 		});
 	});
