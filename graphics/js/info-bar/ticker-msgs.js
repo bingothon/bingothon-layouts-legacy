@@ -14,6 +14,7 @@ var messageIndex = 0;
 var bidsCache = [];
 var prizeCache = [];
 var nextRunsCache = [];
+var lastMessageType = -1;
 
 // Choose a random index on startup.
 chooseRandomMessageIndex(true);
@@ -83,55 +84,73 @@ function showTickerMessages() {
 	}
 	
 	// Bids
-	if (messageIndex === 0) {
+	if (messageIndex === 0 || messageIndex === 1 || messageIndex === 2) {
 		//if (bidsTemp.length > 0)
-		if (bidsRep.value.length > 0)
+		if (bidsRep.value.length > 0 && lastMessageType !== 0) {
 			showBid();
+			lastMessageType = 0;
+		}
 		else
 			retry = true;
 	}
 	
 	// Prizes
-	if (messageIndex === 1) {
+	if (messageIndex === 3 || messageIndex === 4 || messageIndex === 5) {
 		//if (prizesTemp.length > 0)
-		if (prizesRep.value.length > 0)
+		if (prizesRep.value.length > 0 && lastMessageType !== 1) {
 			showPrize();
+			lastMessageType = 1;
+		}
 		else
 			retry = true;
 	}
 	
 	// Upcoming Run
-	if (messageIndex === 2) {
+	if (messageIndex === 6 || messageIndex === 7 || messageIndex === 8) {
 		// Will only trigger this if there's at least 1 run still to come.
 		var indexOfCurrentRun = findIndexInRunDataArray(runDataActiveRun.value);
-		if (runDataArray.value[indexOfCurrentRun+1]) {
+		if (runDataArray.value[indexOfCurrentRun+1] && lastMessageType !== 2) {
 			showUpcomingRun();
+		lastMessageType = 2;
 		}
 		else retry = true;
 	}
 	
 	// Recent Top Donation
-	if (messageIndex === 3) {
-		if (showRecentTopDonation && recentTopDonation) {
+	if (messageIndex === 9 || messageIndex === 10) {
+		if (showRecentTopDonation && recentTopDonation && lastMessageType !== 3) {
 			showDonation(recentTopDonation, false);
 			resetRecentTopDonationTimer();
+			lastMessageType = 3;
 		}
 		else retry = true;
 	}
 	
 	// ESA promotional message.
-	if (messageIndex === 4) {
-		displayMessage('<span class="textGlow">This is European Speedrunner Assembly Winter 2018</span>', null, 30, null, true);
+	if (messageIndex === 11) {
+		if (lastMessageType !== 4) {
+			displayMessage('<span class="textGlow">This is European Speedrunner Assembly Winter 2018</span>', null, 30, null, true);
+			lastMessageType = 4;
+		}
+		else retry = true;
 	}
 	
 	// StC promotional message.
-	if (messageIndex === 5) {
-		displayMessage('<span class="textGlow">#ESAWinter18 benefits Save the Children</span>', null, 30, null, true);
+	if (messageIndex === 12) {
+		if (lastMessageType !== 5) {
+			displayMessage('<span class="textGlow">#ESAWinter18 benefits Save the Children</span>', null, 30, null, true);
+			lastMessageType = 5;
+		}
+		else retry = true;
 	}
 	
 	// Donation URL message.
-	if (messageIndex === 6) {
-		displayMessage('<span class="textGlow">Donate @ <span class="greyText">donations.esamarathon.com</span></span>', null, 30, null, true);
+	if (messageIndex === 13) {
+		if (lastMessageType !== 6) {
+			displayMessage('<span class="textGlow">Donate @ <span class="greyText">donations.esamarathon.com</span></span>', null, 30, null, true);
+			lastMessageType = 6;
+		}
+		else retry = true;
 	}
 	
 	chooseRandomMessageIndex();
@@ -303,7 +322,7 @@ function displayMessage(l1Message, l2Message, fontSize1, fontSize2, center) {
 
 // Randomly chooses the next message type to show, excluding what was just shown.
 function chooseRandomMessageIndex(init) {
-	var messageIndexList = [0,1,2,3,4,5,6];
+	var messageIndexList = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
 	if (!init) messageIndexList.splice(messageIndex, 1);
 	messageIndex = messageIndexList[getRandomInt(messageIndexList.length)];
 }
