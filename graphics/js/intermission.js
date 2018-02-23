@@ -46,6 +46,7 @@ $(() => {
 	// Logic to update the timer for how long the ads have left after being triggered.
 	function showAdTimer(firstTime) {
 		if (firstTime) {
+			adTicks = 0;
 			clearTimeout(adTimeout);
 			adTimerElement.css('opacity', '1');
 		}

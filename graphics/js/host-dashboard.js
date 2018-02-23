@@ -44,7 +44,9 @@ $(() => {
 			$('.bidName', bidElement).html(bid.name);
 			// Donation Goal
 			if (!bid.options) {
-				bidElement.append('<br>'+formatDollarAmount(bid.total)+'/'+formatDollarAmount(bid.goal)); 
+				var bidLeft = bid.goal - bid.total;
+				bidElement.append('<br>'+formatDollarAmount(bid.total)+'/'+formatDollarAmount(bid.goal));
+				bidElement.append('<br>'+formatDollarAmount(bidLeft)+' to goal'); 
 			}
 			// Bid War
 			else {
