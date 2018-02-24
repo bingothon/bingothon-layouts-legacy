@@ -28,4 +28,11 @@ app.get('/hostcontrol/hidehosts', (req, res) => {
 	res.end();
 });
 
+// Change Save the Children text on the host dashboard.
+app.get('/hostcontrol/changestctext', (req, res) => {
+	nodecg.sendMessage('hostdash_changeStCText');
+	res.status(200);
+	res.end();
+});
+
 nodecg.mount(app);

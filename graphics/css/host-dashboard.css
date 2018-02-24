@@ -34,7 +34,7 @@ body {
 	padding-bottom: 30px;
 }
 
-#prizesContainer, #bidsContainer {
+#prizesContainer, #bidsContainer, #runsContainer, #stcInfoContainer {
 	width: 100%;
 }
 
