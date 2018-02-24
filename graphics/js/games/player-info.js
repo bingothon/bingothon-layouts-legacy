@@ -11,6 +11,8 @@ $(() => {
 	// JQuery selectors.
 	var playerContainers = $('.playerContainer'); // Array
 	
+	var dnd = ($('html').attr('data-sceneid') === 'dnd-names') ? true : false;
+	
 	// Declaring other variables.
 	var displayNameForOriginal = 45000; // 45 seconds
 	var displayTwitchForOriginal = 15000; // 15 seconds
@@ -40,11 +42,10 @@ $(() => {
 		clearTimeout(rotationTO);
 		init = true;
 		
-		// If there are multiple player info boxes but only 1 team and they have >1 player,
-		// puts the names in their own boxes. This is done by making them into "fake" 1 player
-		// teams but with a toggle to show the team icon.
-		if (playerContainers.length > 1 && runData.teams.length === 1 && runData.teams[0].members.length > 1) {
-			var team = runData.teams[0];
+		if (dnd) {
+			var urlPos = window.location.hash.replace('#', '');
+			
+			var team = runData.teams[parseInt(urlPos)];
 			team.members.forEach(member => {
 				var teamData = {showTeamIcon: team.members.length > 1, members: []};
 				teamData.members.push(createMemberData(member));
@@ -53,11 +54,25 @@ $(() => {
 		}
 		
 		else {
-			runData.teams.forEach(team => {
-				var teamData = {showTeamIcon: team.members.length > 1, members: []};
-				team.members.forEach(member => {teamData.members.push(createMemberData(member));});
-				currentTeamsData.push(teamData);
-			});
+			// If there are multiple player info boxes but only 1 team and they have >1 player,
+			// puts the names in their own boxes. This is done by making them into "fake" 1 player
+			// teams but with a toggle to show the team icon.
+			if (playerContainers.length > 1 && runData.teams.length === 1 && runData.teams[0].members.length > 1) {
+				var team = runData.teams[0];
+				team.members.forEach(member => {
+					var teamData = {showTeamIcon: team.members.length > 1, members: []};
+					teamData.members.push(createMemberData(member));
+					currentTeamsData.push(teamData);
+				});
+			}
+			
+			else {
+				runData.teams.forEach(team => {
+					var teamData = {showTeamIcon: team.members.length > 1, members: []};
+					team.members.forEach(member => {teamData.members.push(createMemberData(member));});
+					currentTeamsData.push(teamData);
+				});
+			}
 		}
 		
 		// Set up team member indices so we can keep track on what team member is being shown.

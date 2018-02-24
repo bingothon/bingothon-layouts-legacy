@@ -87,6 +87,11 @@
         "file": "dnd-timer.html",
         "width": 1920,
         "height": 1080
+      },
+      {
+        "file": "dnd-names.html",
+        "width": 1920,
+        "height": 1080
       }
     ],
     "dashboardPanels": [
