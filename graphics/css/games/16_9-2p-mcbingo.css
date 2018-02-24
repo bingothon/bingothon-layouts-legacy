@@ -13,7 +13,7 @@
 }
 
 #gameCapture1 {
-	top: 502px;
+	top: 51px;
 	height: 447px;
 	
 	/* This positions the finish time in this game feed. */
@@ -22,7 +22,7 @@
 }
 
 #gameCapture2 {
-	top: 51px;
+	top: 502px;
 	height: 448px;
 	
 	/* This positions the finish time in this game feed. */

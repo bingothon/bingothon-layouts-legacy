@@ -119,6 +119,7 @@ function animationChangeSponsorImage(element, assetURL) {
 		//console.log('containerAR: '+containerAR*1.5);
 		//console.log('logoAR: '+logoAR);
 		var fillClass = (containerAR*1.5 > logoAR) ? 'fillheight' : 'fillwidth';
+		if ($('html').attr('data-sceneid') === '16_9-2p-mcbingo') fillClass = 'fillwidth'; // Manual override for this scene.
 		nextElement.addClass(fillClass);
 		
 		// Fade in next sponsor logo and change the classes.
