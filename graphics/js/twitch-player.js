@@ -1,9 +1,10 @@
 'use strict';
 $(function() {
+    const bundleName = 'nodecg-speedcontrol';
     // keeps track of which channel has sound, cause only one at a time can have sound, -1 is all muted
-    var soundOnTwitchStream = nodecg.Replicant('sound-on-twitch-stream', {'persistent':false,'defaultValue':-1});
+    var soundOnTwitchStream = nodecg.Replicant('sound-on-twitch-stream', bundleName, {'persistent':false,'defaultValue':-1});
     // main control panel for streams
-    var streams = nodecg.Replicant('twitch-streams', {'persistent':false,'defaultValue':[
+    var streams = nodecg.Replicant('twitch-streams', bundleName, {'persistent':false,'defaultValue':[
         {'channel':'speedrunslive','width':400,'height':350,'quality':'chunked','volume':0,'paused':false,'hidden':true},
         {'channel':'speedrunslive','width':400,'height':350,'quality':'chunked','volume':0,'paused':false,'hidden':true},
         {'channel':'speedrunslive','width':400,'height':350,'quality':'chunked','volume':0,'paused':false,'hidden':true},
@@ -43,14 +44,14 @@ $(function() {
                 if (oldStream.getChannel() != stream.channel) {
                     oldStream.setChannel(stream.channel);
                 }
-                const streamFrame = $('#twitch-player'+i+' iframe');
-                if (streamFrame.attr('width') != stream.width) {
-                    nodecg.log.info('Changing width');
-                    streamFrame.attr('width',stream.width);
-                }
-                if (streamFrame.attr('height') != stream.height) {
-                    streamFrame.attr('height',stream.height);
-                }
+                // const streamFrame = $('#twitch-player'+i+' iframe');
+                // if (streamFrame.attr('width') != stream.width) {
+                //     nodecg.log.info('Changing width');
+                //     streamFrame.attr('width',stream.width);
+                // }
+                // if (streamFrame.attr('height') != stream.height) {
+                //     streamFrame.attr('height',stream.height);
+                // }
                 if (oldStream.isPaused() != stream.paused) {
                     if (stream.paused) {
                         oldStream.pause();
@@ -96,10 +97,11 @@ $(function() {
         } else {
             $(twitchContainer).show();
         }
+        var $twitchContainer = $('#twitch-player'+id);
         var playerOptions = {
             'channel':  stream.channel,
-            'width':    stream.width,
-            'height':   stream.height,
+            'width':    $twitchContainer.width(),
+            'height':   $twitchContainer.height()
         }
         playerList[id] = new Twitch.Player(twitchContainer, playerOptions);
         playerList[id].showPlayerControls(false);
