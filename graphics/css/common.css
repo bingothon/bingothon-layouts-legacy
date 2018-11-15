@@ -48,7 +48,7 @@ body {
 .storageBox {
 	position: fixed;
 	background-color: rgba(0,0,0,0.68);
-	outline: 3px solid #39b0f6;
+	outline: 3px solid #6e2c30;
 	overflow: hidden;
 	box-sizing: border-box;
 }
