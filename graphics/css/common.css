@@ -151,3 +151,50 @@ body {
 	height: 100%;
 	position: absolute;
 }
+
+/* Add bingosync colors as css classes*/
+.bingo-green {
+    background-image: linear-gradient(#31D814, #00B500 60%, #20A00A);
+}
+
+.bingo-red {
+    background-image: linear-gradient(#FF4944, #DA4440 60%, #CE302C);
+}
+
+.bingo-orange {
+    background-image: linear-gradient(#FF9C12, #F98E1E 60%, #D0800F);
+}
+
+.bingo-blue {
+    background-image: linear-gradient(#409CFF, #37A1DE 60%, #088CBD);
+}
+
+.bingo-purple {
+    background-image: linear-gradient(#822dbf, #7120ab);
+}
+
+.bingo-pink {
+    background-image: linear-gradient(#ed86aa, #cc6e8f);
+}
+
+.bingo-brown {
+    background-image: linear-gradient(#ab5c23, #6d3811);
+}
+
+.bingo-teal {
+    background-image: linear-gradient(#419695, #2e7372);
+}
+
+.bingo-navy {
+    background-image: linear-gradient(#0d48b5, #022b75);
+}
+
+.bingo-yellow {
+    background-image: linear-gradient(#d8d014, #c1ba0b);
+}
+
+/* Make the bingocolor div visible and give it a bit space*/
+.bingo-color {
+    width: 51px;
+    height: 51px;
+}
