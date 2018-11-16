@@ -4,12 +4,7 @@ $(function() {
     // keeps track of which channel has sound, cause only one at a time can have sound, -1 is all muted
     var soundOnTwitchStream = nodecg.Replicant('sound-on-twitch-stream', bundleName, {'persistent':false,'defaultValue':-1});
     // main control panel for streams
-    var streams = nodecg.Replicant('twitch-streams', bundleName, {'persistent':false,'defaultValue':[
-        {'channel':'speedrunslive','width':400,'height':350,'quality':'chunked','volume':0,'paused':false,'hidden':true},
-        {'channel':'speedrunslive','width':400,'height':350,'quality':'chunked','volume':0,'paused':false,'hidden':true},
-        {'channel':'speedrunslive','width':400,'height':350,'quality':'chunked','volume':0,'paused':false,'hidden':true},
-        {'channel':'speedrunslive','width':400,'height':350,'quality':'chunked','volume':0,'paused':false,'hidden':true},
-    ]});
+    var streams = nodecg.Replicant('twitch-streams', bundleName);
     // streams.values is an array that consists of elements with the following attributes;
     // channel, width, height, quality, volume, muted, paused, hidden
     var playerList = [];
@@ -76,9 +71,8 @@ $(function() {
         }
 
     });
-    //     // register listeners to remotely control streams
-    //     // refresh TODO
-    nodecg.listenFor('refreshStream',(id) => {
+    // register listeners to remotely control streams
+    nodecg.listenFor('refreshStream',bundleName,(id) => {
         if (!playerList[id]) {
             nodecg.log.console.warn("Stream with given ID doesn't exist, can't refresh");
             return;
