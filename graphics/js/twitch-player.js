@@ -92,10 +92,14 @@ $(function() {
             $(twitchContainer).show();
         }
         var $twitchContainer = $('#twitch-player'+id);
+        var width = $twitchContainer.width()*stream.widthPercent/100;
+        var height = $twitchContainer.height()*stream.heightPercent/100;
+        $twitchContainer.css('left',width*stream.leftPercent/100)
+        $twitchContainer.css('top',height*stream.topPercent/100)
         var playerOptions = {
             'channel':  stream.channel,
-            'width':    $twitchContainer.width(),
-            'height':   $twitchContainer.height()
+            'width':    width,
+            'height':   height
         }
         playerList[id] = new Twitch.Player(twitchContainer, playerOptions);
         playerList[id].showPlayerControls(false);
