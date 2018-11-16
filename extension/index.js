@@ -21,7 +21,7 @@ module.exports = function(nodecg) {
 	
 	// Other extension files we need to load.
 	require('./host-api');
-	require('./tracker');
+	//require('./tracker');
 	require('./emotes');
 	
 	// Get and keep an eye on the songs directory to update the replicant.

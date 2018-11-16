@@ -48,7 +48,7 @@ body {
 .storageBox {
 	position: fixed;
 	background-color: rgba(0,0,0,0.68);
-	outline: 3px solid #39b0f6;
+	outline: 3px solid #6e2c30;
 	overflow: hidden;
 	box-sizing: border-box;
 }
@@ -119,7 +119,7 @@ body {
 #timer .char3, #timer .char6 {width: 0.3em;}
 
 /* Small "same colour as borders" box that appears in the game feeds when players finish in a race. */
-.finishTimeContainer {background-color: #39b0f6;}
+.finishTimeContainer {background-color: #39b0f6; z-index: 1;}
 .finishTimeContainer img {content: url('../images/finish-flag.gif'); height: 100%; image-rendering: pixelated;}
 
 .finishTimeContainer {opacity: 0;} /* Using opacity so the image is loaded in while invisible. */
@@ -144,3 +144,57 @@ body {
 /* Classes to resize the sponsor images correctly. */
 .fillwidth {width: 100%; height: auto;}
 .fillheight {height: 100%; width: auto;}
+
+/* Twtich player fills the entire field where the game capture should have been*/
+.twitch-player {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+/* Add bingosync colors as css classes*/
+.bingo-green {
+    background-image: linear-gradient(#31D814, #00B500 60%, #20A00A);
+}
+
+.bingo-red {
+    background-image: linear-gradient(#FF4944, #DA4440 60%, #CE302C);
+}
+
+.bingo-orange {
+    background-image: linear-gradient(#FF9C12, #F98E1E 60%, #D0800F);
+}
+
+.bingo-blue {
+    background-image: linear-gradient(#409CFF, #37A1DE 60%, #088CBD);
+}
+
+.bingo-purple {
+    background-image: linear-gradient(#822dbf, #7120ab);
+}
+
+.bingo-pink {
+    background-image: linear-gradient(#ed86aa, #cc6e8f);
+}
+
+.bingo-brown {
+    background-image: linear-gradient(#ab5c23, #6d3811);
+}
+
+.bingo-teal {
+    background-image: linear-gradient(#419695, #2e7372);
+}
+
+.bingo-navy {
+    background-image: linear-gradient(#0d48b5, #022b75);
+}
+
+.bingo-yellow {
+    background-image: linear-gradient(#d8d014, #c1ba0b);
+}
+
+/* Make the bingocolor div visible and give it a bit space*/
+.bingo-color {
+    width: 51px;
+    height: 51px;
+}

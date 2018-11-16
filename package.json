@@ -92,6 +92,16 @@
         "file": "dnd-names.html",
         "width": 1920,
         "height": 1080
+      },
+      {
+        "file": "16_9-3p-bingo.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "16_9-4p-bingo.html",
+        "width": 1920,
+        "height": 1080
       }
     ],
     "dashboardPanels": [

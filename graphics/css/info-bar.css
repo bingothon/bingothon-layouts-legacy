@@ -1,3 +1,46 @@
+/*heartbeat*/
+.heartbeat {
+  height: 60px;
+  width: 60px;
+  margin: 0 auto;
+  top: 10px;
+  left: 10px;
+  background-color: black;
+  position: absolute;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.heartbeat > div {
+  height: 60px;
+  width: 213px;
+  background: url('../images/info-bar/heartbeat.png');
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60px;
+  transform: translate3d(0, 0, 0);
+}
+.heartbeat .mover-1 {
+  animation: moveSlideshow 5s linear infinite;
+}
+.heartbeat .mover-2 {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  background-position: 0 -200px;
+  animation: moveSlideshow 15s linear infinite;
+}
+.heartbeat:hover .mover-2 {
+  opacity: 1;
+}
+
+@keyframes moveSlideshow {
+  100% { 
+    transform: translateX(-66.6666%);  
+  }
+}
+
+
 /* Resizes Twitter's emoji/Twitch emotes correctly so they fit in with the text. */
 img.emoji {
 	height: 1.2em;
@@ -50,6 +93,7 @@ img.emoji {
 	background-image: url('../images/info-bar/donation-total-bg.png');
 	padding-right: 25px; /* This is for the shadow part of the image. */
 }
+#heartBeatContainer {width: 60px; height:60px; background-color:black; margin-left: -200px; overflow:hidden;}
 #donationTotalContainer #stcIcon {position: absolute;}
 #donationTotalContainer #stcText {position: absolute; opacity: 0;}
 #donationTotalContainer #amountText {position: absolute; padding-left: 69px;}
