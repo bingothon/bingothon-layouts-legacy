@@ -129,7 +129,7 @@ function showTickerMessages() {
 	// ESA promotional message.
 	if (messageIndex === 11) {
 		if (lastMessageType !== 4) {
-			displayMessage('<span class="textGlow">This is European Speedrunner Assembly Winter 2018</span>', null, 30, null, true);
+			displayMessage('<span class="textGlow">This is Bingothon</span>', null, 30, null, true);
 			lastMessageType = 4;
 		}
 		else retry = true;
@@ -138,7 +138,7 @@ function showTickerMessages() {
 	// StC promotional message.
 	if (messageIndex === 12) {
 		if (lastMessageType !== 5) {
-			displayMessage('<span class="textGlow">#ESAWinter18 benefits Save the Children</span>', null, 30, null, true);
+			displayMessage('<span class="textGlow">Bingothon benefits Doctors Without Borders</span>', null, 30, null, true);
 			lastMessageType = 5;
 		}
 		else retry = true;
