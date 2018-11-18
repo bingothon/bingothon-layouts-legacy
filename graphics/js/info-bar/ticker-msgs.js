@@ -147,7 +147,7 @@ function showTickerMessages() {
 	// Donation URL message.
 	if (messageIndex === 13) {
 		if (lastMessageType !== 6) {
-			displayMessage('<span class="textGlow">Donate @ <span class="greyText">donations.esamarathon.com</span></span>', null, 30, null, true);
+			displayMessage('<span class="textGlow">Donate @ <span class="greyText">tiltify.com/@bingothon</span></span>', null, 30, null, true);
 			lastMessageType = 6;
 		}
 		else retry = true;
