@@ -12,9 +12,9 @@
   },
   "homepage": "https://github.com/esamarathon/esaw18-layouts#readme",
   "nodecg": {
-    "compatibleRange": "~0.9",
+    "compatibleRange": "~1.2.2",
     "dependencies": [
-      "speedcontrol/nodecg-speedcontrol:~0.9"
+      "speedcontrol/nodecg-speedcontrol:~1.2.2"
     ],
     "graphics": [
       {
