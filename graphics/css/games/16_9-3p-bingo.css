@@ -2,10 +2,6 @@
 
 /* Game area(s). */
 .gameCapture {
-    --ratioY: 16;
-    --ratioX: 9;
-    --width15: 746px;
-    height: calc(var(width15)*(var(--RatioX) / var(--ratioX));
 	width: 748px;
 }
 

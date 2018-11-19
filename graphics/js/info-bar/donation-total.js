@@ -8,7 +8,7 @@ var donationTotalTicks = 0;
 var lastDonationTotal;
 
 // Replicants.
-var donationTotal = nodecg.Replicant('donationTotal');
+var donationTotal = nodecg.Replicant('tiltifyDonationTotal','nodecg-speedcontrol');
 
 function changeDonationTotalStuff() {
 	// JQuery selectors.
@@ -38,7 +38,8 @@ function changeDonationTotalStuff() {
 			amountText.html(formatDollarAmount(donationTotal.value, true));
 		else
 			animationUpdateDonationTotal(amountText, lastDonationTotal, donationTotal.value);
-		
+			animationUpdateCrossDonation(donationCross);
+			
 		lastDonationTotal = donationTotal.value;
 	}
 }

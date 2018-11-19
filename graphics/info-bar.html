@@ -21,6 +21,7 @@
 		<script src="js/info-bar/esa-logo.js"></script>
 		<script src="js/info-bar/donation-total.js"></script>
 		<script src="js/info-bar/ticker-msgs.js"></script>
+		<script src="js/info-bar/donation-animation.js"></script>
 		<script>
 		</script>
 	</head>
@@ -34,14 +35,14 @@
 			
 			<!-- Donation Total -->
 			<div id="donationTotalContainer" class="barContainers flexContainer textGlow">
-			    
-					<div class="heartbeat">
+			        
+					<div id="heartbeat">
 						<div class="mover-1"></div>
-	  					<div class="mover-2"></div>
 					</div>
-				
+					<div id="heartbeatMonitor"><p id="heartrateNumber">0</p></div>
 				<img id="stcText" src="images/info-bar/stc-text.png">
 				<div id="amountText"><!--Donation Total --></div>
+				<div id="donationCross"></div>
 			</div>
 			
 			<!-- General Ticker Messages -->
@@ -56,6 +57,7 @@
 			<div id="clockContainer" class="barContainers flexContainer textGlow">
 				<!-- Current Time -->
 			</div>
+			
 		</div>
 	</body>
 </html>

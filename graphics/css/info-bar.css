@@ -1,37 +1,64 @@
 /*heartbeat*/
-.heartbeat {
-  height: 60px;
-  width: 60px;
+
+:root{
+--heartrate: moveSlideshow 5s linear infinite;
+}
+#heartrateNumber {
+    font-size: 9px;
+    position: relative;
+    top: 49px;
+    color: green;
+    direction: rtl;
+    left: -20px;
+}
+#heartbeatMonitor{
+  height: 70px;
+  width: 70px;
   margin: 0 auto;
-  top: 10px;
+  top: 5px;
   left: 10px;
   background-color: black;
   position: absolute;
-  overflow: hidden;
-  transform: translate3d(0, 0, 0);
+  background: url('../images/info-bar/heartbeat-monitor-green.png');
+  background-size: 70px 70px;
+	
+}
+#donationCross{
+	background: url('../images/info-bar/cross.png');
+	position: absolute;
+	top: 30px;
+	left: 284px;
+	width: 21px;
+	height: 21px;
+	display:none;
+	
 }
 
-.heartbeat > div {
-  height: 60px;
+#heartbeat {
+    height: 60px;
+	width: 60px;
+	margin: 0 auto;
+	top: 10px;
+	left: 10px;
+	background-color: black;
+	position: absolute;
+	overflow: hidden;
+	transform: translate3d(0, 0, 0);
+}
+
+#heartbeat > div {
+  height: 70px;
   width: 213px;
-  background: url('../images/info-bar/heartbeat.png');
+  background: url('../images/info-bar/heartbeat-heart.png');
   position: absolute;
   top: 0;
   left: 0;
   height: 60px;
   transform: translate3d(0, 0, 0);
 }
-.heartbeat .mover-1 {
-  animation: moveSlideshow 5s linear infinite;
-}
-.heartbeat .mover-2 {
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
-  background-position: 0 -200px;
-  animation: moveSlideshow 15s linear infinite;
-}
-.heartbeat:hover .mover-2 {
-  opacity: 1;
+#heartbeat .mover-1 {
+  animation: var(--heartrate);
+  
 }
 
 @keyframes moveSlideshow {

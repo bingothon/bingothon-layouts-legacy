@@ -1,5 +1,5 @@
 'use strict';
-
+nodecg.listenFor('newDonation', 'nodecg-speedcontrol', animationUpdateHeartRate);
 // Simple fade out/in animation by using opacity.
 function animationSetField(selector, newHTML, callback) {
 	$(selector).animate({'opacity': '0'}, 1000, 'linear', () => {
@@ -45,6 +45,54 @@ function animationUpdateDonationTotal(selector, oldVal, newVal) {
 		}
 	}, 4000, 'linear');
 }
+
+function animationUpdateCrossDonation(selector) {
+	$(selector).fadeIn("slow");
+	$(selector).fadeOut("slow");
+	$(selector).fadeIn("slow");
+	$(selector).fadeOut("slow");
+}
+function myFunction() {
+    myVar = setInterval(alertFunc, 3000);
+}
+function animationUpdateHeartRate(data) {
+	var amount = data.amount;
+	$("#heartrateNumber").replaceWith('<p id="heartrateNumber">' + data.amount + '</p>');
+	
+	if (data.amount > 99){
+		speed = 0.4;
+	}else{
+		var oldValue = 100 - data.amount;
+		var convertRange = 100 - 1;
+		var newRange = 7 - 0.4;
+		var speed = (((oldValue - 1) * newRange) / convertRange) + 0.4;
+	}
+
+	function superSafeParseFloat(val) {
+	  if (isNaN(val)) {
+	    if ((val = val.match(/([0-9\.,]+\d)/g))) {
+	      val = val[0].replace(/[^\d\.]+/g, '')
+	    }
+	  }
+	  return parseFloat(val)
+	}
+	var prevSpeed = document.documentElement.style.getPropertyValue("--heartrate");
+	var prevSpeed = (superSafeParseFloat(prevSpeed));
+	var toSpeed = speed;
+	
+	var from = {property: prevSpeed};
+	var to = {property: toSpeed};
+	 
+	$(from).animate(to, {
+	    duration: 2000,
+	    step: function() {
+	    	document.documentElement.style.setProperty("--heartrate", "moveSlideshow " + this.property +  "s linear infinite");
+	        console.log( 'Currently @ ' + this.property );
+	    }
+	});
+}
+
+
 
 // Used to clean player containers that are not needed.
 // (This doesn't actually clear them, just hides the elements for now).
