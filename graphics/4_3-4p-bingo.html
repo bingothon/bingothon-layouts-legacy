@@ -5,7 +5,9 @@
 		
 		<!-- CSS -->
 		<link href="css/common.css" rel="stylesheet"/>
-		<link href="css/games/4_3-3p-bingo.css" rel="stylesheet"/>
+		<link href="css/games/4_3-4p-bingo.css" rel="stylesheet"/>
+        <link href="https://bingosync.com/static/bingosync/style.css" rel="stylesheet"/>
+		<link href="css/bingo-board.css" rel="stylesheet"/>
 		
 		<!-- JavaScript -->
 		<script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -19,12 +21,12 @@
 		<script src= "https://player.twitch.tv/js/embed/v1.js"></script>
         <script src= "js/twitch-player.js"></script>
         <script src= "js/bingo-colors.js"></script>
+        <script src= "js/bingo-board.js"></script>
 	</head>
 	<body>
 		<!-- Background image -->
 		<div id="background"></div>
-		<div id="side-left" class="storageBox flexContainer"></div>
-		<div id="side-right" class="storageBox flexContainer"></div>
+		
 		<!-- Webcam(s) -->
 		<div id="webcam1" class="storageBox webcam"></div>
 		
@@ -56,7 +58,15 @@
 			<!-- Twitch 3-->
 			<div id="twitch-player2" class="twitch-player"></div>
 		</div>
-		
+		<div id="gameCapture4" class="storageBox gameCapture flexContainer">
+			<!-- Finish time -->
+			<div id="finishTimeContainer4" class="finishTimeContainer flexContainer">
+				<img>
+				<div id="finishTime"></div>
+			</div>
+			<!-- Twitch 4-->
+			<div id="twitch-player3" class="twitch-player"></div>
+		</div>
 		
 		<!-- Player 1 information -->
 		<div id="playerContainer1" class="storageBox playerContainer flexContainer">
@@ -83,6 +93,13 @@
 			<img class="playerFlag">
 			<img class="playerCoOp">
 		</div>
+		<div id="playerContainer4" class="storageBox playerContainer flexContainer">
+			<img class="playerLogo nameLogo">
+			<div class="playerText"><!-- Player Name --></div>
+			<div id="bingo-color3" style="opacity: 1;"></div>
+			<img class="playerFlag">
+			<img class="playerCoOp">
+		</div>
 		
 		<!-- Run information -->
 		<div id="runInfoContainer" class="storageBox flexContainer">
@@ -100,19 +117,12 @@
 		</div>
 		
 		<div id="bingoContainer" class="storageBox flexContainer">
+			<div id="bingo-container" style="width:100%;height:100%"></div>
 		</div>
 		
-		<div id="donationContainer" class="storageBox flexContainer">
-			<h2>Sponsors</h2>
-			<p>bla noice imgs here</p>
-			<h2>Latest Donations</h2>
-			<p>Blablabla</p>
-		</div>
-		
-		<!-- Sides -->
-		
-		
-		
+		<!-- Sidebars -->		
+		<div class="sidebar-left-4-3 storageBox flexContainer"></div>
+		<div class="sidebar-right-4-3 storageBox flexContainer"></div>
 		
 		<!-- Sponsor Logos -->
 		<div id="sponsorContainer" class="storageBox flexContainer"></div>

@@ -12,7 +12,7 @@
   },
   "homepage": "https://github.com/esamarathon/esaw18-layouts#readme",
   "nodecg": {
-    "compatibleRange": "~1.2.2",
+    "compatibleRange": "~0.9",
     "dependencies": [
       "speedcontrol/nodecg-speedcontrol:~0.9"
     ],
@@ -100,6 +100,11 @@
       },
       {
         "file": "16_9-4p-bingo.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "4_3-4p-bingo.html",
         "width": 1920,
         "height": 1080
       }

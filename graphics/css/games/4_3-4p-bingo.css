@@ -1,23 +1,18 @@
-#donationContainer {
-	flex-direction: column;
-	justify-content: center;
-	left: 750px;
-	top: 500px;
-	width: 420px;
-	height: 500px;
-	background-image: url("../../images/middle-info-background.png");
+/* sidebars. */
+.sidebar-left-4-3 {
+    background-image: url("../../images/middle-info-background.png");
+    left: 0px;
+    top: 78px;
+    width: 183px;
+    height: 844px;
 }
-
-#bingoContainer {
-	flex-direction: column;
-	justify-content: center;
-	left: 1174px;
-	top: 500px;
-	width: 746px;
-	height: 500px;
-	background-image: url("../../images/bingoboard-test-3p.png");
+.sidebar-right-4-3 {
+    background-image: url("../../images/middle-info-background.png");
+    left: 1737px;
+    top: 78px;
+    width: 183px;
+    height: 844px;
 }
-
 /* Game area(s). */
 .gameCapture {
 	width: 561.33px;
@@ -28,6 +23,7 @@
 	left: 186px;
 	top: 78px;
 	
+	
 	/* This positions the finish time in this game feed. */
 	align-items: flex-start; /* Top of viewport. */
 	justify-content: flex-start; /* Left of viewport. */
@@ -36,7 +32,6 @@
 #gameCapture2 {
 	left: 186px;
 	top: 502px;
-	
 	
 	/* This positions the finish time in this game feed. */
 	align-items: flex-end; /* Bottom of viewport. */
