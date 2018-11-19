@@ -71,6 +71,14 @@ $(()=>{
         if (!oldGoals) {
             createBingoBoard();
         }
+        // hide/show card
+        if (!oldGoals || newGoals.boardHidden != oldGoals.boardHidden) {
+            if (newGoals.boardHidden) {
+                $('#bingo-board-hide').show();
+            } else {
+                $('#bingo-board-hide').hide();
+            }
+        }
         for (var i in newGoals.cells) {
             const newGoal = newGoals.cells[i];
             // check if goal needs to be updated
@@ -90,13 +98,17 @@ $(()=>{
         }
         var bingoHtml = '<table class="bingo-table">'
         for (var i = 0;i<5;i++) {
+            // add rows
             bingoHtml += '<tr>';
             for (var j = 0;j<5;j++) {
+                // add individual goals
                 bingoHtml += '<td><div id="slot'+(i*5+j+1)+'" class="square"><div class="shadow"></div><div class="text-container vertical-center"></div></div></td>';
             }
             bingoHtml += '</tr>';
         }
         bingoHtml += '</table>';
+        // add board hider
+        bingoHtml += '<div id="bingo-board-hide"></div>'
         bingoConainer.html(bingoHtml);
     }
     
