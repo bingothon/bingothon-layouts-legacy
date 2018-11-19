@@ -1,0 +1,17 @@
+/** Mostly styled with bingosync but some fixes*/
+
+.bingo-table {
+    width: 100%;
+    height: 100%;
+}
+
+.square {
+    width: 100%;
+    height: 100%;
+}
+
+.text-container {
+    font-size: 92%;
+    left: 0px;
+    right: 0px;
+}

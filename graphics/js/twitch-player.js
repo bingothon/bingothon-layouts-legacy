@@ -4,12 +4,7 @@ $(function() {
     // keeps track of which channel has sound, cause only one at a time can have sound, -1 is all muted
     var soundOnTwitchStream = nodecg.Replicant('sound-on-twitch-stream', bundleName, {'persistent':false,'defaultValue':-1});
     // main control panel for streams
-    var streams = nodecg.Replicant('twitch-streams', bundleName, {'persistent':false,'defaultValue':[
-        {'channel':'speedrunslive','width':400,'height':350,'quality':'chunked','volume':0,'paused':false,'hidden':true},
-        {'channel':'speedrunslive','width':400,'height':350,'quality':'chunked','volume':0,'paused':false,'hidden':true},
-        {'channel':'speedrunslive','width':400,'height':350,'quality':'chunked','volume':0,'paused':false,'hidden':true},
-        {'channel':'speedrunslive','width':400,'height':350,'quality':'chunked','volume':0,'paused':false,'hidden':true},
-    ]});
+    var streams = nodecg.Replicant('twitch-streams', bundleName);
     // streams.values is an array that consists of elements with the following attributes;
     // channel, width, height, quality, volume, muted, paused, hidden
     var playerList = [];
@@ -35,6 +30,29 @@ $(function() {
                 } else {
                     $('#twitch-player'+i).show();
                 }
+                const streamFrame = $('#twitch-player'+i+' iframe');
+                var $twitchContainer = $('#twitch-player'+i);
+                var newWidth = $twitchContainer.width()*stream.widthPercent/100;
+                var newHeight = $twitchContainer.height()*stream.heightPercent/100;
+                if (streamFrame.attr('width') != newWidth || streamFrame.attr('height') != newHeight) {
+                    // since we can't change the twitch player size after it is displayed, we
+                    // need to refresh it
+                    // delete old player
+                    $('#twitch-player'+i).html('');
+                    // and create new one
+                    createTwitchPlayer(i);
+                    // the create did everything
+                    continue;
+                }
+                // check left and top shift
+                var newLeft = newWidth*stream.leftPercent/100;
+                if ($twitchContainer.css('left') != newLeft) {
+                    $twitchContainer.css('left', newLeft)
+                }
+                var newTop = newHeight*stream.topPercent/100;
+                if ($twitchContainer.css('top') != newTop){
+                    $twitchContainer.css('top', newTop);
+                }
                 if (oldStream.getQuality() != stream.quality) {
                     oldStream.setQuality(stream.quality);
                 }
@@ -44,14 +62,6 @@ $(function() {
                 if (oldStream.getChannel() != stream.channel) {
                     oldStream.setChannel(stream.channel);
                 }
-                // const streamFrame = $('#twitch-player'+i+' iframe');
-                // if (streamFrame.attr('width') != stream.width) {
-                //     nodecg.log.info('Changing width');
-                //     streamFrame.attr('width',stream.width);
-                // }
-                // if (streamFrame.attr('height') != stream.height) {
-                //     streamFrame.attr('height',stream.height);
-                // }
                 if (oldStream.isPaused() != stream.paused) {
                     if (stream.paused) {
                         oldStream.pause();
@@ -76,9 +86,8 @@ $(function() {
         }
 
     });
-    //     // register listeners to remotely control streams
-    //     // refresh TODO
-    nodecg.listenFor('refreshStream',(id) => {
+    // register listeners to remotely control streams
+    nodecg.listenFor('refreshStream',bundleName,(id) => {
         if (!playerList[id]) {
             nodecg.log.console.warn("Stream with given ID doesn't exist, can't refresh");
             return;
@@ -98,10 +107,14 @@ $(function() {
             $(twitchContainer).show();
         }
         var $twitchContainer = $('#twitch-player'+id);
+        var width = $twitchContainer.width()*stream.widthPercent/100;
+        var height = $twitchContainer.height()*stream.heightPercent/100;
+        $twitchContainer.css('left',width*stream.leftPercent/100)
+        $twitchContainer.css('top',height*stream.topPercent/100)
         var playerOptions = {
             'channel':  stream.channel,
-            'width':    $twitchContainer.width(),
-            'height':   $twitchContainer.height()
+            'width':    width,
+            'height':   height
         }
         playerList[id] = new Twitch.Player(twitchContainer, playerOptions);
         playerList[id].showPlayerControls(false);

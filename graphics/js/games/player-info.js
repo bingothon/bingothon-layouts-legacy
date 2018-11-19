@@ -67,9 +67,10 @@ $(() => {
 			}
 			
 			else {
-				runData.teams.forEach(team => {
-					var teamData = {showTeamIcon: team.members.length > 1, members: []};
-					team.members.forEach(member => {teamData.members.push(createMemberData(member));});
+				// modified to put each team member in a different name tag cause no onsite 
+				// coops in an online event
+				runData.players.forEach(player => {
+					var teamData = {showTeamIcon: false, members: [createMemberData(player)]};
 					currentTeamsData.push(teamData);
 				});
 			}
