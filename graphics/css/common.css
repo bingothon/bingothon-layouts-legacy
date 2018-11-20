@@ -93,6 +93,7 @@ body {
 #gameTitle {text-align: center;}
 #gameConsole, #gameEstimate, .gameConsole {color: #bfbfbf;}
 #gameConsole::before {content: "| ";} /* Adds a line before the console name. */
+#gameCategory{text-align: center;}
 
 /* These elements need to be 0 opacity on load so they fade in correctly. */
 #gameTitle, #gameCategory, #gameConsole, #timer, #gameEstimate {opacity: 0;}
