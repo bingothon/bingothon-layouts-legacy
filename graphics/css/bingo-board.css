@@ -25,3 +25,8 @@
     left: 0px;
     right: 0px;
 }
+
+.goal-count {
+    font-size: 39px;
+    text-align: center;
+}
