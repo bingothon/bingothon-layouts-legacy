@@ -132,7 +132,7 @@ img.emoji {
 #generalMessagesContainer {
 	z-index: 0;
 	left: 710px;
-	width: 1104px;
+	width: 1210px;
 	background-image: url('../images/info-bar/ticker-bg.png');
 	padding: 0 20px;
 	font-size: 22px;
@@ -157,16 +157,16 @@ img.emoji {
 	color: #bfbfbf;
 }
 
-/* Clock */
+/* Clock 
 #clockContainer {
 	font-size: 33px;
 	z-index: 1;
 	left: 1771px;
 	width: 124px;
 	background-image: url('../images/info-bar/clock-bg.png');
-	padding-left: 25px; /* This is for the shadow part of the image. */
+	padding-left: 25px; /* This is for the shadow part of the image. * /
 }
 
 #clockContainer span {
 	width: 0.3em;
-}
+}*/
