@@ -3,15 +3,29 @@
 .bingo-table {
     width: 100%;
     height: 100%;
+    position: absolute;
+}
+
+#bingo-board-hide {
+    width: 100%;
+    height: 100%;
+    background: black;
+    position: absolute;
 }
 
 .square {
     width: 100%;
     height: 100%;
+    /*Remove padding cause the board is kinda small*/
+    padding: 0;
 }
 
 .text-container {
+<<<<<<< HEAD
     font-size: 10px;
+=======
+    font-size: 90%;
+>>>>>>> be4faa56bdc6f7a1db1201629c488d6da42591d6
     left: 0px;
     right: 0px;
 }
