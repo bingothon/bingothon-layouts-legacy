@@ -11,41 +11,41 @@
     direction: rtl;
     left: -20px;
 }
-#heartbeatMonitor{
-  height: 70px;
-  width: 70px;
-  margin: 0 auto;
-  top: 5px;
-  left: 10px;
-  background-color: black;
-  position: absolute;
-  background: url('../images/info-bar/heartbeat-monitor-green.png');
-  background-size: 70px 70px;
-	
+element {
+
 }
-#donationCross{
-	background: url('../images/info-bar/cross.png');
-	position: absolute;
-	top: 30px;
-	left: 284px;
-	width: 21px;
-	height: 21px;
-	display:none;
-	
+#heartbeatMonitor {
+    height: 70px;
+    width: 70px;
+    margin: 0 auto;
+    top: 5px;
+    left: 30px;
+    background-color: black;
+    position: absolute;
+    background: url('../images/info-bar/heartbeat-monitor-green.png');
+    background-size: 70px 70px;
+}
+#donationCross {
+    background: url('../images/info-bar/cross.png');
+    position: absolute;
+    top: 30px;
+    left: 290px;
+    width: 21px;
+    height: 21px;
+    display: none;
 }
 
 #heartbeat {
     height: 60px;
-	width: 60px;
-	margin: 0 auto;
-	top: 10px;
-	left: 10px;
-	background-color: black;
-	position: absolute;
-	overflow: hidden;
-	transform: translate3d(0, 0, 0);
+    width: 60px;
+    margin: 0 auto;
+    top: 10px;
+    left: 30px;
+    background-color: black;
+    position: absolute;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
 }
-
 #heartbeat > div {
   height: 70px;
   width: 213px;
@@ -123,12 +123,15 @@ img.emoji {
 #heartBeatContainer {width: 60px; height:60px; background-color:black; margin-left: -200px; overflow:hidden;}
 #donationTotalContainer #stcIcon {position: absolute;}
 #donationTotalContainer #stcText {position: absolute; opacity: 0;}
-#donationTotalContainer #amountText {position: absolute; padding-left: 69px;}
+#donationTotalContainer #amountText {
+    position: absolute;
+    padding-left: 106px;
+}
 
 /* General Messages */
 #generalMessagesContainer {
 	z-index: 0;
-	left: 692px;
+	left: 710px;
 	width: 1104px;
 	background-image: url('../images/info-bar/ticker-bg.png');
 	padding: 0 20px;
