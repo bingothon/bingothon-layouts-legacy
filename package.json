@@ -94,6 +94,11 @@
         "height": 1080
       },
       {
+        "file": "16_9-2p-bingo.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
         "file": "16_9-3p-bingo.html",
         "width": 1920,
         "height": 1080
@@ -104,12 +109,22 @@
         "height": 1080
       },
       {
-        "file": "4_3-4p-bingo.html",
+        "file": "4_3-2p-bingo.html",
         "width": 1920,
         "height": 1080
       },
       {
         "file": "4_3-3p-bingo.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "4_3-4p-bingo.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "3DS-15_9-3p-bingo.html",
         "width": 1920,
         "height": 1080
       }

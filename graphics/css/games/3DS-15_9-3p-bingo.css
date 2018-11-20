@@ -1,27 +1,27 @@
 /* sidebars. */
-.sidebar-left-4-3 {
+.sidebar-left-15-9 {
     background-image: url("../../images/middle-info-background.png");
     left: 0px;
     top: 78px;
-    width: 183px;
+    width: 45px;
     height: 844px;
 }
-.sidebar-right-4-3 {
+.sidebar-right-15-9 {
     background-image: url("../../images/middle-info-background.png");
-    left: 1737px;
+    left: 1878px;
     top: 78px;
-    width: 183px;
+    width: 42px;
     height: 922px;
 }
 
 /* Game area(s). */
 .gameCapture {
-	width: 561.33px;
+	width: 701.66666666667px;
 	height: 421px;
 }
 
 #gameCapture1 {
-	left: 186px;
+	left: 45px;
 	top: 78px;
 	
 	
@@ -31,7 +31,7 @@
 }
 
 #gameCapture2 {
-	left: 186px;
+	left: 45px;
 	top: 502px;
 	
 	/* This positions the finish time in this game feed. */
@@ -45,6 +45,16 @@
 	
 	/* This positions the finish time in this game feed. */
 	align-items: flex-start; /* Top of viewport. */
+	justify-content: flex-start; /* Left of viewport. */
+}
+
+#gameCapture4 {
+	left: 1173px;
+	top: 502px;
+	height: 421px;
+	
+	/* This positions the finish time in this game feed. */
+	align-items: flex-end; /* Bottom of viewport. */
 	justify-content: flex-start; /* Left of viewport. */
 }
 
@@ -130,9 +140,9 @@
 #bingoContainer {
     flex-direction: column;
     justify-content: center;
-    left: 1174px;
+    left: 1173px;
     top: 502px;
-    width: 560px;
+    width: 702px;
     height: 498px;
 }
 

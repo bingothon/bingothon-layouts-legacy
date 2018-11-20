@@ -87,7 +87,6 @@ function animationUpdateHeartRate(data) {
 	    duration: 2000,
 	    step: function() {
 	    	document.documentElement.style.setProperty("--heartrate", "moveSlideshow " + this.property +  "s linear infinite");
-	        console.log( 'Currently @ ' + this.property );
 	    }
 	});
 }

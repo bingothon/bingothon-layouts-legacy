@@ -20,6 +20,9 @@ function changeDonationTotalStuff() {
 	// Change to StC text after 30s.
 	if (donationTotalLogoCurrentRotation === 0 && donationTotalTicks >= 7) {
 		animationFadeOutInElements(amountText, stcText);
+		animationFadeOutInElements(heartbeat, stcText);
+		animationFadeOutInElements(heartbeatMonitor, stcText);
+		
 		donationTotalTicks = 1;
 		donationTotalLogoCurrentRotation ^= 1; // Toggle between 0 and 1.
 	}
@@ -27,6 +30,9 @@ function changeDonationTotalStuff() {
 	// Change to donation total text after 10s.
 	else if (donationTotalLogoCurrentRotation === 1 && donationTotalTicks >= 3) {
 		animationFadeOutInElements(stcText, amountText);
+		animationFadeOutInElements(stcText, heartbeat);
+		animationFadeOutInElements(stcText, heartbeatMonitor);
+		
 		donationTotalTicks = 1;
 		donationTotalLogoCurrentRotation ^= 1; // Toggle between 0 and 1.
 	}

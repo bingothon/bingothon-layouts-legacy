@@ -89,7 +89,7 @@ body {
 .playerContainer div, .playerContainer img {opacity: 0;}
 .playerFlag, .playerCoOp {display: none;}
 
-#runInfoContainer {flex-direction: column; padding: 0 10px;}
+#runInfoContainer {flex-direction: column; padding: 0 10px; text-align: center;}
 #gameTitle {text-align: center;}
 #gameConsole, #gameEstimate, .gameConsole {color: #bfbfbf;}
 #gameConsole::before {content: "| ";} /* Adds a line before the console name. */

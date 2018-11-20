@@ -125,13 +125,12 @@
 }
 
 #bingoContainer {
-	flex-direction: column;
-	justify-content: center;
-	left: 1174px;
-	top: 500px;
-	width: 746px;
-	height: 500px;
-	background-image: url("../../images/bingoboard-test-3p.png");
+    flex-direction: column;
+    justify-content: center;
+    left: 1174px;
+    top: 502px;
+    width: 746px;
+    height: 498px;
 }
 
 /* Timer stuff. */

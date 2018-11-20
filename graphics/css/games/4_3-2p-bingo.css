@@ -1,0 +1,125 @@
+.sidebar-left-4-2 {
+
+    background-image: url("../../images/middle-info-background.png");
+    left: 0px;
+    top: 78px;
+    width: 231px;
+    height: 540px;
+
+}
+.sidebar-right-4-2 {
+    background-image: url("../../images/middle-info-background.png");
+    left: 1684px;
+    top: 78px;
+    width: 236px;
+    height: 540px;
+}
+
+/* Game area(s). */
+.gameCapture {
+	width: 720px;
+	height: 540px;
+}
+
+#gameCapture1 {
+    left: 234px;
+    top: 79px;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+#gameCapture2 {
+	left: 960px;
+	top: 79px;
+	
+	/* This positions the finish time in this game feed. */
+	align-items: flex-end; /* Bottom of viewport. */
+	justify-content: flex-start; /* Left of viewport. */
+}
+
+/* Finish timer stuff */
+.finishTimeContainer img {padding-right: 5px;}
+.finishTimeContainer {
+	font-size: 25px;
+	height: 30px;
+}
+#finishTimeContainer1 {
+	padding: 0 3px 3px 0; /* No padding needed where this box touches the border. */
+}
+#finishTimeContainer2 {
+	padding: 0 3px 3px 0; /* No padding needed where this box touches the border. */
+}
+
+/* Player information stuff. */
+.playerContainer {
+	left: 1173px;
+	width: 748px;
+	
+}
+
+#playerContainer1 {
+	background-image: url("../../images/player-info-header.png");
+	top: 0px;
+	height: 75px;
+	left: 0px;
+    
+}
+
+#playerContainer2 {
+	background-image: url("../../images/player-info-header.png");
+	top: 0px;
+	height: 75px;
+	left: 1173px;
+	
+}
+
+/* Run information stuff. */
+#runInfoContainer {
+    background-image: url("../../images/middle-info-background.png");
+    left: 0px;
+    top: 621px;
+    width: 720px;
+    height: 379px;
+}
+
+#gameTitle {font-size: 31px;}
+#gameCategory, #gameConsole {font-size: 21px;}
+
+/*BingoBoard */
+element {
+
+}
+#bingoContainer {
+    flex-direction: column;
+	justify-content: center;
+	left: 723px;
+	top: 621px;
+	width: 472px;
+	height: 379px;
+}
+
+/* Timer stuff. */
+#timerContainer {
+    background-image: url("../../images/middle-info-background.png");
+    flex-direction: column;
+    justify-content: center;
+    left: 1198px;
+    top: 621px;
+    width: 722px;
+    height: 379px;
+}
+
+
+/* Sponsor logos. */
+#sponsorContainer {
+	left: 750px;
+	top: 0px;
+	width: 420px;
+	height: 76px;
+}
+
+.sponsorLogo {
+	padding: 10px 20px;
+	width: auto;
+	height: 100px;
+}
