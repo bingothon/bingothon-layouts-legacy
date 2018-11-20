@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html data-sceneid="16_9-1p-bingo">
+	<head>
+		<meta charset="UTF-8">
+		
+		<!-- CSS -->
+		<link href="css/common.css" rel="stylesheet"/>
+		<link href="css/games/16_9-1p-bingo.css" rel="stylesheet"/>
+        <link href="https://bingosync.com/static/bingosync/style.css" rel="stylesheet"/>
+		<link href="css/bingo-board.css" rel="stylesheet"/>
+		
+		<!-- JavaScript -->
+		<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="../bower_components/letteringjs/jquery.lettering.js"></script>
+		<script src="js/utils.js"></script>
+		<script src="js/animation.js"></script>
+		<script src="js/games/run-info.js"></script>
+		<script src="js/games/player-info.js"></script>
+		<script src="js/games/timer.js"></script>
+		<script src="js/sponsors.js"></script>
+		<script src= "https://player.twitch.tv/js/embed/v1.js"></script>
+        <script src= "js/twitch-player.js"></script>
+        <script src= "js/bingo-colors.js"></script>
+        <script src= "js/bingo-board.js"></script>
+	</head>
+	<body>
+		<!-- Background image -->
+		<div id="background"></div>
+		
+		<!-- Webcam(s) -->
+		<div id="webcam1" class="storageBox webcam"></div>
+		
+		<!-- Game area(s) -->
+		<div id="gameCapture1" class="storageBox gameCapture flexContainer">
+			<!-- Finish time -->
+			<div id="finishTimeContainer1" class="finishTimeContainer flexContainer">
+				<img>
+				<div id="finishTime"></div>
+			</div>
+			<!-- Twitch 1-->
+			<div id="twitch-player0" class="twitch-player"></div>
+		</div>
+		
+		<!-- Player 1 information -->
+		<div id="playerContainer1" class="storageBox playerContainer flexContainer">
+			<img class="playerLogo nameLogo">
+			<div class="playerText"><!-- Player Name --></div>
+			<div id="bingo-color0" style="opacity: 1;"></div>
+			<img class="playerFlag">
+			<img class="playerCoOp">
+		</div>
+		
+		<!-- Run information -->
+		<div id="runInfoContainer" class="storageBox flexContainer">
+			<div id="gameTitle"><!-- Game Name --></div>
+			<div>
+				<span id="gameCategory"><!-- Game Category --></span>
+				<span id="gameConsole"><!-- Game Console --></span>
+			</div>
+		</div>
+		
+		<!-- Timer -->
+		<div id="timerContainer" class="storageBox flexContainer">
+			<div id="timer"><!-- Timer --></div>
+			<div id="gameEstimate"><!-- Game Estimate --></div>
+		</div>
+		
+		<div id="bingoContainer" class="storageBox flexContainer">
+			<div id="bingo-container" style="width:100%;height:100%"></div>
+		</div>
+		
+		<div class="lowbar storageBox flexContainer"></div>
+		
+		<!-- Sponsor Logos -->
+		<div id="sponsorContainer" class="storageBox flexContainer"></div>
+	</body>
+</html>
