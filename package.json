@@ -44,46 +44,6 @@
         "height": 1080
       },
       {
-        "file": "4_3-1p.html",
-        "width": 1920,
-        "height": 1080
-      },
-      {
-        "file": "4_3-2p.html",
-        "width": 1920,
-        "height": 1080
-      },
-      {
-        "file": "16_9-1p.html",
-        "width": 1920,
-        "height": 1080
-      },
-      {
-        "file": "16_9-2p.html",
-        "width": 1920,
-        "height": 1080
-      },
-      {
-        "file": "16_9-2p-mcbingo.html",
-        "width": 1920,
-        "height": 1080
-      },
-      {
-        "file": "gb_gg-1p.html",
-        "width": 1920,
-        "height": 1080
-      },
-      {
-        "file": "gba-1p.html",
-        "width": 1920,
-        "height": 1080
-      },
-      {
-        "file": "ds-1p.html",
-        "width": 1920,
-        "height": 1080
-      },
-      {
         "file": "dnd-timer.html",
         "width": 1920,
         "height": 1080
@@ -110,6 +70,11 @@
       },
       {
         "file": "16_9-4p-bingo.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "4_3-1p-bingo.html",
         "width": 1920,
         "height": 1080
       },
