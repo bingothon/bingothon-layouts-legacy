@@ -21,19 +21,13 @@
 }
 
 .text-container {
-<<<<<<< HEAD
     font-size: 10px;
-=======
-    font-size: 90%;
->>>>>>> be4faa56bdc6f7a1db1201629c488d6da42591d6
     left: 0px;
     right: 0px;
 }
 .bingo-table{
 	border-collapse:collapse;
 }
-
-
 
 .square {
 	padding: 0px;
