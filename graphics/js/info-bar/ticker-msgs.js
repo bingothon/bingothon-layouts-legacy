@@ -11,7 +11,7 @@ var recentTopDonationTO;
 var topDonationDelay = 300000; // 5 minutes
 var showingMessage = false;
 var messageIndex = 0;
-var bidsCache = [];
+var nextChallenges = [];
 var prizeCache = [];
 var nextRunsCache = [];
 var lastMessageType = -1;
@@ -20,10 +20,8 @@ var lastMessageType = -1;
 chooseRandomMessageIndex(true);
 
 // Replicants
-var bidsRep = nodecg.Replicant('bids');
-bidsRep.on('change', newVal => {bidsCache = newVal}); // Refill cache on change.
-var prizesRep = nodecg.Replicant('prizes');
-prizesRep.on('change', newVal => {prizeCache = newVal}); // Refill cache on change.
+var challengesRep = nodecg.Replicant('tiltifyIncentives', speedcontrolBundle);
+var pollsRep = nodecg.Replicant('tiltifyPolls', speedcontrolBundle);
 var runDataArray = nodecg.Replicant('runDataArray', speedcontrolBundle);
 var runDataActiveRun = nodecg.Replicant('runDataActiveRun', speedcontrolBundle);
 
@@ -36,15 +34,21 @@ $(() => {
 	messagesLine2 = $('#linesWrapper .line2');
 });
 
-nodecg.listenFor('newDonation', donation => {
+nodecg.listenFor('newDonation', speedcontrolBundle, donation => {
+	nodecg.log.info('got donation!');
 	newDonations.push(donation);
 	
-	// Stores last donation $20+.
+	// Stores last donation
 	// It will then be shown every so often until it's pushed off by another one.
-	if (parseFloat(donation.amount) >= 20) {
-		recentTopDonation = donation;
-		resetRecentTopDonationTimer();
-	}
+	recentTopDonation = donation;
+	resetRecentTopDonationTimer();
+});
+
+// When challenges/incentives changes load the next 3 into the cache to display them
+challengesRep.on('change',(newChallenges,old)=>{
+	// slice to copy
+	newChallenges.slice(0).sort(function (chA, chB){return chA.endsAt - chB.endsAt});
+	nextChallenges = newChallenges.slice(0,3);
 });
 
 // Donation test code below.
@@ -83,22 +87,20 @@ function showTickerMessages() {
 		return;
 	}
 	
-	// Bids
+	// Challenges
 	if (messageIndex === 0 || messageIndex === 1 || messageIndex === 2) {
-		//if (bidsTemp.length > 0)
-		if (bidsRep.value.length > 0 && lastMessageType !== 0) {
-			showBid();
+		if (true || challengesRep.value.length > 0 && lastMessageType !== 0) {
+			showChallenge();
 			lastMessageType = 0;
 		}
 		else
 			retry = true;
 	}
 	
-	// Prizes
+	// Polls
 	if (messageIndex === 3 || messageIndex === 4 || messageIndex === 5) {
-		//if (prizesTemp.length > 0)
-		if (prizesRep.value.length > 0 && lastMessageType !== 1) {
-			showPrize();
+		if (pollsRep.value.length > 0 && lastMessageType !== 1) {
+			showPoll();
 			lastMessageType = 1;
 		}
 		else
@@ -126,16 +128,16 @@ function showTickerMessages() {
 		else retry = true;
 	}
 	
-	// ESA promotional message.
+	// bingothon promotional message.
 	if (messageIndex === 11) {
 		if (lastMessageType !== 4) {
-			displayMessage('<span class="textGlow">This is Bingothon</span>', null, 30, null, true);
+			displayMessage('<span class="textGlow">This is Bingothon 2018, enjoy your stay!</span>', null, 30, null, true);
 			lastMessageType = 4;
 		}
 		else retry = true;
 	}
 	
-	// StC promotional message.
+	// DWB promotional message.
 	if (messageIndex === 12) {
 		if (lastMessageType !== 5) {
 			displayMessage('<span class="textGlow">Bingothon benefits Doctors Without Borders</span>', null, 30, null, true);
@@ -160,7 +162,7 @@ function showTickerMessages() {
 
 // Formats donations to be sent to displayMessage.
 function showDonation(donation, isNew) {
-	var user = donation.donor_visiblename;
+	var user = donation.name;
 	var amount = ' ('+formatDollarAmount(parseFloat(donation.amount))+')';
 	if (isNew)
 		var line1 = '<span class="messageUppercase textGlow">New Donation:</span> '+user+amount;
@@ -174,38 +176,32 @@ function showDonation(donation, isNew) {
 	displayMessage(line1, message, 24, 20);
 }
 
-// Handles bids cache if empty and chooses one at random to show.
-function showBid() {
-	if (!bidsCache.length) bidsCache = bidsRep.value; // Refill bids cache if it's empty.
-	//if (!bidsCache.length) bidsCache = bidsTemp;
-	var random = getRandomInt(bidsCache.length);
-	var bid = bidsCache[random]; // Pick random bid from the cache.
-	bidsCache.splice(random, 1); // Remove this bid from the cache.
+// Handles challenge/incentive, chooses one at random to show.
+function showChallenge() {
+	var challenge = nextChallenges[Math.floor(Math.random()*nextChallenges.length)];
 	
 	var line2;
 	
 	// Normal Goal
-	if (!bid.options) {
-		var line1 = '<span class="messageUppercase textGlow">Upcoming Goal:</span> '+bid.game+' - '+bid.category;
-		var line2 = '<span class="greyText">'+bid.name+'</span> ('+bid.description+'): '+formatDollarAmount(bid.total)+'/'+formatDollarAmount(bid.goal);
-	}
+	var line1 = '<span class="messageUppercase textGlow">Upcoming Goal:</span>';
+	var line2 = '<span class="greyText">'+challenge.name+'</span>: '+formatDollarAmount(challenge.totalAmountRaised)+'/'+formatDollarAmount(challenge.amount);
+	
+	displayMessage(line1, line2, 23, 21);
+}
+
+// Handles challenge/incentive, chooses one at random to show.
+function showPoll() {
+	var poll = pollsRep.value[Math.floor(Math.random()*pollsRep.value.length)];
+	
+	var line2;
 	
 	// Bid War
-	else {
-		var line1 = '<span class="messageUppercase textGlow">Upcoming Bid War:</span> '+bid.game+' - '+bid.category;
-		var line2 = '<span class="greyText">'+bid.name+'</span> ('+bid.description+'): ';
-		var optionsFormatted = [];
-		bid.options.forEach(option => {
-			optionsFormatted.push(option.name+' ('+formatDollarAmount(option.total)+')');
-		});
-		if (!optionsFormatted.length)
-			line2 += '<i>No options submitted yet, be the first!</i>'
-		else {
-			if (bid.allow_user_options)
-				optionsFormatted.push('<i>Or you could submit your own idea!</i>')
-			line2 += optionsFormatted.join('/');
-		}
-	}
+	var line1 = '<span class="messageUppercase textGlow">Upcoming Bid War:</span> '+poll.name;
+	var optionsFormatted = [];
+	poll.options.forEach(option => {
+		optionsFormatted.push(option.name+' ('+formatDollarAmount(option.totalAmountRaised)+')');
+	});
+	var line2 = optionsFormatted.join('/');
 	
 	displayMessage(line1, line2, 23, 21);
 }
