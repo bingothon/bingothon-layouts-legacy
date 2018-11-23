@@ -47,8 +47,11 @@ nodecg.listenFor('newDonation', speedcontrolBundle, donation => {
 // When challenges/incentives changes load the next 3 into the cache to display them
 challengesRep.on('change',(newChallenges,old)=>{
 	// slice to copy
-	newChallenges.slice(0).sort(function (chA, chB){return chA.endsAt - chB.endsAt});
-	nextChallenges = newChallenges.slice(0,3);
+	// only get the active ones, then the 3 that end next
+	nextChallenges = newChallenges.filter(challenge => challenge.active && (challenge.endsAt > Date.now()))
+		.sort(function (chA, chB){return chA.endsAt - chB.endsAt})
+		.slice(0,3);
+	nodecg.log.info(JSON.stringify(nextChallenges));
 });
 
 // Donation test code below.
@@ -176,7 +179,7 @@ function showDonation(donation, isNew) {
 	displayMessage(line1, message, 24, 20);
 }
 
-// Handles challenge/incentive, chooses one at random to show.
+// Handles challenge/incentive, chooses one at random to show. Returns false if there is no challenge active
 function showChallenge() {
 	var challenge = nextChallenges[Math.floor(Math.random()*nextChallenges.length)];
 	

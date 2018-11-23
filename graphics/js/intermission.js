@@ -2,9 +2,17 @@
 $(() => {
 	// The bundle name where all the run information is pulled from.
 	var speedcontrolBundle = 'nodecg-speedcontrol';
+
+	// Tiltify replicants
+	var challengesRep = nodecg.Replicant('tiltifyIncentives', speedcontrolBundle);
+	var pollsRep = nodecg.Replicant('tiltifyPolls', speedcontrolBundle);
 	
 	// JQuery selectors.
 	var comingUpRunsBox = $('#comingUpRunsWrapper');
+	var comingUpChallengesBox = $('#comingUpChallengesWrapper');
+	var comingUpPollsBox = $('#comingUpPollsWrapper');
+	var nextUpHeaderText = $('#comingUpRunsHeaderTextSpan');
+	comingUpPollsBox.html('nothing here');
 	var musicTickerText = $('#musicTickerText');
 	var adTimerElement = $('#adTimer');
 	
@@ -12,12 +20,28 @@ $(() => {
 	var isOBS = (window.obsstudio) ? true : false;
 	var pageInit = false;
 	var nextRuns = []; // Can be 4 or less depending where we are in the schedule.
+	var nextChallenges = []; // the next 4 challenges that are active and not over
 	var refreshingNextRunsData = false;
 	var refreshingNextRunsDisplay = false;
 	var songMarquee;
 	var adTimeout;
 	var adTicks = 0;
 	var adTime = 180;
+
+	// animation stuff
+	const showLengh = 10000; // how long to show the individual containers in ms
+	var nextUpCurrent = 0; // which part to display, runs(0), challenges(1), polls(2)
+
+	// When challenges/incentives changes load the next 3 into the cache to display them
+	challengesRep.on('change',(newChallenges,old)=>{
+		// slice to copy
+		// only get the active ones, then the 4 that end next and haven't ended
+		nextChallenges = newChallenges.filter(challenge => challenge.active && (challenge.endsAt > Date.now()))
+			.sort(function (chA, chB){return chA.endsAt - chB.endsAt})
+			.slice(0,4);
+		nodecg.log.info(JSON.stringify(nextChallenges));
+		refreshChallengesHtml();
+	});
 
 	// This might have race condition issues, not the best, will see how it goes.
 	var runContainerElement = $('<div>').load('js/intermission-upcoming-box.html');
@@ -149,10 +173,123 @@ $(() => {
 				
 				newHTML += containerCopy.html();
 			}
+
+			// Add a sad message when only less than 3 runs are coming
+			if (nextRuns.length < 4) {
+				// The emote is BibleThumb
+				newHTML += '<div class="storageBox comingUpRunContainer flexContainer">	<div class="gameTitle">It\'s over</div>	<img src="https://static-cdn.jtvnw.net/emoticons/v1/86/3.0"></div>'
+			}
+
+			comingUpRunsBox.html(newHTML);
+		}
+	}
+
+	function refreshChallengesHtml() {
+		var newHtml = '';
+		for (var i = 0; i < nextChallenges.length; i++) {
+			newHtml += '<div class="storageBox comingUpRunContainer flexContainer">';
+			newHtml += '<div class="gameTitle">'+nextChallenges[i].name+'</div>';
+			newHtml += '<div class="challengeGoal' + (nextChallenges[i].totalAmountRaised>=nextChallenges[i].amount?' goalMet':'') + '">'
+				+formatDollarAmount(nextChallenges[i].totalAmountRaised)+'/'+formatDollarAmount(nextChallenges[i].amount)+(nextChallenges[i].totalAmountRaised>=nextChallenges[i].amount?' Goal Met!':'')+'</div>';
 			
-			animationSetField(comingUpRunsBox, newHTML, () => {
-				refreshingNextRunsDisplay = false;
+			newHtml += '</div>';
+		}
+		comingUpChallengesBox.html(newHtml);
+	}
+
+	function refreshPollHtml() {
+		var newHtml = '';
+		// pick 4 random polls
+		// clone array
+		var allPolls = pollsRep.value.slice(0);
+		var nextPolls = [];
+		if (allPolls.length <= 4) {
+			nextPolls = allPolls;
+		} else {
+			for(var i = 0;i<4;i++) {
+				var rnd = Math.floor(Math.random()*allPolls.length);
+				nextPolls.push(allPolls[rnd]);
+				allPolls.splice(rnd, 1);
+			}
+		}
+		for (var i = 0; i < nextPolls.length; i++) {
+			newHtml += '<div class="storageBox comingUpRunContainer flexContainer">';
+			newHtml += '<div class="gameTitle">'+nextPolls[i].name+'</div>';
+			var optionsFormatted = [];
+			nextPolls[i].options.forEach(option => {
+				optionsFormatted.push(option.name+' ('+formatDollarAmount(option.totalAmountRaised)+')');
+			});
+			newHtml += '<div class="pollOptions">'+optionsFormatted.join('/')+'</div>';
+			newHtml += '</div>';
+		}
+		comingUpPollsBox.html(newHtml);
+	}
+
+	// This function calls itself with a timeout to cycle though the different parts
+	function doFadeInFadeOut() {
+		// fade in current element
+		if (nextUpCurrent == 0) {
+			nextUpHeaderText.text('Runs Coming Up Soon')
+			animationFadeInElement('#comingUpRunsHeaderTextSpan');
+			animationFadeInElement('#comingUpRunsWrapper',()=>{
+				nextUpCurrent = 1;
+				// first wait and display the current stuff then after the fadeout call this again to show the next one
+				setTimeout(()=>{
+					// check if there is anything else to fade to
+					// otherwise we are most likely at the end of the marathon so lets
+					// stop this animation cycle and present the last runs
+					// this doesn't account for the edge case where a new poll/challenge pops up
+					if (nextChallenges.length > 0|| pollsRep.value.length > 0) {
+						animationFadeOutElement('#comingUpRunsHeaderTextSpan');
+						animationFadeOutElement('#comingUpRunsWrapper',()=>{
+							doFadeInFadeOut();
+						});
+					}
+					
+				}, showLengh);
+			});
+		} else if(nextUpCurrent == 1) {
+			nextUpHeaderText.text('Incentives Coming Up Soon')
+			nextUpCurrent = 2;
+			// if there are no challenges continue
+			if (nextChallenges.length <= 0) {
+				doFadeInFadeOut();
+				return;
+			}
+			refreshPollHtml();
+			animationFadeInElement('#comingUpRunsHeaderTextSpan');
+			animationFadeInElement('#comingUpChallengesWrapper',()=>{
+				// first wait and display the current stuff then after the fadeout call this again to show the next one
+				setTimeout(()=>{
+					animationFadeOutElement('#comingUpRunsHeaderTextSpan');
+					animationFadeOutElement('#comingUpChallengesWrapper',()=>{
+						doFadeInFadeOut();
+					});
+					
+				}, showLengh);
+			});
+		} else {
+			nextUpHeaderText.text('Next Bid Wars')
+			nextUpCurrent = 0;
+			// if there are no polls continue
+			if (pollsRep.value.length <= 0) {
+				doFadeInFadeOut();
+				return;
+			}
+			animationFadeInElement('#comingUpRunsHeaderTextSpan');
+			animationFadeInElement('#comingUpPollsWrapper',()=>{
+				// first wait and display the current stuff then after the fadeout call this again to show the next one
+				setTimeout(()=>{
+					animationFadeOutElement('#comingUpRunsHeaderTextSpan');
+					animationFadeOutElement('#comingUpPollsWrapper',()=>{
+						doFadeInFadeOut();
+					});
+					
+				}, showLengh);
 			});
 		}
 	}
+
+	// actually start animation
+	doFadeInFadeOut();
 });

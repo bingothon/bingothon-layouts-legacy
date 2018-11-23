@@ -41,6 +41,10 @@
 	height: 63px;
 }
 
+#comingUpRunsHeaderTextSpan {
+	opacity: 0;
+}
+
 /* The box that the "coming up runs" boxes go into. */
 #comingUpRunsBox {
 	position: fixed;
@@ -49,6 +53,12 @@
 	width: 1087px;
 	height: 940px;
 	border-left: 3px solid #39b0f6;
+}
+
+#comingUpRunsBox > div {
+	/* first invisible so it can be faded in/out*/
+	opacity: 0;
+	position: fixed;
 }
 
 /* The container each "coming up run" is in. */
@@ -91,4 +101,19 @@
 	opacity: 0;
 	padding: 5px;
 	width: 160px;
+}
+
+.challengeGoal {
+	font-size: 40px;
+    padding-top: 25px;
+}
+
+.goalMet {
+	
+}
+
+.pollOptions {
+	font-size: 20px;
+    padding-top: 25px;
+	color: #bfbfbf;
 }
