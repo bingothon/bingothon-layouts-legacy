@@ -1,16 +1,18 @@
 /* Big ESAW logo that appears in the top left. */
 #esaBigLogo2 {
-	left: 30px;
-	top: 15px;
-	width: 779px;
-	height: 269px;
+
+    left: 0px;
+    top: 0px;
+    width: 420px;
+    height: 420px;
+
 }
 
 /* Webcam(s). */
 #webcam1 {
 	left: 0px;
 	top: 298px;
-	width: 830px;
+	width: 417px;
 	height: 405px;
 	align-items: flex-end; /* Aligns vertically bottom. */
 	justify-content: flex-end; /* Aligns horizontally right. */
@@ -20,7 +22,7 @@
 #musicTicker {
 	left: 0px;
 	top: 706px;
-	width: 830px;
+	width: 417px;
 	height: 59px;
 }
 .mcat {padding-right: 15px;}
@@ -29,16 +31,16 @@
 /* Coming up runs stuff. */
 .headerTextBox {
 	outline: 0;
-	background-color: #39b0f6;
+	background-color: #6e2c30;
 	font-family: Bebas Kai;
 	font-size: 50px;
 }
 
 #comingUpRunsHeaderText {
-	left: 830px;
-	top: 0px;
-	width: 1090px;
-	height: 63px;
+    left: 416.5px;
+    top: 0px;
+    width: 1090px;
+    height: 63px;
 }
 
 #comingUpRunsHeaderTextSpan {
@@ -46,13 +48,16 @@
 }
 
 /* The box that the "coming up runs" boxes go into. */
+element {
+
+}
 #comingUpRunsBox {
-	position: fixed;
-	left: 830px;
-	top: 63px;
-	width: 1087px;
-	height: 940px;
-	border-left: 3px solid #39b0f6;
+    position: fixed;
+    left: 416.5px;
+    top: 63px;
+    width: 833px;
+    height: 940px;
+    border-left: 3px solid #6e2c30;
 }
 
 #comingUpRunsBox > div {
@@ -70,14 +75,14 @@
 	
 	/* Remove the normal outlines and just use a bottom border instead. */
 	outline: 0;
-	border-bottom: 3px solid #39b0f6;
+	border-bottom: 3px solid #6e2c30;
 }
 
 /* Text and stuff settings inside of the container above. */
 .gameWhen {
 	font-size: 35px;
 	font-family: Bebas Kai;
-	color: #39b0f6;
+	color: #6e2c30;
 	line-height: 45px;
 }
 .gameTitle {font-size: 31px; line-height: 40px;}
@@ -92,7 +97,7 @@
 #sponsorContainer {
 	left: 0px;
 	top: 768px;
-	width: 830px;
+	width: 417px;
 	height: 232px;
 }
 
