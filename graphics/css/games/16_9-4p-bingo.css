@@ -72,7 +72,7 @@
 }
 
 #playerContainer1 {
-	background-image: url("../../images/player-info-header.png");
+	background-image: url("../../images/player-info-header-1-2p-bg.png");
 	top: 0px;
 	height: 75px;
 	left: 0px;
@@ -80,7 +80,7 @@
 }
 
 #playerContainer2 {
-	background-image: url("../../images/player-info-header.png");
+	background-image: url("../../images/player-info-header-1-2p-bg.png");
 	top: 925px;
 	height: 75px;
 	left: 0px;
@@ -88,14 +88,14 @@
 }
 
 #playerContainer3 {
-	background-image: url("../../images/player-info-header.png");
+	background-image: url("../../images/player-info-header-1-2p-bg.png");
 	top: 0px;
 	height: 75px;
 	left: 1173px;
 }
 
 #playerContainer4 {
-	background-image: url("../../images/player-info-header.png");
+	background-image: url("../../images/player-info-header-1-2p-bg.png");
 	left: 1173px;
 	top: 925px;
 	height: 75px;
