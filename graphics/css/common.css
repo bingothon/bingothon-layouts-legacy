@@ -193,8 +193,18 @@ body {
     background-image: linear-gradient(#d8d014, #c1ba0b);
 }
 
-/* Make the bingocolor div visible and give it a bit space*/
+/* give it a bit space*/
 .bingo-color {
-    width: 51px;
-    height: 51px;
+    width: 66px;
+    height: 66px;
+    margin-right: 17px;
+}
+
+.goal-count {
+	/*stuff to center the text*/
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    float: left;
 }

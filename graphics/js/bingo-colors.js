@@ -6,25 +6,18 @@ $(()=>{
     const bingoColors = nodecg.Replicant('bingo-colors', bundleName);
     const bingoBoard = nodecg.Replicant('bingoboard', bundleName);
 
-    var colorContainers = [
-        $('#bingo-color0'),
-        $('#bingo-color1'),
-        $('#bingo-color2'),
-        $('#bingo-color3'),
-    ];
+    var colorContainers = $('.bingo-color');
 
     // put the goal count in there
     const goalCountHtml = '<div class="goal-count" style="opacity:1;"></div>'
-    colorContainers.forEach((container) => {
-        container.html(goalCountHtml);
+    colorContainers.each((index,element) => {
+        $(element).html(goalCountHtml);
     })
 
     bingoColors.on('change', (newColors, old)=>{
-        for(var i in newColors) {
-            // kinda dirty method, just replace the entire class attributte, so we don't have to worry
-            // about the previous color
-            colorContainers[i].attr('class', colorContainerClasses + ' bingo-'+newColors[i]);
-        }
+        colorContainers.each((index,element)=>{
+            $(element).attr('class', colorContainerClasses + ' bingo-'+newColors[index]);
+        });
         // on init the bingoGoals are undefined and will be filled later, update happens there
         if (bingoBoard.value) {
             updateGoalCounts(bingoBoard.value.goalCounts);
@@ -41,14 +34,18 @@ $(()=>{
                 $('.goal-count').hide();
             }
         }
+        if (!old || newBoard.colorShown != old.colorShown) {
+            if (newBoard.colorShown) {
+                $('.bingo-color').show();
+            } else {
+                $('.bingo-color').hide();
+            }
+        }
     });
 
     function updateGoalCounts(newGoalCounts) {
-        for(var i = 0;i<4;i++) {
-            // update only if it exists
-            if (colorContainers[i].length) {
-                colorContainers[i].find('.goal-count').text(newGoalCounts[bingoColors.value[i]]);
-            }
-        }
+        colorContainers.each((index,element)=>{
+            $(element).find('.goal-count').text(newGoalCounts[bingoColors.value[index]]);
+        });
     }
 });
