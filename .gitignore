@@ -3,4 +3,8 @@ bower_components
 package-lock.json
 extension/bids-example-data.txt
 extension/prizes-example-data.txt
+<<<<<<< HEAD
 graphics/mp3
+=======
+graphics/mp3/*
+>>>>>>> upstream/master
