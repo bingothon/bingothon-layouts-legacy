@@ -33,7 +33,7 @@
 	top: 79px;
 	
 	/* This positions the finish time in this game feed. */
-	align-items: flex-end; /* Bottom of viewport. */
+	align-items: flex-start; /* Top of viewport. */
 	justify-content: flex-start; /* Left of viewport. */
 }
 
