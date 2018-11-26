@@ -1,4 +1,35 @@
 /* Big ESAW logo that appears in the top left. */
+
+.thankYouAnimation{
+	
+	height: 100px;
+	width: auto;
+}
+
+#loadGif {
+    display: none;
+    position: relative;
+    left: 130px;
+    top: 450px;
+}
+
+#donationTotalContainer {
+    left: 0px;
+    top: 421px;
+    width: 417px;
+    height: 362px;
+    vertical-align:middle
+    justify-content: flex-end;
+    position: absolute;
+    border: 3px black;
+}
+
+#donationTotalContainer #amountText {
+}
+
+#amountText{
+}
+
 #esaBigLogo2 {
 
     left: 0px;
@@ -9,21 +40,13 @@
 }
 
 /* Webcam(s). */
-#webcam1 {
-	left: 0px;
-	top: 298px;
-	width: 417px;
-	height: 405px;
-	align-items: flex-end; /* Aligns vertically bottom. */
-	justify-content: flex-end; /* Aligns horizontally right. */
-}
 
 /* Music ticker stuff. */
 #musicTicker {
-	left: 0px;
-	top: 706px;
-	width: 417px;
-	height: 59px;
+    left: 0px;
+    top: 785px;
+    width: 417px;
+    height: 59px;
 }
 .mcat {padding-right: 15px;}
 #musicTickerText {font-size: 26px;}
@@ -39,7 +62,7 @@
 #comingUpRunsHeaderText {
     left: 416.5px;
     top: 0px;
-    width: 1090px;
+    width: 1503px;
     height: 63px;
 }
 
@@ -55,7 +78,7 @@ element {
     position: fixed;
     left: 416.5px;
     top: 63px;
-    width: 833px;
+    width: 1503px;
     height: 940px;
     border-left: 3px solid #6e2c30;
 }
@@ -70,8 +93,8 @@ element {
 .comingUpRunContainer {
 	position: relative;
 	flex-direction: column;
-	width: 1087px;
-	height: 235px;
+	width: 1503px;
+	height: 270px;
 	
 	/* Remove the normal outlines and just use a bottom border instead. */
 	outline: 0;
@@ -95,10 +118,10 @@ element {
 
 /* Sponsor logos. */
 #sponsorContainer {
-	left: 0px;
-	top: 768px;
-	width: 417px;
-	height: 232px;
+    left: 0px;
+    top: 847px;
+    width: 417px;
+    height: 232px;
 }
 
 #adTimer:before {content: 'Ad Playing:\00a0'}

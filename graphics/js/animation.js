@@ -46,6 +46,16 @@ function animationUpdateDonationTotal(selector, oldVal, newVal) {
 	}, 4000, 'linear');
 }
 
+function animationUpdateThankYou(selector){
+	  $(selector).fadeIn( "slow", function() {
+		    // Animation complete
+	  });
+	  $(selector).delay(3000).fadeOut( "slow", function() {
+		    // Animation complete
+	  });
+	  
+}
+
 function animationUpdateCrossDonation(selector) {
 	$(selector).fadeIn("slow");
 	$(selector).fadeOut("slow");

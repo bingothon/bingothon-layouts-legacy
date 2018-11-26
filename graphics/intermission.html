@@ -9,12 +9,28 @@
 		
 		<!-- JavaScript -->
 		<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="../bower_components/jquery-animateNumber/jquery.animateNumber.min.js"></script>
+		<script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.4"></script>
+		<script src="../bower_components/moment/min/moment.min.js"></script>
+		<!--<script src="../bower_components/lodash/dist/lodash.min.js"></script>-->
+		
+		<script src="../bower_components/waitForImages/dist/jquery.waitforimages.min.js"></script>
+		
 		<script src="../bower_components/moment/min/moment.min.js"></script>
 		<script src="../bower_components/jquery.marquee/jquery.marquee.min.js"></script>
 		<script src="js/utils.js"></script>
 		<script src="js/animation.js"></script>
 		<script src="js/intermission.js"></script>
 		<script src="js/sponsors.js"></script>
+		
+		
+		<!-- JavaScript -->
+		
+		
+		<script src="js/intermission/tick-handler.js"></script>
+		<script src="js/intermission/donation-total.js"></script>
+		<script src="js/info-bar/ticker-msgs.js"></script>
+		<script src="js/info-bar/donation-animation.js"></script>
 	</head>
 	<body>
 		<!-- Background image -->
@@ -23,11 +39,15 @@
 		<!-- Top ESA logo -->
 		<div id="esaBigLogo2" class="esaBigLogo"></div>
 		
-		<!-- Webcam(s) -->
-		<div id="webcam1" class="storageBox webcam flexContainer">
-			<div id="adTimer" class="storageBox flexContainer"></div>
-		</div>
+		<!-- Donations -->
 		
+		<div id="donationTotalContainer" class="storageBox flexContainer">
+			        
+				
+				<div id="amountText" class="gameTitle"><!--Donation Total --></div>
+				
+		</div>
+		<div id="loadGif"><img class="thankYouAnimation" src="images/intermission/animations/link.gif"></div>
 		<!-- Music Ticker -->
 		<div id="musicTicker" class="storageBox flexContainer">
 			<img class="mcat">
