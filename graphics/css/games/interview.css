@@ -1,0 +1,193 @@
+#background{
+	width: 1920px;
+	height: 1080px;
+	background-color: #000;
+}
+
+.sidebar-left-4-3 {
+    background-image: url("../../images/middle-info-background.png");
+    left: 0px;
+    top: 78px;
+    width: 183px;
+    height: 844px;
+}
+.sidebar-right-4-3 {
+    background-image: url("../../images/middle-info-background.png");
+    left: 1737px;
+    top: 78px;
+    width: 183px;
+    height: 844px;
+}
+/* Game area(s). */
+.gameCapture {
+	width: 561.33px;
+	height: 421px;
+}
+
+#gameCapture1 {
+	left: 186px;
+	top: 78px;
+	
+	
+	/* This positions the finish time in this game feed. */
+	align-items: flex-end; /* Bottom of viewport. */
+	justify-content: flex-start; /* Left of viewport. */
+}
+
+#gameCapture2 {
+	left: 186px;
+	top: 502px;
+	
+	/* This positions the finish time in this game feed. */
+	align-items: flex-end; /* Bottom of viewport. */
+	justify-content: flex-start; /* Left of viewport. */
+}
+
+#gameCapture3 {
+	left: 1173px;
+	top: 78px;
+	
+	/* This positions the finish time in this game feed. */
+	align-items: flex-end; /* Bottom of viewport. */
+	justify-content: flex-start; /* Left of viewport. */
+}
+
+#gameCapture4 {
+	left: 1173px;
+	top: 502px;
+	
+	/* This positions the finish time in this game feed. */
+	align-items: flex-end; /* Bottom of viewport. */
+	justify-content: flex-start; /* Left of viewport. */
+}
+
+/* Finish timer stuff */
+.finishTimeContainer img {padding-right: 5px;}
+.finishTimeContainer {
+	font-size: 25px;
+	height: 30px;
+	width: 100px;
+}
+#finishTimeContainer1 {
+	left: 100px;
+	padding: 0 3px 3px 0; /* No padding needed where this box touches the border. */
+}
+#finishTimeContainer2 {
+	padding: 3px 3px 0 0; /* No padding needed where this box touches the border. */
+}
+#finishTimeContainer3 {
+	padding: 0 3px 3px 0; /* No padding needed where this box touches the border. */
+}
+#finishTimeContainer4 {
+	padding: 3px 3px 0 0; /* No padding needed where this box touches the border. */
+}
+
+/* Player information stuff. */
+
+.playerText{
+	/* In case the player name is really long, stop it from ruining the box and just hide the end. */
+	overflow: hidden;
+	white-space: nowrap;
+	font-size: 24px;
+	flex: auto;
+}
+
+.playerContainer {
+	width: 500px;
+	
+}
+
+#playerContainer1 {
+    background-image: url(../../images/player-info-header-1-2p-bg.png);
+    top: 250px;
+    height: 75px;
+    left: 1258px;
+    align-items: flex-end; /* Bottom of viewport. */
+	justify-content: flex-start; /* Left of viewport. */
+}
+
+#playerContainer2 {
+    background-image: url(../../images/player-info-header-1-2p-bg.png);
+    top: 375px;
+    height: 75px;
+    left: 1258px;
+    align-items: flex-end; /* Bottom of viewport. */
+	justify-content: flex-start; /* Left of viewport. */
+}
+
+#playerContainer3 {
+    background-image: url(../../images/player-info-header-1-2p-bg.png);
+    top: 500px;
+    height: 75px;
+    left: 1258px;
+    align-items: flex-end; /* Bottom of viewport. */
+	justify-content: flex-start; /* Left of viewport. */
+}
+
+#playerContainer4 {
+    background-image: url(../../images/player-info-header-1-2p-bg.png);
+    top: 625px;
+    height: 75px;
+    left: 1258px;
+    align-items: flex-end; /* Bottom of viewport. */
+	justify-content: flex-start; /* Left of viewport. */
+}
+
+#runInfoContainer {
+    background-image: url(../../images/middle-info-background.png);
+    left: 165px;
+    top: 79px;
+    width: 1593px;
+    height: 135px;
+}
+
+#gameTitle {font-size: 31px;}
+#gameCategory, #gameConsole {font-size: 21px;}
+
+/*BingoBoard */
+#bingoContainer {
+	flex-direction: column;
+	justify-content: center;
+	left: 710px;
+	top: 250px;
+	width: 500px;
+	height: 500px;
+
+}
+
+
+#bingothonLogoContainer {
+	background-image: url("../../images/bingothon-interview-logo.png");
+	flex-direction: column;
+	justify-content: center;
+	left: 165px;
+	top: 250px;
+	width: 500px;
+	height: 500px;
+}
+
+/* Timer stuff. */
+#timerContainer {
+	background-image: url("../../images/middle-info-background.png");
+	flex-direction: column;
+	justify-content: center;
+	left: 710px;
+    top: 800px;
+    width: 500px;
+    height: 145px;
+}
+
+
+/* Sponsor logos. */
+#sponsorContainer {
+	left: 750px;
+	top: 0px;
+	width: 420px;
+	height: 76px;
+}
+
+.sponsorLogo {
+	padding: 10px 20px;
+	width: auto;
+	height: 100px;
+}
