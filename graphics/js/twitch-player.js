@@ -1,17 +1,19 @@
 'use strict';
 $(function() {
     const bundleName = 'nodecg-speedcontrol';
+    // stores all quality options available
+    const streamQualities = nodecg.Replicant('stream-qualities', bundleName, {'defaultValue':[[],[],[],[]]});
     // keeps track of which channel has sound, cause only one at a time can have sound, -1 is all muted
-    var soundOnTwitchStream = nodecg.Replicant('sound-on-twitch-stream', bundleName, {'persistent':false,'defaultValue':-1});
+    const soundOnTwitchStream = nodecg.Replicant('sound-on-twitch-stream', bundleName, {'persistent':false,'defaultValue':-1});
     // main control panel for streams
-    var streams = nodecg.Replicant('twitch-streams', bundleName);
+    const streams = nodecg.Replicant('twitch-streams', bundleName);
     // streams.values is an array that consists of elements with the following attributes;
     // channel, width, height, quality, volume, muted, paused, hidden
     var playerList = [];
     streams.on('change', (newStreams, oldStreams) => {
         for(var i in newStreams) {
             const stream = newStreams[i];
-            // create player if it doesn't exists
+            // create player if it does't exists
             // so all 4 players are always there just hidden, paused and muted maybe
             if (!playerList[i]) {
                 var twitchContainer = document.getElementById('twitch-player'+i);
@@ -118,7 +120,6 @@ $(function() {
         }
         playerList[id] = new Twitch.Player(twitchContainer, playerOptions);
         playerList[id].showPlayerControls(false);
-        playerList[id].setQuality(stream.quality);
         playerList[id].setVolume(stream.volume);
         // if this sound is not on mute
         playerList[id].setMuted(id != soundOnTwitchStream.value);
@@ -127,5 +128,25 @@ $(function() {
         } else {
             playerList[id].play();
         }
+        function getTwitchQualities() {
+            const qual = playerList[id].getQualities();
+            nodecg.log.info(qual);
+            if (!qual || qual.length == 0) {
+                setTimeout(getTwitchQualities, 500);
+            }
+            streamQualities.value[id] = qual;
+            // set quality of stream to specified value if thats a valid quality for the stream
+            if (streamQualities.value[id].includes(stream.quality)) {
+                playerList[id].setQuality(strema.quality);
+            } else {
+                playerList[id].setQuality('chunked');
+            }
+        }
+        // Twitch has a nice broken event system, if you request
+        // the qualities if the stream claims to be ready, it isn't ready
+        // play and playing are fired once every seconds so.. yea no
+        playerList[id].addEventListener(Twitch.Player.READY, ()=>{
+            getTwitchQualities();
+        });
     }
 });
