@@ -195,6 +195,10 @@ $(() => {
 			newHtml += '</div>';
 		}
 		comingUpChallengesBox.html(newHtml);
+		const maxWidth = comingUpChallengesBox.width();
+		$('.gameTitle', comingUpChallengesBox).each((index, element)=>{
+			breakTextIfTooLong(element, maxWidth);
+		});
 	}
 
 	function refreshPollHtml() {
@@ -223,6 +227,10 @@ $(() => {
 			newHtml += '</div>';
 		}
 		comingUpPollsBox.html(newHtml);
+		const maxWidth = comingUpPollsBox.width();
+		$('.gameTitle', comingUpPollsBox).each((index, element)=>{
+			breakTextIfTooLong(element, maxWidth);
+		});
 	}
 
 	// This function calls itself with a timeout to cycle though the different parts
@@ -292,4 +300,15 @@ $(() => {
 
 	// actually start animation
 	doFadeInFadeOut();
+
+	function breakTextIfTooLong(element, maxWidth) {
+		element = $(element);
+		if (element.width()+10 >= maxWidth) {
+			// if there is too much text, just split it in half with a break
+			const words = element.html().split(' ');
+			const middle = words.length/2+1;
+			const htmlWBreak = words.slice(0, middle).join(' ')+'<br>'+words.slice(middle, words.length).join(' ');
+			element.html(htmlWBreak);
+		}
+	}
 });
