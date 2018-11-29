@@ -188,7 +188,7 @@ $(() => {
 		var newHtml = '';
 		for (var i = 0; i < nextChallenges.length; i++) {
 			newHtml += '<div class="storageBox comingUpRunContainer flexContainer">';
-			newHtml += '<div class="gameTitle">'+nextChallenges[i].name+'</div>';
+			newHtml += '<div class="gameTitle flexContainer">'+nextChallenges[i].name+'</div>';
 			newHtml += '<div class="challengeGoal' + (nextChallenges[i].totalAmountRaised>=nextChallenges[i].amount?' goalMet':'') + '">'
 				+formatDollarAmount(nextChallenges[i].totalAmountRaised)+'/'+formatDollarAmount(nextChallenges[i].amount)+(nextChallenges[i].totalAmountRaised>=nextChallenges[i].amount?' Goal Met!':'')+'</div>';
 			
@@ -218,7 +218,7 @@ $(() => {
 		}
 		for (var i = 0; i < nextPolls.length; i++) {
 			newHtml += '<div class="storageBox comingUpRunContainer flexContainer">';
-			newHtml += '<div class="gameTitle">'+nextPolls[i].name+'</div>';
+			newHtml += '<div class="gameTitle flexContainer">'+nextPolls[i].name+'</div>';
 			var optionsFormatted = [];
 			nextPolls[i].options.forEach(option => {
 				optionsFormatted.push(option.name+' ('+formatDollarAmount(option.totalAmountRaised)+')');
@@ -307,7 +307,7 @@ $(() => {
 			// if there is too much text, just split it in half with a break
 			const words = element.html().split(' ');
 			const middle = words.length/2+1;
-			const htmlWBreak = words.slice(0, middle).join(' ')+'<br>'+words.slice(middle, words.length).join(' ');
+			const htmlWBreak = '<div>'+words.slice(0, middle).join(' ')+'</div><div>'+words.slice(middle, words.length).join(' ')+'</div>';
 			element.html(htmlWBreak);
 		}
 	}

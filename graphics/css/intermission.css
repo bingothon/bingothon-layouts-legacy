@@ -18,8 +18,8 @@
     top: 421px;
     width: 417px;
     height: 404px;
-    vertical-align:middle
-    justify-content: flex-end;
+    /*vertical-align:middle
+    justify-content: flex-end;*/
     position: absolute;
     border: 3px black;
 }
@@ -80,7 +80,7 @@ element {
     top: 63px;
     width: 1503px;
     height: 940px;
-    border-left: 3px solid #6e2c30;
+    border-left: 4px solid #6e2c30;
 }
 
 #comingUpRunsBox > div {
@@ -108,7 +108,12 @@ element {
 	color: #6e2c30;
 	line-height: 45px;
 }
-.gameTitle {font-size: 31px; line-height: 40px; white-space: nowrap;}
+.gameTitle {
+    font-size: 31px;
+    line-height: 40px;
+    white-space: nowrap;
+    flex-direction: column;
+}
 .gameCategory, .gameConsole, .gamePlayers {font-size: 21px; line-height: 37px;}
 .gamePlayers span {padding: 0 5px;} /* This is the storage for the runner names. */
 .gamePlayers img {height: 1.2em;} /* Images next to player name(s) are the same height. */
