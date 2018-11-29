@@ -17,7 +17,7 @@
     left: 0px;
     top: 421px;
     width: 417px;
-    height: 362px;
+    height: 404px;
     vertical-align:middle
     justify-content: flex-end;
     position: absolute;
@@ -44,7 +44,7 @@
 /* Music ticker stuff. */
 #musicTicker {
     left: 0px;
-    top: 785px;
+    top: 828px;
     width: 417px;
     height: 59px;
 }
@@ -94,7 +94,7 @@ element {
 	position: relative;
 	flex-direction: column;
 	width: 1503px;
-	height: 270px;
+	height: 255px;
 	
 	/* Remove the normal outlines and just use a bottom border instead. */
 	outline: 0;
@@ -108,7 +108,7 @@ element {
 	color: #6e2c30;
 	line-height: 45px;
 }
-.gameTitle {font-size: 31px; line-height: 40px;}
+.gameTitle {font-size: 31px; line-height: 40px; padding:20px;}
 .gameCategory, .gameConsole, .gamePlayers {font-size: 21px; line-height: 37px;}
 .gamePlayers span {padding: 0 5px;} /* This is the storage for the runner names. */
 .gamePlayers img {height: 1.2em;} /* Images next to player name(s) are the same height. */
@@ -119,9 +119,9 @@ element {
 /* Sponsor logos. */
 #sponsorContainer {
     left: 0px;
-    top: 847px;
+    top: 890px;
     width: 417px;
-    height: 232px;
+    height: 189px;
 }
 
 #adTimer:before {content: 'Ad Playing:\00a0'}
