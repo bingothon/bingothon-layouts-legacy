@@ -1,5 +1,7 @@
 'use strict';
 $(function() {
+    const delayCheckIntervalMs = 20000;
+
     const bundleName = 'nodecg-speedcontrol';
     // stores all quality options available
     const streamQualities = nodecg.Replicant('stream-qualities', bundleName, {'defaultValue':[[],[],[],[]]});
@@ -9,6 +11,7 @@ $(function() {
     const streams = nodecg.Replicant('twitch-streams', bundleName);
     // streams.values is an array that consists of elements with the following attributes;
     // channel, width, height, quality, volume, muted, paused, hidden
+    const streamDelay = nodecg.Replicant('stream-delay',bundleName,{'defaultValue':[0,0,0,0], 'persistent':false});
     var playerList = [];
     streams.on('change', (newStreams, oldStreams) => {
         for(var i in newStreams) {
@@ -149,4 +152,18 @@ $(function() {
             getTwitchQualities();
         });
     }
+
+    // check the delay for each stream and output it to the replicant
+    setInterval(()=>{
+        for (var i in playerList) {
+            const curPlayer = playerList[i];
+            if (curPlayer) {
+                let stats = curPlayer.getPlaybackStats();
+                if (stats) {
+                    nodecg.log.info(JSON.stringify(stats));
+                    streamDelay.value[i] = stats.hlsLatencyBroadcaster;
+                }
+            }
+        }
+    },delayCheckIntervalMs);
 });
