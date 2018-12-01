@@ -204,8 +204,8 @@ $(() => {
 	function refreshPollHtml() {
 		var newHtml = '';
 		// pick 4 random polls
-		// clone array
-		var allPolls = pollsRep.value.slice(0);
+		// clone array minus inactive
+		var allPolls = pollsRep.value.filter((poll)=>poll.active);
 		var nextPolls = [];
 		if (allPolls.length <= 4) {
 			nextPolls = allPolls;
