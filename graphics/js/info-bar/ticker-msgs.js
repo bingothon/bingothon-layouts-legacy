@@ -194,7 +194,9 @@ function showChallenge() {
 
 // Handles challenge/incentive, chooses one at random to show.
 function showPoll() {
-	var poll = pollsRep.value[Math.floor(Math.random()*pollsRep.value.length)];
+	var activePolls = pollsRep.value.filter((pol)=>pol.active);
+	nodecg.log.info(JSON.stringify(activePolls));
+	var poll = activePolls[Math.floor(Math.random()*activePolls.length)];
 	
 	var line2;
 	
