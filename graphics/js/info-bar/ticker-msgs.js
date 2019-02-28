@@ -11,7 +11,8 @@ var recentTopDonationTO;
 var topDonationDelay = 300000; // 5 minutes
 var showingMessage = false;
 var messageIndex = 0;
-var nextChallenges = [];
+var nextChallenges = []; // Aka Incentives
+var nextPolls = []; // Aka Bid Wars
 var prizeCache = [];
 var nextRunsCache = [];
 var lastMessageType = -1;
@@ -20,8 +21,7 @@ var lastMessageType = -1;
 chooseRandomMessageIndex(true);
 
 // Replicants
-var challengesRep = nodecg.Replicant('tiltifyIncentives', speedcontrolBundle);
-var pollsRep = nodecg.Replicant('tiltifyPolls', speedcontrolBundle);
+var openBidsReplicant = nodecg.Replicant('trackerOpenBids', speedcontrolBundle, {defaultValue: []});
 var runDataArray = nodecg.Replicant('runDataArray', speedcontrolBundle);
 var runDataActiveRun = nodecg.Replicant('runDataActiveRun', speedcontrolBundle);
 
@@ -45,13 +45,11 @@ nodecg.listenFor('newDonation', speedcontrolBundle, donation => {
 });
 
 // When challenges/incentives changes load the next 3 into the cache to display them
-challengesRep.on('change',(newChallenges,old)=>{
-	// slice to copy
-	// only get the active ones, then the 3 that end next
-	nextChallenges = newChallenges.filter(challenge => challenge.active && (challenge.endsAt > Date.now()))
-		.sort(function (chA, chB){return chA.endsAt - chB.endsAt})
-		.slice(0,3);
-	nodecg.log.info(JSON.stringify(nextChallenges));
+openBidsReplicant.on('change',(newBids)=>{
+	// put next 4 bids that have a goal to challenges
+	// and 4 without a goal to polls
+	nextChallenges = newBids.filter((bid)=>bid.goal!=null).slice(0,3);
+	nextPolls = newBids.filter((bid)=>bid.goal==null).slice(0,3);
 });
 
 // Donation test code below.
@@ -92,7 +90,7 @@ function showTickerMessages() {
 	
 	// Challenges
 	if (messageIndex === 0 || messageIndex === 1 || messageIndex === 2) {
-		if (true || challengesRep.value.length > 0 && lastMessageType !== 0) {
+		if (nextChallenges.length > 0 && lastMessageType !== 0) {
 			showChallenge();
 			lastMessageType = 0;
 		}
@@ -102,7 +100,7 @@ function showTickerMessages() {
 	
 	// Polls
 	if (messageIndex === 3 || messageIndex === 4 || messageIndex === 5) {
-		if (pollsRep.value.length > 0 && lastMessageType !== 1) {
+		if (nextPolls.length > 0 && lastMessageType !== 1) {
 			showPoll();
 			lastMessageType = 1;
 		}
@@ -187,24 +185,22 @@ function showChallenge() {
 	
 	// Normal Goal
 	var line1 = '<span class="messageUppercase textGlow">Upcoming Goal:</span>';
-	var line2 = '<span class="greyText">'+challenge.name+'</span>: '+formatDollarAmount(challenge.totalAmountRaised)+'/'+formatDollarAmount(challenge.amount);
+	var line2 = '<span class="greyText">'+challenge.game + ' - ' + challenge.bid + '</span>: '+formatDollarAmount(challenge.amount_raised)+'/'+formatDollarAmount(challenge.goal);
 	
 	displayMessage(line1, line2, 23, 21);
 }
 
 // Handles challenge/incentive, chooses one at random to show.
 function showPoll() {
-	var activePolls = pollsRep.value.filter((pol)=>pol.active);
-	nodecg.log.info(JSON.stringify(activePolls));
-	var poll = activePolls[Math.floor(Math.random()*activePolls.length)];
+	var poll = nextPolls[Math.floor(Math.random()*nextPolls.length)];
 	
 	var line2;
 	
 	// Bid War
-	var line1 = '<span class="messageUppercase textGlow">Upcoming Bid War:</span> '+poll.name;
+	var line1 = '<span class="messageUppercase textGlow">Upcoming Bid War:</span> '+poll.game + ' - ' + poll.bid ;
 	var optionsFormatted = [];
 	poll.options.forEach(option => {
-		optionsFormatted.push(option.name+' ('+formatDollarAmount(option.totalAmountRaised)+')');
+		optionsFormatted.push(option.name+' ('+formatDollarAmount(option.amount_raised)+')');
 	});
 	var line2 = optionsFormatted.join('/');
 	
