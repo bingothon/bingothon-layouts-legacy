@@ -80,7 +80,22 @@ $(() => {
 			} else {
 				finishTimeContainers.eq(i).css('opacity','0');
 			}
-			// Medal handling todo
+			switch (newFlags[i].finishMedal) {
+				case 1:
+					finishTimeContainers.eq(i).find('.medal').attr('class','medal shine medal-gold');
+					break;
+			
+				case 2:
+					finishTimeContainers.eq(i).find('.medal').attr('class','medal shine medal-silver');
+					break;
+			
+				case 3:
+					finishTimeContainers.eq(i).find('.medal').attr('class','medal shine medal-bronze');
+					break;
+
+				default:
+					finishTimeContainers.eq(i).find('.medal').attr('class','medal');
+			}
 			$('#finishTime',finishTimeContainers.eq(i)).text(newFlags[i].finishTime);
 		}
 	});
