@@ -11,8 +11,6 @@ $(() => {
 	// JQuery selectors.
 	var playerContainers = $('.playerContainer'); // Array
 	
-	var dnd = ($('html').attr('data-sceneid') === 'dnd-names') ? true : false;
-	
 	// Declaring other variables.
 	var displayNameForOriginal = 45000; // 45 seconds
 	var displayTwitchForOriginal = 15000; // 15 seconds
@@ -42,25 +40,11 @@ $(() => {
 		clearTimeout(rotationTO);
 		init = true;
 		
-		if (dnd) {
-			var urlPos = window.location.hash.replace('#', '');
-			
-			var team = runData.teams[parseInt(urlPos)];
-			team.members.forEach(member => {
-				var teamData = {showTeamIcon: team.members.length > 1, members: []};
-				teamData.members.push(createMemberData(member));
-				currentTeamsData.push(teamData);
-			});
-		}
-		
-		else {
-			// modified to put each team member in a different name tag cause no onsite 
-			// coops in an online event
-			runData.players.forEach(player => {
-				var teamData = {showTeamIcon: false, members: [createMemberData(player)]};
-				currentTeamsData.push(teamData);
-			});
-		}
+		// modified to put each team member in a different name tag cause no onsite 
+		// coops in an online event
+		runData.teams.forEach(team => {
+			team.players.forEach(player => currentTeamsData.push({players: [createPlayerData(player)]}));
+		});
 		
 		// Set up team member indices so we can keep track on what team member is being shown.
 		for (var i = 0; i < currentTeamsData.length; i++) {teamMemberIndex[i] = 0;}
@@ -73,7 +57,7 @@ $(() => {
 		}
 		
 		// If the first team has multiple runners, make the display timers shorter.
-		if (currentTeamsData[0] && currentTeamsData[0].members.length > 1) {
+		if (currentTeamsData[0] && currentTeamsData[0].players.length > 1) {
 			displayNameFor = displayNameForOriginal/2;
 			displayTwitchFor = displayTwitchForOriginal/2;
 		} else {
@@ -91,9 +75,9 @@ $(() => {
 			var index = teamMemberIndex[i]; // Who the current player is who should be shown in this team.
 			
 			if (init)
-				animationChangePlayerData(playerContainers[i], currentTeamsData[i].members[index], false, true, currentTeamsData[i].showTeamIcon);
+				animationChangePlayerData(playerContainers[i], currentTeamsData[i].players[index], false, true, currentTeamsData[i].showTeamIcon);
 			else
-				animationChangePlayerData(playerContainers[i], currentTeamsData[i].members[index], false);
+				animationChangePlayerData(playerContainers[i], currentTeamsData[i].players[index], false);
 		}
 		
 		// Toggle to false if this was the first time running this function since a change.
@@ -107,7 +91,7 @@ $(() => {
 		for (var i = 0; i < teamMemberIndex.length; i++) {
 			if (!playerContainers[i]) break; // Skip if there's no container for this team.
 			var index = teamMemberIndex[i]; // Who the current player is who should be shown in this team.
-			animationChangePlayerData(playerContainers[i], currentTeamsData[i].members[index], true);
+			animationChangePlayerData(playerContainers[i], currentTeamsData[i].players[index], true);
 		}
 		
 		rotationTO = setTimeout(rotateTeamMembers, displayTwitchFor);
@@ -119,14 +103,14 @@ $(() => {
 			teamMemberIndex[i]++;
 			
 			// If we've reached the end of the team member array, go back to the start.
-			if (teamMemberIndex[i] >= currentTeamsData[i].members.length) teamMemberIndex[i] = 0;
+			if (teamMemberIndex[i] >= currentTeamsData[i].players.length) teamMemberIndex[i] = 0;
 		}
 		
 		showNames();
 	}
 	
 	// Easy access to create member data object used above.
-	function createMemberData(member) {
+	function createPlayerData(member) {
 		// Gets username from URL.
 		if (member.twitch && member.twitch.uri) {
 			var twitchUsername = member.twitch.uri.split('/');
@@ -134,8 +118,8 @@ $(() => {
 		}
 		
 		var memberData = {
-			name: member.names.international,
-			twitch: twitchUsername,
+			name: member.name,
+			twitch: member.social.twitch,
 			region: member.region
 		};
 		
