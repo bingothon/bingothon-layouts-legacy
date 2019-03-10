@@ -17,11 +17,14 @@ var prizeCache = [];
 var nextRunsCache = [];
 var lastMessageType = -1;
 
+var recentDonations = [];
+
 // Choose a random index on startup.
 chooseRandomMessageIndex(true);
 
 // Replicants
 var openBidsReplicant = nodecg.Replicant('trackerOpenBids', speedcontrolBundle, {defaultValue: []});
+var donationsReplicant = nodecg.Replicant('trackerDonations', speedcontrolBundle, {defaultValue: []});
 var runDataArray = nodecg.Replicant('runDataArray', speedcontrolBundle);
 var runDataActiveRun = nodecg.Replicant('runDataActiveRun', speedcontrolBundle);
 
@@ -33,7 +36,7 @@ $(() => {
 	messagesLine1 = $('#linesWrapper .line1');
 	messagesLine2 = $('#linesWrapper .line2');
 });
-
+/*
 nodecg.listenFor('newDonation', speedcontrolBundle, donation => {
 	nodecg.log.info('got donation!');
 	newDonations.push(donation);
@@ -42,7 +45,11 @@ nodecg.listenFor('newDonation', speedcontrolBundle, donation => {
 	// It will then be shown every so often until it's pushed off by another one.
 	recentTopDonation = donation;
 	resetRecentTopDonationTimer();
-});
+});*/
+
+donationsReplicant.on('change', (newDonations)=>{
+	recentDonations = newDonations.slice(0,4);
+})
 
 // When challenges/incentives changes load the next 3 into the cache to display them
 openBidsReplicant.on('change',(newBids)=>{
@@ -82,11 +89,11 @@ function showTickerMessages() {
 		return;
 	
 	// Showing new donations has priority.
-	if (newDonations.length > 0) {
+	/*if (newDonations.length > 0) {
 		showDonation(newDonations[0], true);
 		newDonations.shift(); // Remove first donation.
 		return;
-	}
+	}*/
 	
 	// Challenges
 	if (messageIndex === 0 || messageIndex === 1 || messageIndex === 2) {
@@ -121,9 +128,8 @@ function showTickerMessages() {
 	
 	// Recent Top Donation
 	if (messageIndex === 9 || messageIndex === 10) {
-		if (showRecentTopDonation && recentTopDonation && lastMessageType !== 3) {
-			showDonation(recentTopDonation, false);
-			resetRecentTopDonationTimer();
+		if (recentDonations.length != 0 && lastMessageType !== 3) {
+			showDonation();
 			lastMessageType = 3;
 		}
 		else retry = true;
@@ -162,9 +168,11 @@ function showTickerMessages() {
 }
 
 // Formats donations to be sent to displayMessage.
-function showDonation(donation, isNew) {
-	var user = donation.name;
+function showDonation() {
+	var donation = recentDonations[Math.floor(Math.random()*recentDonations.length)];
+	var user = donation.donor;
 	var amount = ' ('+formatDollarAmount(parseFloat(donation.amount))+')';
+	var isNew = false; // maybe implement a check later if thats new, for now just pick one of the 4 recent ones to show
 	if (isNew)
 		var line1 = '<span class="messageUppercase textGlow">New Donation:</span> '+user+amount;
 	else
@@ -202,7 +210,15 @@ function showPoll() {
 	poll.options.forEach(option => {
 		optionsFormatted.push(option.name+' ('+formatDollarAmount(option.amount_raised)+')');
 	});
-	var line2 = optionsFormatted.join('/');
+	if(poll.options.length != 0) {
+		var line2 = optionsFormatted.join('/');
+		if (poll.allow_custom_options) {
+			line2 = line2 + ' ...or submit your own ideas!';
+		}
+	} else {
+		var line2 = "No options submitted, be the first!";
+	}
+	
 	
 	displayMessage(line1, line2, 23, 21);
 }
