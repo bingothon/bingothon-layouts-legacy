@@ -11,7 +11,9 @@ $(() => {
 	var currentTime = '';
 	var backupTimerTO;
 	
+	// Replicants
 	var stopwatch = nodecg.Replicant('stopwatch', speedcontrolBundle);
+	var finishFlags = nodecg.Replicant('finishFlags', speedcontrolBundle, {defaultValue:[{hasFinished: false, finishTime: '', finishMedal: ''},{hasFinished: false, finishTime: '', finishMedal: ''},{hasFinished: false, finishTime: '', finishMedal: ''},{hasFinished: false, finishTime: '', finishMedal: ''},]});
 	stopwatch.on('change', (newVal, oldVal) => {
 		if (!newVal) return;
 		updateTimer(newVal, oldVal);
@@ -45,6 +47,7 @@ $(() => {
 		currentTime = time;
 	}
 	
+	/* DEPRECATED
 	// Used to hide finish times for everyone.
 	nodecg.listenFor('resetTime', speedcontrolBundle, () => {
 		finishTimeContainers.each((index, element) => {
@@ -67,6 +70,33 @@ $(() => {
 			var container = finishTimeContainers.eq(index);
 			$('#finishTime', container).html(currentTime);
 			container.css('opacity', '100');
+		}
+	});*/
+
+	finishFlags.on('change', (newFlags) => {
+		for(var i = 0;i<newFlags.length;i++) {
+			if (newFlags[i].hasFinished) {
+				finishTimeContainers.eq(i).css('opacity','100');
+			} else {
+				finishTimeContainers.eq(i).css('opacity','0');
+			}
+			switch (newFlags[i].finishMedal) {
+				case 1:
+					finishTimeContainers.eq(i).find('.medal').attr('class','medal shine medal-gold');
+					break;
+			
+				case 2:
+					finishTimeContainers.eq(i).find('.medal').attr('class','medal shine medal-silver');
+					break;
+			
+				case 3:
+					finishTimeContainers.eq(i).find('.medal').attr('class','medal shine medal-bronze');
+					break;
+
+				default:
+					finishTimeContainers.eq(i).find('.medal').attr('class','medal');
+			}
+			$('#finishTime',finishTimeContainers.eq(i)).text(newFlags[i].finishTime);
 		}
 	});
 });

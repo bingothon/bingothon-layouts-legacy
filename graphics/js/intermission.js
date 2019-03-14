@@ -3,9 +3,12 @@ $(() => {
 	// The bundle name where all the run information is pulled from.
 	var speedcontrolBundle = 'nodecg-speedcontrol';
 
-	// Tiltify replicants
-	var challengesRep = nodecg.Replicant('tiltifyIncentives', speedcontrolBundle);
-	var pollsRep = nodecg.Replicant('tiltifyPolls', speedcontrolBundle);
+	// Tiltify replicants, not used anymore
+	// var challengesRep = nodecg.Replicant('tiltifyIncentives', speedcontrolBundle);
+	// var pollsRep = nodecg.Replicant('tiltifyPolls', speedcontrolBundle);
+
+	// donation tracker replicants
+    const openBidsReplicant = nodecg.Replicant('trackerOpenBids', speedcontrolBundle, {defaultValue: []});
 	
 	// JQuery selectors.
 	var comingUpRunsBox = $('#comingUpRunsWrapper');
@@ -20,7 +23,8 @@ $(() => {
 	var isOBS = (window.obsstudio) ? true : false;
 	var pageInit = false;
 	var nextRuns = []; // Can be 4 or less depending where we are in the schedule.
-	var nextChallenges = []; // the next 4 challenges that are active and not over
+	var nextChallenges = []; // the next 4 challenges, also called incentives, that are active and not over
+	var nextPolls = []; // the next 4 poll, also called bid wars, that are active and not over
 	var refreshingNextRunsData = false;
 	var refreshingNextRunsDisplay = false;
 	var songMarquee;
@@ -32,15 +36,14 @@ $(() => {
 	const showLengh = 10000; // how long to show the individual containers in ms
 	var nextUpCurrent = 0; // which part to display, runs(0), challenges(1), polls(2)
 
-	// When challenges/incentives changes load the next 3 into the cache to display them
-	challengesRep.on('change',(newChallenges,old)=>{
-		// slice to copy
-		// only get the active ones, then the 4 that end next and haven't ended
-		nextChallenges = newChallenges.filter(challenge => challenge.active && (challenge.endsAt > Date.now()))
-			.sort(function (chA, chB){return chA.endsAt - chB.endsAt})
-			.slice(0,4);
-		nodecg.log.info(JSON.stringify(nextChallenges));
+	// When challenges/incentives changes load the next 4 into the cache to display them
+	openBidsReplicant.on('change',(newBids)=>{
+		// put next 4 bids that have a goal to challenges
+		// and 4 without a goal to polls
+		nextChallenges = newBids.filter((bid)=>bid.goal!=null).slice(0,4);
+		nextPolls = newBids.filter((bid)=>bid.goal==null).slice(0,4);
 		refreshChallengesHtml();
+		refreshPollHtml();
 	});
 
 	// This might have race condition issues, not the best, will see how it goes.
@@ -188,9 +191,9 @@ $(() => {
 		var newHtml = '';
 		for (var i = 0; i < nextChallenges.length; i++) {
 			newHtml += '<div class="storageBox comingUpRunContainer flexContainer">';
-			newHtml += '<div class="gameTitle">'+nextChallenges[i].name+'</div>';
-			newHtml += '<div class="challengeGoal' + (nextChallenges[i].totalAmountRaised>=nextChallenges[i].amount?' goalMet':'') + '">'
-				+formatDollarAmount(nextChallenges[i].totalAmountRaised)+'/'+formatDollarAmount(nextChallenges[i].amount)+(nextChallenges[i].totalAmountRaised>=nextChallenges[i].amount?' Goal Met!':'')+'</div>';
+			newHtml += '<div class="gameTitle flexContainer">'+nextChallenges[i].game + ' - ' + nextChallenges[i].bid + '</div>';
+			newHtml += '<div class="challengeGoal' + (nextChallenges[i].amount_raised>=nextChallenges[i].goal?' goalMet':'') + '">'
+				+formatDollarAmount(nextChallenges[i].amount_raised)+'/'+formatDollarAmount(nextChallenges[i].goal)+(nextChallenges[i].amount_raised>=nextChallenges[i].goal?' Goal Met!':'')+'</div>';
 			
 			newHtml += '</div>';
 		}
@@ -203,25 +206,13 @@ $(() => {
 
 	function refreshPollHtml() {
 		var newHtml = '';
-		// pick 4 random polls
-		// clone array
-		var allPolls = pollsRep.value.slice(0);
-		var nextPolls = [];
-		if (allPolls.length <= 4) {
-			nextPolls = allPolls;
-		} else {
-			for(var i = 0;i<4;i++) {
-				var rnd = Math.floor(Math.random()*allPolls.length);
-				nextPolls.push(allPolls[rnd]);
-				allPolls.splice(rnd, 1);
-			}
-		}
+		console.log(JSON.stringify(nextPolls));
 		for (var i = 0; i < nextPolls.length; i++) {
 			newHtml += '<div class="storageBox comingUpRunContainer flexContainer">';
-			newHtml += '<div class="gameTitle">'+nextPolls[i].name+'</div>';
+			newHtml += '<div class="gameTitle flexContainer">'+nextPolls[i].game+' - '+nextPolls[i].bid+'</div>';
 			var optionsFormatted = [];
 			nextPolls[i].options.forEach(option => {
-				optionsFormatted.push(option.name+' ('+formatDollarAmount(option.totalAmountRaised)+')');
+				optionsFormatted.push(option.name+' ('+formatDollarAmount(option.amount_raised)+')');
 			});
 			newHtml += '<div class="pollOptions">'+optionsFormatted.join('/')+'</div>';
 			newHtml += '</div>';
@@ -247,7 +238,7 @@ $(() => {
 					// otherwise we are most likely at the end of the marathon so lets
 					// stop this animation cycle and present the last runs
 					// this doesn't account for the edge case where a new poll/challenge pops up
-					if (nextChallenges.length > 0|| pollsRep.value.length > 0) {
+					if (nextChallenges.length > 0|| nextPolls.length > 0) {
 						animationFadeOutElement('#comingUpRunsHeaderTextSpan');
 						animationFadeOutElement('#comingUpRunsWrapper',()=>{
 							doFadeInFadeOut();
@@ -280,7 +271,7 @@ $(() => {
 			nextUpHeaderText.text('Next Bid Wars')
 			nextUpCurrent = 0;
 			// if there are no polls continue
-			if (pollsRep.value.length <= 0) {
+			if (nextPolls.length <= 0) {
 				doFadeInFadeOut();
 				return;
 			}
@@ -307,7 +298,7 @@ $(() => {
 			// if there is too much text, just split it in half with a break
 			const words = element.html().split(' ');
 			const middle = words.length/2+1;
-			const htmlWBreak = words.slice(0, middle).join(' ')+'<br>'+words.slice(middle, words.length).join(' ');
+			const htmlWBreak = '<div>'+words.slice(0, middle).join(' ')+'</div><div>'+words.slice(middle, words.length).join(' ')+'</div>';
 			element.html(htmlWBreak);
 		}
 	}

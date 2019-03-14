@@ -209,3 +209,30 @@ body {
     transform: translate(-50%,-50%);
     float: left;
 }
+
+/*Medal styles*/
+.medal {
+	width: 26px;
+	height: 26px;
+	margin: 4px;
+	background-repeat: no-repeat;
+}
+.medal.shine {
+	animation: shine 334ms steps(20);
+}
+@keyframes shine {
+	from { background-position-x: 0; }
+	to { background-position-x: -520px; } /* <-- width of spritesheet */
+}
+
+.medal-bronze {
+	background: url("../images/medal-bronze.png");
+}
+
+.medal-silver {
+	background: url("../images/medal-silver.png");
+}
+
+.medal-gold {
+	background: url("../images/medal-gold.png");
+}
