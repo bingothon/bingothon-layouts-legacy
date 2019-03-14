@@ -6,6 +6,7 @@ $(() => {
 	var bidsContainer = $('#bidsContainer');
 	var runsContainer = $('#runsContainer');
 	var stcInfoContainer = $('#stcInfoContainer');
+        var button = $('#Button');
 	
 	// Declaring variables.
 	var prizeHTML = $('<div class="prize"><span class="prizeName"></span><br>Provided by <span class="prizeProvider"></span><br>minimum donation <span class="prizeMinDonation"></span><br>Ends: <span class="prizeEnd"></span></div>');
@@ -38,29 +39,29 @@ $(() => {
 	});
 	
 	// Keep bids updated.
-	var bids = nodecg.Replicant('bids');
+	var bids = nodecg.Replicant('trackerOpenBids', 'nodecg-speedcontrol', {defaultValue: []});
 	bids.on('change', newVal => {
 		var i = 0;
 		bidsContainer.html('');
 		newVal.forEach(bid => {
 			if (i >= 6) return;
 			var bidElement = bidHTML.clone();
-			$('.bidGame', bidElement).html(bid.game+' - '+bid.category);
+			$('.bidGame', bidElement).html(bid.game+' - '+bid.bid);
 			$('.bidName', bidElement).html(bid.name);
 			// Donation Goal
-			if (!bid.options) {
-				var bidLeft = bid.goal - bid.total;
-				bidElement.append('<br>'+formatDollarAmount(bid.total)+'/'+formatDollarAmount(bid.goal));
+			if (bid.goal != null) {
+				var bidLeft = bid.goal - bid.amount_raised;
+				bidElement.append('<br>'+formatDollarAmount(bid.amount_raised)+'/'+formatDollarAmount(bid.goal));
 				bidElement.append('<br>'+formatDollarAmount(bidLeft)+' to goal'); 
 			}
 			// Bid War
 			else {
 				if (bid.options.length) {
 					bid.options.forEach(option => {
-						bidElement.append('<br>'+option.name+' ('+formatDollarAmount(option.total)+')')
+						bidElement.append('<br>'+option.name+' ('+formatDollarAmount(option.amount_raised)+')')
 					});
 					
-					if (bid.allow_user_options)
+					if (bid.allow_custom_options)
 						bidElement.append('<br><i>Users can submit their own options.</i>')
 				}
 				else
@@ -120,11 +121,9 @@ $(() => {
 		}
 	}
 	
-	setStCText();
-	nodecg.listenFor('hostdash_changeStCText', setStCText);
-	function setStCText() {
+	/*$('.Button').on('click', function() {
 		stcInfoContainer.html(stcText[stcInfoIndex]);
 		stcInfoIndex++;
 		if (stcInfoIndex >= stcText.length) stcInfoIndex = 0;
 	}
-});
+});*/

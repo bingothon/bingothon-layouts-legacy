@@ -7,7 +7,7 @@ var request = require('request');
 
 // Declaring other variables.
 var nodecg = require('./utils/nodecg-api-context').get();
-var apiURL = 'https://donations.esamarathon.com/search';
+var apiURL = 'https://donations.bingothon.com/search';
 var refreshTime = 60000; // Get bids every 60s.
 
 // Replicants.
