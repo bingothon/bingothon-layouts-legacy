@@ -7,6 +7,7 @@ $(() => {
 	var runsContainer = $('#runsContainer');
 	var stcInfoContainer = $('#stcInfoContainer');
         var button = $('#Button');
+        var stcInfoIndex = 0;
 	
 	// Declaring variables.
 	var prizeHTML = $('<div class="prize"><span class="prizeName"></span><br>Provided by <span class="prizeProvider"></span><br>minimum donation <span class="prizeMinDonation"></span><br>Ends: <span class="prizeEnd"></span></div>');
@@ -121,9 +122,10 @@ $(() => {
 		}
 	}
 	
-	/*$('.Button').on('click', function() {
-		stcInfoContainer.html(stcText[stcInfoIndex]);
+changeStCText();
+document.getElementById("Button").addEventListener("click", changeStCText());
+function changeStCText(){
+                stcInfoContainer.html(stcText[stcInfoIndex]);
 		stcInfoIndex++;
 		if (stcInfoIndex >= stcText.length) stcInfoIndex = 0;
-	}
-});*/
+};
