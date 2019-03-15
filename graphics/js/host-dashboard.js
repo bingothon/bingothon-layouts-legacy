@@ -123,9 +123,10 @@ $(() => {
 	}
 	
 changeStCText();
-document.getElementById("Button").addEventListener("click", changeStCText());
+$('#Button').on('click', changeStCText);
 function changeStCText(){
                 stcInfoContainer.html(stcText[stcInfoIndex]);
 		stcInfoIndex++;
 		if (stcInfoIndex >= stcText.length) stcInfoIndex = 0;
-};
+}
+});
