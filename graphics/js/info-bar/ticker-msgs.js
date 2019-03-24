@@ -2,6 +2,7 @@
 
 // The bundle name where all the run information is pulled from.
 var speedcontrolBundle = 'nodecg-speedcontrol';
+var bingothonBundleName = 'speedcontrol-bingothon';
 
 // Declaring other variables.
 var newDonations = []; // Any new donations are stored for check on the ticks.
@@ -23,8 +24,8 @@ var recentDonations = [];
 chooseRandomMessageIndex(true);
 
 // Replicants
-var openBidsReplicant = nodecg.Replicant('trackerOpenBids', speedcontrolBundle, {defaultValue: []});
-var donationsReplicant = nodecg.Replicant('trackerDonations', speedcontrolBundle, {defaultValue: []});
+var openBidsReplicant = nodecg.Replicant('trackerOpenBids', bingothonBundleName, {defaultValue: []});
+var donationsReplicant = nodecg.Replicant('trackerDonations', bingothonBundleName, {defaultValue: []});
 var runDataArray = nodecg.Replicant('runDataArray', speedcontrolBundle);
 var runDataActiveRun = nodecg.Replicant('runDataActiveRun', speedcontrolBundle);
 

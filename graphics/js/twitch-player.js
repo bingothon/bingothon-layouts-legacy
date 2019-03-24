@@ -2,16 +2,16 @@
 $(function() {
     const delayCheckIntervalMs = 20000;
 
-    const bundleName = 'nodecg-speedcontrol';
+    const bingothonBundleName = 'speedcontrol-bingothon';
     // stores all quality options available
-    const streamQualities = nodecg.Replicant('stream-qualities', bundleName, {'defaultValue':[[],[],[],[]]});
+    const streamQualities = nodecg.Replicant('stream-qualities', bingothonBundleName, {'defaultValue':[[],[],[],[]]});
     // keeps track of which channel has sound, cause only one at a time can have sound, -1 is all muted
-    const soundOnTwitchStream = nodecg.Replicant('sound-on-twitch-stream', bundleName, {'persistent':false,'defaultValue':-1});
+    const soundOnTwitchStream = nodecg.Replicant('sound-on-twitch-stream', bingothonBundleName, {'persistent':false,'defaultValue':-1});
     // main control panel for streams
-    const streams = nodecg.Replicant('twitch-streams', bundleName);
+    const streams = nodecg.Replicant('twitch-streams', bingothonBundleName);
     // streams.values is an array that consists of elements with the following attributes;
     // channel, width, height, quality, volume, muted, paused, hidden
-    const streamDelay = nodecg.Replicant('stream-delay',bundleName,{'defaultValue':[0,0,0,0], 'persistent':false});
+    const streamDelay = nodecg.Replicant('stream-delay',bingothonBundleName,{'defaultValue':[0,0,0,0], 'persistent':false});
     var playerList = [];
     streams.on('change', (newStreams, oldStreams) => {
         for(var i in newStreams) {
@@ -92,7 +92,7 @@ $(function() {
 
     });
     // register listeners to remotely control streams
-    nodecg.listenFor('refreshStream',bundleName,(id) => {
+    nodecg.listenFor('refreshStream',bingothonBundleName,(id) => {
         if (!playerList[id]) {
             nodecg.log.console.warn("Stream with given ID doesn't exist, can't refresh");
             return;

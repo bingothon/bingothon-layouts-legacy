@@ -2,13 +2,10 @@
 $(() => {
 	// The bundle name where all the run information is pulled from.
 	var speedcontrolBundle = 'nodecg-speedcontrol';
-
-	// Tiltify replicants, not used anymore
-	// var challengesRep = nodecg.Replicant('tiltifyIncentives', speedcontrolBundle);
-	// var pollsRep = nodecg.Replicant('tiltifyPolls', speedcontrolBundle);
+	var bingothonBundleName = 'speedcontrol-bingothon';
 
 	// donation tracker replicants
-    const openBidsReplicant = nodecg.Replicant('trackerOpenBids', speedcontrolBundle, {defaultValue: []});
+    const openBidsReplicant = nodecg.Replicant('trackerOpenBids', bingothonBundleName, {defaultValue: []});
 	
 	// JQuery selectors.
 	var comingUpRunsBox = $('#comingUpRunsWrapper');
@@ -163,7 +160,7 @@ $(() => {
 				var players = formPlayerNamesString(nextRuns[i]);
 				
 				// Dirty hack to show co-op icon if the first team is configured to show it.
-				var showTeamIcon = nextRuns[i].teams[0] && nextRuns[i].teams[0].members.length > 1;
+				var showTeamIcon = nextRuns[i].teams[0] && nextRuns[i].teams[0].players.length > 1;
 				
 				// Insert the data into a copy of the container element.
 				var containerCopy = runContainerElement.clone();

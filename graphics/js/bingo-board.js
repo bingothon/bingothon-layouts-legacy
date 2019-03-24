@@ -61,7 +61,7 @@ $(()=>{
     /**End bingosync methods */
 
     // Replicants
-    const boardRep = NodeCG.Replicant('bingoboard','nodecg-speedcontrol');
+    const boardRep = NodeCG.Replicant('bingoboard','speedcontrol-bingothon');
 
     boardRep.on('change', (newGoals, oldGoals) => {
         if (!newGoals || !newGoals.cells) {

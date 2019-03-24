@@ -1,5 +1,6 @@
 'use strict';
 $(() => {
+	var bingothonBundleName = 'speedcontrol-bingothon';
 	// JQuery selectors.
 	var donationTotalElement = $('#donationTotal');
 	var prizesContainer = $('#prizesContainer');
@@ -19,7 +20,7 @@ $(() => {
 	var stcText = ['Save the Children was founded nearly 100 years ago and today works in 120 countries. Known to be one of the most efficient and effective charities in the world and one of a few that focus on children. Last year Save the Children helped more than 157 million children around the globe. Thank you all for donating.', 'Save the Children works in the heart of communities, where they help children and families help themselves. By providing education, infrastructure, healthcare and protection from harm. Save the Children works closely with other organizations, governments, non-profits and a variety of local partners while maintaining their own independence without political agenda or religious orientation. Help us, help them, in making the world a better place. Thank you all for donating.', 'Your donations go towards Save the Children and their mission in giving children a healthy start in life, the opportunity to learn and protection from harm. Thank you watching and supporting.'];
 	
 	// Keep donation total updated.
-	var donationTotal = nodecg.Replicant('donationTotal','nodecg-speedcontrol');
+	var donationTotal = nodecg.Replicant('donationTotal',bingothonBundleName);
 	donationTotal.on('change', newVal => {
 		donationTotalElement.html(formatDollarAmount(donationTotal.value, true));
 	});
@@ -40,7 +41,7 @@ $(() => {
 	});
 	
 	// Keep bids updated.
-	var bids = nodecg.Replicant('trackerOpenBids', 'nodecg-speedcontrol', {defaultValue: []});
+	var bids = nodecg.Replicant('trackerOpenBids', bingothonBundleName, {defaultValue: []});
 	bids.on('change', newVal => {
 		var i = 0;
 		bidsContainer.html('');

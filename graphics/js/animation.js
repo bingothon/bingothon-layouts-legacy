@@ -1,5 +1,5 @@
 'use strict';
-nodecg.listenFor('newDonation', 'nodecg-speedcontrol', animationUpdateHeartRate);
+nodecg.listenFor('newDonation', 'speedcontrol-bingothon', animationUpdateHeartRate);
 // Simple fade out/in animation by using opacity.
 function animationSetField(selector, newHTML, callback) {
 	$(selector).animate({'opacity': '0'}, 1000, 'linear', () => {

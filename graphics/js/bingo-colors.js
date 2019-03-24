@@ -1,10 +1,10 @@
 'use-strict'
 $(()=>{
-    const bundleName = 'nodecg-speedcontrol';
+    const bingothonBundleName = 'speedcontrol-bingothon';
     const colorContainerClasses = 'bingo-color';
 
-    const bingoColors = nodecg.Replicant('bingo-colors', bundleName);
-    const bingoBoard = nodecg.Replicant('bingoboard', bundleName);
+    const bingoColors = nodecg.Replicant('bingo-colors', bingothonBundleName);
+    const bingoBoard = nodecg.Replicant('bingoboard', bingothonBundleName);
 
     var colorContainers = $('.bingo-color');
 

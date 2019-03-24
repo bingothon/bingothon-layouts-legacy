@@ -53,7 +53,7 @@ function formPlayerNamesString(runData) {
 	var namesList = 'No Runner(s)';
 	runData.teams.forEach(team => {
 		var teamMemberArray = [];
-		team.members.forEach(member => {teamMemberArray.push(member.names.international);});
+		team.players.forEach(member => {teamMemberArray.push(member.name);});
 		namesArray.push(teamMemberArray.join(', '));
 	});
 	namesList = namesArray.join(' vs. ');

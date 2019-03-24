@@ -14,7 +14,8 @@
   "nodecg": {
     "compatibleRange": "~1.2.2",
     "dependencies": [
-      "speedcontrol/nodecg-speedcontrol:~1.2.2"
+      "speedcontrol/nodecg-speedcontrol:~1.2.2",
+      "bingothon/speedcontrol-bingothon:~1.0.0"
     ],
     "graphics": [
       {

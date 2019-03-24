@@ -8,7 +8,7 @@ var donationTotalTicks = 0;
 var lastDonationTotal;
 
 // Replicants.
-var donationTotal = nodecg.Replicant('donationTotal','nodecg-speedcontrol');
+var donationTotal = nodecg.Replicant('donationTotal','speedcontrol-bingothon');
 
 function changeDonationTotalStuff() {
 	// JQuery selectors.

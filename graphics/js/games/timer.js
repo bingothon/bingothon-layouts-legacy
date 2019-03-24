@@ -2,6 +2,7 @@
 $(() => {
 	// The bundle name where all the run information is pulled from.
 	var speedcontrolBundle = 'nodecg-speedcontrol';
+	var bingothonSpeedcontrolBundle = 'speedcontrol-bingothon';
 	
 	// JQuery selectors.
 	var timerText = $('#timerContainer #timer');
@@ -13,7 +14,7 @@ $(() => {
 	
 	// Replicants
 	var stopwatch = nodecg.Replicant('stopwatch', speedcontrolBundle);
-	var finishFlags = nodecg.Replicant('finishFlags', speedcontrolBundle, {defaultValue:[{hasFinished: false, finishTime: '', finishMedal: ''},{hasFinished: false, finishTime: '', finishMedal: ''},{hasFinished: false, finishTime: '', finishMedal: ''},{hasFinished: false, finishTime: '', finishMedal: ''},]});
+	var finishFlags = nodecg.Replicant('finishFlags', bingothonSpeedcontrolBundle, {defaultValue:[{hasFinished: false, finishTime: '', finishMedal: ''},{hasFinished: false, finishTime: '', finishMedal: ''},{hasFinished: false, finishTime: '', finishMedal: ''},{hasFinished: false, finishTime: '', finishMedal: ''},]});
 	stopwatch.on('change', (newVal, oldVal) => {
 		if (!newVal) return;
 		updateTimer(newVal, oldVal);
