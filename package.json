@@ -13,10 +13,10 @@
   "homepage": "https://github.com/esamarathon/esaw18-layouts#readme",
   "nodecg": {
     "compatibleRange": "~1.2.2",
-    "dependencies": [
-      "speedcontrol/nodecg-speedcontrol:~1.2.2",
-      "bingothon/speedcontrol-bingothon:~1.0.0"
-    ],
+    "bundleDependencies": {
+      "nodecg-speedcontrol":"^1.0.0",
+      "speedcontrol-bingothon":"~1.0.0"
+    },
     "graphics": [
       {
         "file": "music-player.html",
