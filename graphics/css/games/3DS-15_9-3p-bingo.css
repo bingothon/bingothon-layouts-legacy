@@ -1,4 +1,4 @@
-/* sidebars. */
+/* sidebars. 
 .sidebar-left-15-9 {
     background-image: url("../../images/middle-info-background.png");
     left: 0px;
@@ -11,8 +11,8 @@
     left: 1878px;
     top: 78px;
     width: 42px;
-    height: 922px;
-}
+    height: 922px; 
+}*/
 
 /* Game area(s). */
 .gameCapture {
@@ -21,7 +21,7 @@
 }
 
 #gameCapture1 {
-	left: 45px;
+	left: 0px;
 	top: 78px;
 	
 	
@@ -31,7 +31,7 @@
 }
 
 #gameCapture2 {
-	left: 45px;
+	left: 0px;
 	top: 502px;
 	
 	/* This positions the finish time in this game feed. */
@@ -40,7 +40,7 @@
 }
 
 #gameCapture3 {
-	left: 1173px;
+	left: 1218px;
 	top: 78px;
 	
 	/* This positions the finish time in this game feed. */
@@ -49,7 +49,7 @@
 }
 
 #gameCapture4 {
-	left: 1173px;
+	left: 1218px;
 	top: 502px;
 	height: 421px;
 	
@@ -80,7 +80,7 @@
 /* Player information stuff. */
 .playerContainer {
 	left: 1173px;
-	width: 748px;
+	width: 703px;
 	
 }
 
@@ -104,7 +104,7 @@
 	background-image: url("../../images/player-info-header-1-2p-bg.png");
 	top: 0px;
 	height: 75px;
-	left: 1173px;
+	left: 1218px;
 }
 
 #playerContainer4 {
@@ -117,9 +117,9 @@
 /* Run information stuff. */
 #runInfoContainer {
 	background-image: url("../../images/middle-info-background.png");
-	left: 750px;
+	left: 705px;
 	top: 79px;
-	width: 420px;
+	width: 510px;
 	height: 240px;
 }
 
@@ -130,9 +130,9 @@
 #donationContainer {
 	flex-direction: column;
 	justify-content: center;
-	left: 750px;
+	left: 705px;
 	top: 500px;
-	width: 420px;
+	width: 510px;
 	height: 500px;
 	background-image: url("../../images/middle-info-background.png");
 }
@@ -140,7 +140,7 @@
 #bingoContainer {
     flex-direction: column;
     justify-content: center;
-    left: 1173px;
+    left: 1218px;
     top: 502px;
     width: 702px;
     height: 498px;
@@ -151,18 +151,18 @@
 	background-image: url("../../images/middle-info-background.png");
 	flex-direction: column;
 	justify-content: center;
-	left: 750px;
+	left: 705px;
     top: 322px;
-    width: 420px;
+    width: 510px;
     height: 175px;
 }
 
 
 /* Sponsor logos. */
 #sponsorContainer {
-	left: 750px;
+	left: 705px;
 	top: 0px;
-	width: 420px;
+	width: 510px;
 	height: 76px;
 }
 

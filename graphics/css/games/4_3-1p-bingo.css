@@ -1,29 +1,29 @@
 
-.lowbar {
+/*.lowbar {
     width: 1920px;
     height: 80px;
     top: 925px;
     left: 0px;
     background-image: url("../../images/middle-info-background.png");
-}
+}*/
 
 .sidebar-right-4-3 {
-    width: 400px;
-    height: 844px;
-    top: 78px;
-    left: 1549px;
-    background-image: url(../../images/middle-info-background.png);
+    width: 265px;
+    height: 418px;
+    top: 584px;
+    left: 420px;
+    background-image: url("../../images/middle-info-background.png");
 }
 
 /* Game area(s). */
 
 .gameCapture {
-	width: 1125px;
-	height: 843.75px;
+	width: 1232px;
+	height: 923.75px;
 }
 
 #gameCapture1 {
-	left: 420px;
+	left: 685px;
 	top: 78px;
 	
 	/* This positions the finish time in this game feed. */
@@ -43,24 +43,24 @@
 
 /* Player information stuff. */
 .playerContainer {
-	left: 1173px;
-	width: 1498px;
+	left: 1438px;
+	width: 1233px;
 }
 
 #playerContainer1 {
 	background-image: url("../../images/player-info-header-1-2p-bg.png");
 	top: 0px;
 	height: 75px;
-	left: 422px;
+	left: 687px;
 }
 
 /* Run information stuff. */
 #runInfoContainer {
 	background-image: url("../../images/middle-info-background.png");
-	left: -3px;
+	left: 0px;
 	top: 79px;
-	width: 420px;
-	height: 240px;
+	width: 685px;
+	height: 280px;
 }
 
 #gameTitle {font-size: 31px;}
@@ -70,9 +70,9 @@
 #bingoContainer {
     flex-direction: column;
     justify-content: center;
-    left: 1px;
-    top: 504px;
-    width: 416px;
+    left: 0px;
+    top: 584px;
+    width: 420px;
     height: 418px;
 }
 
@@ -81,10 +81,10 @@
 	background-image: url("../../images/middle-info-background.png");
 	flex-direction: column;
 	justify-content: center;
-	left: -3px;
-    top: 322px;
-    width: 420px;
-    height: 179px;
+	left: 0px;
+    top: 362px;
+    width: 685px;
+    height: 219px;
 }
 
 
@@ -92,7 +92,7 @@
 #sponsorContainer {
 	left: 0px;
 	top: 0px;
-	width: 420px;
+	width: 685px;
 	height: 76px;
 }
 
