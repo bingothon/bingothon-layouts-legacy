@@ -13,7 +13,7 @@ $(() => {
 	var backupTimerTO;
 	
 	// Replicants
-	var stopwatch = nodecg.Replicant('stopwatch', speedcontrolBundle);
+	var stopwatch = nodecg.Replicant('timer', speedcontrolBundle);
 	var finishFlags = nodecg.Replicant('finishFlags', bingothonSpeedcontrolBundle, {defaultValue:[{hasFinished: false, finishTime: '', finishMedal: ''},{hasFinished: false, finishTime: '', finishMedal: ''},{hasFinished: false, finishTime: '', finishMedal: ''},{hasFinished: false, finishTime: '', finishMedal: ''},]});
 	stopwatch.on('change', (newVal, oldVal) => {
 		if (!newVal) return;
