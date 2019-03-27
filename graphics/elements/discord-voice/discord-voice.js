@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 	// source: https://github.com/TreZc0/kiio-podcast
-	const voiceActivity = nodecg.Replicant('voiceActivity','bingothon-speedcontrol');
+	const voiceActivity = nodecg.Replicant('voiceActivity','speedcontrol-bingothon');
 
 	var speakerCount = 0;
 
