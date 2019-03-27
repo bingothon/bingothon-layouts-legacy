@@ -104,7 +104,6 @@ body {
 #timer {font-size: 65px;}
 #gameEstimate {font-size: 37px;}
 #gameEstimate::before {content: "EST: ";}
-#gameEstimate::after {content: ":00";}
 
 /* Different colours for each state the timer can be in. */
 .timer_running {color: white}

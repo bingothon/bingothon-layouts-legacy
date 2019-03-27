@@ -9,8 +9,8 @@
 
 .sidebar-right-4-3 {
     width: 265px;
-    height: 418px;
-    top: 584px;
+    height: 425px;
+    top: 76px;
     left: 420px;
     background-image: url("../../images/middle-info-background.png");
 }
@@ -59,8 +59,8 @@
 	background-image: url("../../images/middle-info-background.png");
 	left: 0px;
 	top: 79px;
-	width: 685px;
-	height: 280px;
+	width: 425px;
+	height: 200px;
 }
 
 #gameTitle {font-size: 31px;}
@@ -71,9 +71,9 @@
     flex-direction: column;
     justify-content: center;
     left: 0px;
-    top: 584px;
-    width: 420px;
-    height: 418px;
+    top: 504px;
+    width: 685px;
+    height: 500px;
 }
 
 /* Timer stuff. */
@@ -82,8 +82,8 @@
 	flex-direction: column;
 	justify-content: center;
 	left: 0px;
-    top: 362px;
-    width: 685px;
+    top: 282px;
+    width: 425px;
     height: 219px;
 }
 
