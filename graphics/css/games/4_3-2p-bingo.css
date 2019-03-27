@@ -6,18 +6,18 @@
     width: 231px;
     height: 540px;
 
-}
+}*/
 .sidebar-right-4-2 {
     background-image: url("../../images/middle-info-background.png");
-    left: 1684px;
-    top: 78px;
-    width: 236px;
-    height: 540px;
-}*/
+    left: 821px;
+    top: 0px;
+    width: 270px;
+    height: 620px;
+}
 
 /* Game area(s). */
 .gameCapture {
-	width: 880px;
+	width: 827px;
 	height: 620px;
 }
 
@@ -29,7 +29,7 @@
 }
 
 #gameCapture2 {
-	left: 880px;
+	left: 1090px;
 	top: 0px;
 	
 	/* This positions the finish time in this game feed. */

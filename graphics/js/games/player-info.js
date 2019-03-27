@@ -120,7 +120,7 @@ $(() => {
 		var memberData = {
 			name: member.name,
 			twitch: member.social.twitch,
-			region: member.region
+			region: member.country
 		};
 		
 		return memberData;
