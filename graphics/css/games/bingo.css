@@ -1,0 +1,230 @@
+
+
+/* Game area(s). */
+/*.gameCapture {
+	width: 748px;
+}
+
+#gameCapture1 {
+	left: 0px;
+	top: 78px;
+	height: 421px;
+	
+	/* This positions the finish time in this game feed. */
+/*	align-items: flex-end; /* Bottom of viewport. */
+/*	justify-content: flex-start; /* Left of viewport. */
+/*}
+
+#gameCapture2 {
+	left: 0px;
+	top: 502px;
+	height: 421px;
+	
+	/* This positions the finish time in this game feed. */
+/*	align-items: flex-end; /* Bottom of viewport. */
+	/*justify-content: flex-start; /* Left of viewport. */
+/*}
+
+#gameCapture3 {
+	left: 1173px;
+	top: 78px;
+	height: 421px;
+	
+	/* This positions the finish time in this game feed. */
+/*	align-items: flex-end; /* Bottom of viewport. */
+/*	justify-content: flex-start; /* Left of viewport. */
+/*}
+
+#gameCapture4 {
+	left: 1173px;
+	top: 502px;
+	height: 421px;
+	
+	/* This positions the finish time in this game feed. */
+/*	align-items: flex-end; /* Bottom of viewport. */
+/*	justify-content: flex-start; /* Left of viewport. */
+/*}
+
+/* Finish timer stuff */
+.finishTimeContainer img {padding-right: 5px;}
+.finishTimeContainer {
+	font-size: 25px;
+	height: 30px;
+}
+#finishTimeContainer1 {
+	padding: 0 3px 3px 0; /* No padding needed where this box touches the border. */
+}
+#finishTimeContainer2 {
+	padding: 3px 3px 0 0; /* No padding needed where this box touches the border. */
+}
+#finishTimeContainer3 {
+	padding: 0 3px 3px 0; /* No padding needed where this box touches the border. */
+}
+#finishTimeContainer4 {
+	padding: 3px 3px 0 0; /* No padding needed where this box touches the border. */
+}
+
+/* Player information stuff. */
+.playerContainer {
+	left: 1173px;
+	width: 500px;
+	
+}
+
+.playerContainerSmall {
+	left: 1173px;
+	width: 420px;
+	
+}
+
+#playerContainer1 {
+	background-image: url("../../images/player-info-header-1-2p-bg.png");
+	top: 0px;
+	height: 75px;
+	left: 0px;
+    
+}
+
+#playerContainer2 {
+	background-image: url("../../images/player-info-header-1-2p-bg.png");
+	top: 925px;
+	height: 75px;
+	left: 0px;
+	
+}
+
+#playerContainer3 {
+	background-image: url("../../images/player-info-header-1-2p-bg.png");
+	top: 0px;
+	height: 75px;
+	left: 501px;
+}
+
+#playerContainer4 {
+	background-image: url("../../images/player-info-header-1-2p-bg.png");
+	left: 501px;
+	top: 925px;
+	height: 75px;
+}
+
+#playerContainer5 {
+	background-image: url("../../images/player-info-header-1-2p-bg.png");
+	left: 1001px;
+	top: 0px;
+	height: 75px;
+}
+
+#playerContainer6 {
+	background-image: url("../../images/player-info-header-1-2p-bg.png");
+	left: 1001px;
+	top: 925px;
+	height: 75px;
+}
+
+#playerContainer7 {
+	background-image: url("../../images/player-info-header-1-2p-bg.png");
+	left: 1501px;
+	top: 925px;
+	height: 75px;
+}
+
+/* Run information stuff. */
+#runInfoContainer {
+	background-image: url("../../images/middle-info-background.png");
+	left: 1500px;
+	top: 79px;
+	width: 420px;
+	height: 240px;
+}
+
+#gameTitle {font-size: 31px;}
+#gameCategory, #gameConsole {font-size: 21px;}
+
+/*BingoBoard */
+#bingoContainer {
+    flex-direction: column;
+    justify-content: center;
+    left: 1500px;
+    top: 500px;
+    width: 420px;
+    height: 425px;
+}
+
+#bingoContainer1 {
+    flex-direction: column;
+    justify-content: center;
+    left: 0px;
+    top: 75px;
+    width: 500px;
+    height: 425px;
+}
+
+#bingoContainer2 {
+    flex-direction: column;
+    justify-content: center;
+    left: 0px;
+    top: 500px;
+    width: 500px;
+    height: 425px;
+}
+
+#bingoContainer3 {
+    flex-direction: column;
+    justify-content: center;
+    left: 501px;
+    top: 75px;
+    width: 500px;
+    height: 425px;
+}
+
+#bingoContainer4 {
+    flex-direction: column;
+    justify-content: center;
+    left: 501px;
+    top: 500px;
+    width: 500px;
+    height: 425px;
+}
+
+#bingoContainer5 {
+    flex-direction: column;
+    justify-content: center;
+    left: 1001px;
+    top: 75px;
+    width: 500px;
+    height: 425px;
+}
+
+#bingoContainer6 {
+    flex-direction: column;
+    justify-content: center;
+    left: 1001px;
+    top: 500px;
+    width: 500px;
+    height: 425px;
+}
+/* Timer stuff. */
+#timerContainer {
+	background-image: url("../../images/middle-info-background.png");
+	flex-direction: column;
+	justify-content: center;
+	left: 1500px;
+    top: 322px;
+    width: 420px;
+    height: 185px;
+}
+
+
+/* Sponsor logos. */
+#sponsorContainer {
+	left: 1500px;
+	top: 0px;
+	width: 420px;
+	height: 75px;
+}
+
+.sponsorLogo {
+	padding: 10px 20px;
+	width: auto;
+	height: 100px;
+}
