@@ -5,7 +5,8 @@
     "type": "git",
     "url": "git+https://github.com/bingothon/bingothon-layouts.git"
   },
-  "author": "Tr1cksNL, Lepelog, Floha258, original base from zoton2",
+  "author": "zoton2",
+  "contributors": ["Tr1cksNL", "lepelog", "Floha258"],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/bingothon/bingothon-layouts/issues"
