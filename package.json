@@ -1,21 +1,21 @@
 {
-  "name": "esaw18-layouts",
+  "name": "bingothon-layouts",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/esamarathon/esaw18-layouts.git"
+    "url": "git+https://github.com/bingothon/bingothon-layouts.git"
   },
-  "author": "zoton2",
+  "author": "Tr1cksNL, Lepelog, Floha258, original base from zoton2",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/esamarathon/esaw18-layouts/issues"
+    "url": "https://github.com/bingothon/bingothon-layouts/issues"
   },
-  "homepage": "https://github.com/esamarathon/esaw18-layouts#readme",
+  "homepage": "https://github.com/esamarathon/bingothon-layouts#readme",
   "nodecg": {
     "compatibleRange": "~1.2.2",
     "bundleDependencies": {
-      "nodecg-speedcontrol":"^1.0.0",
-      "speedcontrol-bingothon":"~1.0.0"
+      "nodecg-speedcontrol": "^1.0.0",
+      "speedcontrol-bingothon": "~1.0.0"
     },
     "graphics": [
       {
