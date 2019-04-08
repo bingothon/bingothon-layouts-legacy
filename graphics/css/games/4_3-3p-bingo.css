@@ -127,7 +127,7 @@
 	background-image: url("../../images/middle-info-background.png");
 }
 
-#bingoContainer {
+bingo-container {
     flex-direction: column;
     justify-content: center;
     left: 1174px;

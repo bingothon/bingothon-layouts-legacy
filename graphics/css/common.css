@@ -209,6 +209,11 @@ body {
     float: left;
 }
 
+.goal-count {
+    font-size: 39px;
+    text-align: center;
+}
+
 /*Medal styles*/
 .medal {
 	width: 26px;

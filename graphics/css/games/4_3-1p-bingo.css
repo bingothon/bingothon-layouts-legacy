@@ -67,13 +67,14 @@
 #gameCategory, #gameConsole {font-size: 21px;}
 
 /*BingoBoard */
-#bingoContainer {
+bingo-container {
     flex-direction: column;
     justify-content: center;
     left: 0px;
     top: 504px;
     width: 685px;
-    height: 500px;
+	height: 500px;
+	--bingo-container-font-size: 20px;
 }
 
 /* Timer stuff. */

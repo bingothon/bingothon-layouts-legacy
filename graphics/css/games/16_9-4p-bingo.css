@@ -114,7 +114,7 @@
 #gameCategory, #gameConsole {font-size: 21px;}
 
 /*BingoBoard */
-#bingoContainer {
+bingo-container {
     flex-direction: column;
     justify-content: center;
     left: 751px;

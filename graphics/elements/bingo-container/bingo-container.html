@@ -1,0 +1,61 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/polymer/lib/mixins/mutable-data.html">
+<link rel="import" href="../../../bower_components/iron-icons/av-icons.html">
+<link rel="import" href="../../../bower_components/sc-fitted-text/sc-fitted-text.html">
+<link rel="stylesheet" href="../../../bower_components/lato-font/css/lato-font.css">
+
+<dom-module id="bingo-container">
+    <template>
+        <link href="https://bingosync.com/static/bingosync/style.css" rel="stylesheet"/>
+        <style>
+            /** Mostly styled with bingosync but some fixes*/
+            table {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+            }
+
+            #bingo-board-hide {
+                width: 100%;
+                height: 100%;
+                background: black;
+                position: absolute;
+            }
+
+            td div.square {
+                width: 100%;
+                height: 100%;
+                /*Remove padding cause the board is kinda small*/
+                padding: 0;
+                border: 0;
+            }
+
+            .text-container {
+                font-size: var(--bingo-container-font-size, 10px);
+                left: 0px;
+                right: 0px;
+            }
+            .bingo-table{
+                border-collapse:collapse;
+            }
+
+            </style>
+        <div></div>
+        <table>
+            <template is="dom-repeat" items="[[rows]]" mutable-data>
+                <tr>
+                    <template is="dom-repeat" items="[[item]]" mutable-data>
+                            <td><div class="square">
+                                <template is="dom-repeat" items="[[item.colors]]" mutable-data>
+                                    <div class$="bg-color [[item.color]]square" style$="[[item.style]]"></div>
+                                </template>
+                                <div class="shadow"></div>
+                                <div class="text-container vertical-center">[[item.name]]</div></div></td>
+                    </template>
+                </tr>
+            </template>
+        </table>
+        <div id="bingo-board-hide" hidden$=[[!boardHidden]]></div>
+    </template>
+    <script src="bingo-container.js"></script>
+</dom-module>
