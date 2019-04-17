@@ -79,8 +79,9 @@ bingo-container {
 	justify-content: center;
 	left: 723px;
 	top: 621px;
-	width: 472px;
+	width: 641px;
 	height: 379px;
+	--bingo-container-font-size: 15px;
 }
 
 /* Timer stuff. */
@@ -88,9 +89,9 @@ bingo-container {
     background-image: url("../../images/middle-info-background.png");
     flex-direction: column;
     justify-content: center;
-    left: 1198px;
+    left: 1362px;
     top: 621px;
-    width: 722px;
+    width: 558px;
     height: 379px;
 }
 

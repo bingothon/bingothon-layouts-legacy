@@ -131,7 +131,7 @@ bingo-container {
 	top: 500px;
 	width: 420px;
 	height: 500px;
-
+	--bingo-container-font-size: 15px;
 }
 
 /* Timer stuff. */
