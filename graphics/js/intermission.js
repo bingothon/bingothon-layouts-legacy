@@ -76,7 +76,7 @@ $(() => {
 		}
 		else if (adTicks > adTime) {
 			clearTimeout(adTimeout);
-			adTimerElement.css('opacity', '0');
+			adTimerElement.css('opacity', '1');
 			return;
 		}
 		

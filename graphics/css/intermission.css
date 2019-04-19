@@ -129,11 +129,11 @@ element {
     height: 189px;
 }
 
-#adTimer:before {content: 'Ad Playing:\00a0'}
+/*#adTimer:before {content: 'Ad Playing:\00a0'}*/
 #adTimer {
-	opacity: 0;
+	opacity: 1;
 	padding: 5px;
-	width: 160px;
+	width: 1600px;
 }
 
 .challengeGoal {
