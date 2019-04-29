@@ -1,7 +1,7 @@
 /* Game area(s). */
 .gameCapture {
 	width: 640px;
-	height: 480px;
+	height: 427px;
 }
 
 #gameCapture1 {
@@ -16,7 +16,7 @@
 
 #gameCapture2 {
 	left: 640px;
-	top: 445px;
+	top: 498px;
 	
 	/* This positions the finish time in this game feed. */
 	align-items: flex-end; /* Bottom of viewport. */
@@ -82,24 +82,13 @@
 #runInfoContainer {
 	background-image: url("../../images/middle-info-background.png");
 	left: 0px;
-	top: 555px;
+	top: 502px;
 	width: 639px;
-	height: 445px;
+	height: 498px;
 }
 
 #gameTitle {font-size: 31px;}
 #gameCategory, #gameConsole {font-size: 21px;}
-
-/*BingoBoard */
-/*#donationContainer {
-	flex-direction: column;
-	justify-content: center;
-	left: 750px;
-	top: 500px;
-	width: 420px;
-	height: 500px;
-	background-image: url("../../images/middle-info-background.png");
-}*/
 
 bingo-container {
     flex-direction: column;
@@ -107,7 +96,7 @@ bingo-container {
     left: 640px;
     top: 0px;
     width: 640px;
-    height: 445px;
+    height: 498px;
 	--bingo-container-font-size: 20px;
 }
 
@@ -117,22 +106,7 @@ bingo-container {
 	flex-direction: column;
 	justify-content: center;
 	left: 1280px;
-    top: 555px;
+    top: 502px;
     width: 640px;
-    height: 445px;
+    height: 498px;
 }
-
-
-/* Sponsor logos. 
-#sponsorContainer {
-	left: 750px;
-	top: 0px;
-	width: 420px;
-	height: 76px;
-}
-
-.sponsorLogo {
-	padding: 10px 20px;
-	width: auto;
-	height: 100px;
-}*/

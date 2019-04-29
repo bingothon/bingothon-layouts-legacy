@@ -46,16 +46,6 @@
         "height": 1080
       },
       {
-        "file": "dnd-timer.html",
-        "width": 1920,
-        "height": 1080
-      },
-      {
-        "file": "dnd-names.html",
-        "width": 1920,
-        "height": 1080
-      },
-      {
         "file": "16_9-1p-bingo.html",
         "width": 1920,
         "height": 1080
@@ -96,7 +86,22 @@
         "height": 1080
       },
       {
+        "file": "3_2-2p-bingo.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "3_2-3p-bingo.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
         "file": "3DS-15_9-3p-bingo.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "3DS-15_9-2p-bingo.html",
         "width": 1920,
         "height": 1080
       },
@@ -116,12 +121,12 @@
         "height": 1080
       },
       {
-        "file": "bingo.html",
+        "file": "interview-4p.html",
         "width": 1920,
         "height": 1080
       },
       {
-        "file": "interview-4p.html",
+        "file": "bingo.html",
         "width": 1920,
         "height": 1080
       }

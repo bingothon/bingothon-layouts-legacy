@@ -7,18 +7,11 @@
     height: 540px;
 
 }*/
-.sidebar-right-4-2 {
-    background-image: url("../../images/middle-info-background.png");
-    left: 821px;
-    top: 0px;
-    width: 270px;
-    height: 620px;
-}
 
 /* Game area(s). */
 .gameCapture {
 	width: 960px;
-	height: 720px;
+	height: 640px;
 }
 
 #gameCapture1 {
@@ -59,7 +52,7 @@
 
 #playerContainer1 {
 	background-image: url("../../images/player-info-header-1-2p-bg.png");
-	top: 721px;
+	top: 641px;
 	height: 75px;
 	left: 0px;
     
@@ -67,7 +60,7 @@
 
 #playerContainer2 {
 	background-image: url("../../images/player-info-header-1-2p-bg.png");
-	top: 721px;
+	top: 641px;
 	height: 75px;
 	left: 1193px;
 	
@@ -77,7 +70,7 @@
 #runInfoContainer {
     background-image: url("../../images/middle-info-background.png");
     left: 0px;
-    top: 795px;
+    top: 715px;
     width: 720px;
     height: 204px;
 }
@@ -90,7 +83,7 @@ bingo-container {
     flex-direction: column;
 	justify-content: center;
 	left: 723px;
-	top: 721px;
+	top: 641px;
 	width: 472px;
 	height: 279px;
 	--bingo-container-font-size: 15px;
@@ -102,7 +95,7 @@ bingo-container {
     flex-direction: column;
     justify-content: center;
     left: 1198px;
-    top: 795px;
+    top: 715px;
     width: 722px;
     height: 204px;
 }

@@ -1,30 +1,23 @@
+
+
 /* Game area(s). */
 .gameCapture {
-	width: 640px;
-	height: 480px;
+	width: 960px;
+	height: 576px;
 }
 
 #gameCapture1 {
 	left: 0px;
 	top: 78px;
 	
-	
+	 
 	/* This positions the finish time in this game feed. */
 	align-items: flex-start; /* Top of viewport. */
 	justify-content: flex-start; /* Left of viewport. */
 }
 
 #gameCapture2 {
-	left: 640px;
-	top: 445px;
-	
-	/* This positions the finish time in this game feed. */
-	align-items: flex-end; /* Bottom of viewport. */
-	justify-content: flex-start; /* Left of viewport. */
-}
-
-#gameCapture3 {
-	left: 1280px;
+	left: 960px;
 	top: 78px;
 	
 	/* This positions the finish time in this game feed. */
@@ -42,16 +35,13 @@
 	padding: 0 3px 3px 0; /* No padding needed where this box touches the border. */
 }
 #finishTimeContainer2 {
-	padding: 3px 3px 0 0; /* No padding needed where this box touches the border. */
-}
-#finishTimeContainer3 {
 	padding: 0 3px 3px 0; /* No padding needed where this box touches the border. */
 }
 
 /* Player information stuff. */
 .playerContainer {
 	left: 1173px;
-	width: 640px;
+	width: 958px;
 	
 }
 
@@ -65,61 +55,44 @@
 
 #playerContainer2 {
 	background-image: url("../../images/player-info-header-1-2p-bg.png");
-	top: 925px;
-	height: 75px;
-	left: 640px;
-	
-}
-
-#playerContainer3 {
-	background-image: url("../../images/player-info-header-1-2p-bg.png");
 	top: 0px;
 	height: 75px;
-	left: 1281px;
+	left: 963px;
+	
 }
 
 /* Run information stuff. */
 #runInfoContainer {
-	background-image: url("../../images/middle-info-background.png");
-	left: 0px;
-	top: 555px;
-	width: 639px;
-	height: 445px;
+    background-image: url("../../images/middle-info-background.png");
+    left: 0px;
+    top: 657px;
+    width: 720px;
+    height: 379px;
 }
 
 #gameTitle {font-size: 31px;}
 #gameCategory, #gameConsole {font-size: 21px;}
 
 /*BingoBoard */
-/*#donationContainer {
-	flex-direction: column;
-	justify-content: center;
-	left: 750px;
-	top: 500px;
-	width: 420px;
-	height: 500px;
-	background-image: url("../../images/middle-info-background.png");
-}*/
-
 bingo-container {
     flex-direction: column;
-    justify-content: center;
-    left: 640px;
-    top: 0px;
-    width: 640px;
-    height: 445px;
-	--bingo-container-font-size: 20px;
+	justify-content: center;
+	left: 723px;
+	top: 657px;
+	width: 641px;
+	height: 379px;
+	--bingo-container-font-size: 15px;
 }
 
 /* Timer stuff. */
 #timerContainer {
-	background-image: url("../../images/middle-info-background.png");
-	flex-direction: column;
-	justify-content: center;
-	left: 1280px;
-    top: 555px;
-    width: 640px;
-    height: 445px;
+    background-image: url("../../images/middle-info-background.png");
+    flex-direction: column;
+    justify-content: center;
+    left: 1362px;
+    top: 657px;
+    width: 558px;
+    height: 379px;
 }
 
 

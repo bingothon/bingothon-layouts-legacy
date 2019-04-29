@@ -46,6 +46,8 @@ $(() => {
 	// This might have race condition issues, not the best, will see how it goes.
 	var runContainerElement = $('<div>').load('js/intermission-upcoming-box.html');
 	
+        
+        nodecg.sendMessageToBundle('twitchAdStarted', 'nodecg-speedcontrol', {duration: 180});
 	// If this is being viewed in OBS Studio, stuff in here can be triggered.
 	if (isOBS) {
 		// When we change to any scene, so we need to check it's relevant.
@@ -54,8 +56,14 @@ $(() => {
 			var sceneName = evt.detail.name;
 			if (sceneName.indexOf('(ads)') >= 0) {
 				nodecg.sendMessageToBundle('playTwitchAd', 'nodecg-speedcontrol', err => {
-					if (!err)
-						showAdTimer(true);
+					if (!err){
+                                            console.log('no error');
+                                            showAdTimer(true);
+                                        } else {
+                                            console.log('error');
+                                            console.log(err);
+                                            showAdTimer(true);
+                                        }
 				});
 			}
 		});
