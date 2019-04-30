@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html data-sceneid="3_2-3p-bingo">
+<html data-sceneid="10_9-1p-bingo">
 	<head>
 		<meta charset="UTF-8">
 		
 		<!-- CSS -->
 		<link href="css/common.css" rel="stylesheet"/>
-		<link href="css/games/3_2-3p-bingo.css" rel="stylesheet"/>
+		<link href="css/games/10_9-1p-bingo.css" rel="stylesheet"/>
 		
 		<!-- JavaScript -->
 		<script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -23,11 +23,16 @@
                 <!-- Stuff for the discord voice -->
 		<link rel="stylesheet" href="../bower_components/lato-font/css/lato-font.css">
 		<link rel="import" href="elements/discord-voice/discord-voice.html">
+
+		<!-- Stuff for bingo board-->
+		<link rel="import" href="elements/bingo-container/bingo-container.html">
+
 		<style>
 			discord-voice {
 				position: relative;
-				z-index: 10;
-				bottom: 150px;
+				/*z-index: 10;*/
+                top: -240px;
+                left: 0px;
 				text-align: initial;
 				--discord-voice-fontWeight: 600;
 				--discord-voice-fontsize: 24px;
@@ -35,8 +40,6 @@
 				/*These three lines let you control the text in the discord overlay*/
 			}
 		</style>
-		<!-- Stuff for bingo board-->
-		<link rel="import" href="elements/bingo-container/bingo-container.html">
 	</head>
 	<body>
 		<!-- Background image -->
@@ -49,80 +52,48 @@
 		<div id="gameCapture1" class="storageBox gameCapture flexContainer">
 			<!-- Finish time -->
 			<div id="finishTimeContainer1" class="finishTimeContainer flexContainer">
-				<div class="medal"></div>
+				<img>
 				<div id="finishTime"></div>
 			</div>
 			<!-- Twitch 1-->
 			<div id="twitch-player0" class="twitch-player"></div>
 		</div>
-		<div id="gameCapture2" class="storageBox gameCapture flexContainer">
-			<!-- Finish time -->
-			<div id="finishTimeContainer2" class="finishTimeContainer flexContainer">
-				<div class="medal"></div>
-				<div id="finishTime"></div>
-			</div>
-			<!-- Twitch 2-->
-			<div id="twitch-player1" class="twitch-player"></div>
-		</div>
-		<div id="gameCapture3" class="storageBox gameCapture flexContainer">
-			<!-- Finish time -->
-			<div id="finishTimeContainer3" class="finishTimeContainer flexContainer">
-				<div class="medal"></div>
-				<div id="finishTime"></div>
-			</div>
-			<!-- Twitch 3-->
-			<div id="twitch-player2" class="twitch-player"></div>
-		</div>
-		
 		
 		<!-- Player 1 information -->
 		<div id="playerContainer1" class="storageBox playerContainer flexContainer">
 			<img class="playerLogo nameLogo">
-			<div class="bingo-color" style="opacity: 1;"></div>
 			<div class="playerText"><!-- Player Name --></div>
+			<div id="bingo-color0" style="opacity: 1;"></div>
 			<img class="playerFlag">
 			<img class="playerCoOp">
-		</div>
-		
-		<!-- Player 2 information -->
-		<div id="playerContainer2" class="storageBox playerContainer flexContainer">
-			<img class="playerLogo nameLogo">
-			<div class="bingo-color" style="opacity: 1;"></div>
-			<div class="playerText"><!-- Player Name --></div>
-			<img class="playerFlag">
-			<img class="playerCoOp">
-		</div>
-		
-		<div id="playerContainer3" class="storageBox playerContainer flexContainer">
-			<img class="playerLogo nameLogo">
-			<div class="bingo-color" style="opacity: 1;"></div>
-			<div class="playerText"><!-- Player Name --></div>
-			<img class="playerFlag">
-			<img class="playerCoOp">
-		</div>
+        </div>
+
 		
 		<!-- Run information -->
 		<div id="runInfoContainer" class="storageBox flexContainer">
-				<div style="width: 395px;height: 50px;"><discord-voice tableWidth="600" rowWidth="600" columnsperline="5"></discord-voice></div>
-				<!--These html parameters let you control the discord voice overlay. ColumsperLine controls how many voice members are shown in one row. The other elements control the overall size of the layout-->
+                <div id="gameTitle"><!-- Game Name --></div>
+			<div>
+				<span id="gameCategory"><!-- Game Category --></span>
+
 			<div id="gameTitle"><!-- Game Name --></div>
 			<div>
 				<span id="gameCategory"><!-- Game Category --></span>
 				<span id="gameConsole"><!-- Game Console --></span>
-			</div>
-		</div>
-
-		<div class="voicecontainer storageBox flexContainer">
-			
-		</div>
-		
+            </div>
+        </div>
+        		
 		<!-- Timer -->
 		<div id="timerContainer" class="storageBox flexContainer">
 			<div id="timer"><!-- Timer --></div>
 			<div id="gameEstimate"><!-- Game Estimate --></div>
 		</div>
 		
-		<bingo-container class="storageBox flexContainer"></bingo-container>	
+		<bingo-container class="storageBox flexContainer"></bingo-container>
+
+		<div class="voiceContainer storageBox flexContainer">
+			<div style="width: 865px;height: 80px;"><discord-voice tableWidth="300" rowWidth="300" columnsperline="1"></discord-voice></div>
+		</div>
+		
 		
 	</body>
-</html>
+    </html>
