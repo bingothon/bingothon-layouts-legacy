@@ -27,7 +27,7 @@
 			discord-voice {
 				position: relative;
 				z-index: 10;
-				bottom: 50px;
+				top: -225px;
 				text-align: initial;
 				--discord-voice-fontWeight: 600;
 				--discord-voice-fontsize: 24px;
@@ -118,8 +118,6 @@
 		
 		<!-- Run information -->
 		<div id="runInfoContainer" class="storageBox flexContainer">
-		<div style="width: 395px;height: 50px;"><discord-voice tableWidth="395" rowWidth="395" columnsperline="5"></discord-voice></div>
-			<!--These html parameters let you control the discord voice overlay. ColumsperLine controls how many voice members are shown in one row. The other elements control the overall size of the layout-->
 			<div id="gameTitle"><!-- Game Name --></div>
 			<div>
 				<span id="gameCategory"><!-- Game Category --></span>
@@ -136,8 +134,10 @@
 		<bingo-container class="storageBox flexContainer"></bingo-container>
 		
 		<!-- Sidebars -->		
-		<div class="sidebar-left-4-3 storageBox flexContainer"></div>
-		<div class="sidebar-right-4-3 storageBox flexContainer"></div>
+		<div class="voiceContainer storageBox flexContainer">
+			<div style="width: 395px;height: 50px;"><discord-voice tableWidth="350" rowWidth="350" columnsperline="1"></discord-voice></div>
+			<!--These html parameters let you control the discord voice overlay. ColumsperLine controls how many voice members are shown in one row. The other elements control the overall size of the layout-->
+		</div>
 		
 		<!-- Sponsor Logos -->
 		<div id="sponsorContainer" class="storageBox flexContainer"></div>
