@@ -49,7 +49,6 @@
 		_fit() {
 			Polymer.RenderStatus.beforeNextRender(this, () => {
 				this.$.fittedContent.style.transform = `scaleX(1) scaleY(1)`;
-				this.$.fittedContent.style.left = "0";
 				this.$.fittedContent.style.top = "0";
 				// get width height of parent and text container to calc scaling
 				var scaleX = this.$.container.scrollWidth / this.$.fittedContent.scrollWidth;
@@ -60,7 +59,6 @@
 				// center
 				var toLeft = (this.$.container.scrollWidth - this.$.fittedContent.scrollWidth) / 2;
 				this.$.fittedContent.style.transform = `translateY(-50%) translateX(${toLeft}px) scaleX(${scaleX}) scaleY(${scaleY})`;
-				//this.$.fittedContent.style.left = "50%";
 				this.$.fittedContent.style.top = "50%";
 			});
 		}
