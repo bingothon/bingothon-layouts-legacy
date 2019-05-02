@@ -139,7 +139,7 @@ function showTickerMessages() {
 	// bingothon promotional message.
 	if (messageIndex === 11) {
 		if (lastMessageType !== 4) {
-			displayMessage('<span class="textGlow">This is Bingothon 2018, enjoy your stay!</span>', null, 30, null, true);
+			displayMessage('<span class="textGlow">This is Bingothon 2019, enjoy your stay!</span>', null, 30, null, true);
 			lastMessageType = 4;
 		}
 		else retry = true;
@@ -157,7 +157,7 @@ function showTickerMessages() {
 	// Donation URL message.
 	if (messageIndex === 13) {
 		if (lastMessageType !== 6) {
-			displayMessage('<span class="textGlow">Donate @ <span class="greyText">tiltify.com/@bingothon</span></span>', null, 30, null, true);
+			displayMessage('<span class="textGlow">Donate @ <span class="greyText">https://donations.bingothon.com</span></span>', null, 30, null, true);
 			lastMessageType = 6;
 		}
 		else retry = true;
