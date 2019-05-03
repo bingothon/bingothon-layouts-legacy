@@ -1,18 +1,9 @@
-/*.sidebar-left-4-2 {
-
+.voiceContainer {
     background-image: url("../../images/middle-info-background.png");
-    left: 0px;
-    top: 78px;
-    width: 231px;
-    height: 540px;
-
-}*/
-.sidebar-right-4-2 {
-    background-image: url("../../images/middle-info-background.png");
-    left: 821px;
-    top: 0px;
-    width: 270px;
-    height: 620px;
+    left: 1198px;
+    top: 795px;
+    width: 400px;
+    height: 204px;
 }
 
 /* Game area(s). */
@@ -101,23 +92,8 @@ bingo-container {
     background-image: url("../../images/middle-info-background.png");
     flex-direction: column;
     justify-content: center;
-    left: 1198px;
+    left: 1598px;
     top: 795px;
-    width: 722px;
+    width: 322px;
     height: 204px;
 }
-
-
-/* Sponsor logos. */
-/*#sponsorContainer {
-	left: 750px;
-	top: 0px;
-	width: 420px;
-	height: 76px;
-}
-
-.sponsorLogo {
-	padding: 10px 20px;
-	width: auto;
-	height: 100px;
-}*/

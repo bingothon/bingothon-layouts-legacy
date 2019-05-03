@@ -28,7 +28,7 @@
 				position: relative;
 				z-index: 10;
 				text-align: initial;
-				top: -75px;
+				top: -95px;
 				--discord-voice-fontWeight: 600;
 				--discord-voice-fontsize: 24px;
 				--discord-voice-font: Lato;
@@ -86,8 +86,7 @@
 		
 		<!-- Run information -->
 		<div id="runInfoContainer" class="storageBox flexContainer">
-				<div style="width: 395px;height: 50px;"><discord-voice tableWidth="700" rowWidth="700" columnsperline="5"></discord-voice></div>
-			<div id="gameTitle"><!-- Game Name --></div>
+				<div id="gameTitle"><!-- Game Name --></div>
 			<div>
 				<span id="gameCategory"><!-- Game Category --></span>
 				<span id="gameConsole"><!-- Game Console --></span>
@@ -103,7 +102,12 @@
 		<bingo-container class="storageBox flexContainer"></bingo-container>
 			<!--These html parameters let you control the discord voice overlay. ColumsperLine controls how many voice members are shown in one row. The other elements control the overall size of the layout-->
 		
-		<!-- Sponsor Logos -->
+
+			<bingo-container class="storageBox flexContainer"></bingo-container>	
+			<div class="voiceContainer storageBox flexContainer">
+				<div style="width: 395px;height: 50px;"><discord-voice tableWidth="400" rowWidth="400" columnsperline="3"></discord-voice></div>
+				</div>
+					<!-- Sponsor Logos -->
 		<div id="sponsorContainer" class="storageBox flexContainer"></div>
 	</body>
 </html>

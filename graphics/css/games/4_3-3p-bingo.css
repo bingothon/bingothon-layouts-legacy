@@ -1,4 +1,11 @@
-/* Game area(s). */
+.voiceContainer{
+	background-image: url("../../images/middle-info-background.png");
+	top: 555px;
+	left: 1280px;
+	height: 200px;
+	width: 640px;
+}
+	/* Game area(s). */
 .gameCapture {
 	width: 640px;
 	height: 480px;
@@ -117,9 +124,9 @@ bingo-container {
 	flex-direction: column;
 	justify-content: center;
 	left: 1280px;
-    top: 555px;
+    top: 755px;
     width: 640px;
-    height: 445px;
+    height: 245px;
 }
 
 

@@ -1,5 +1,5 @@
 
-.lowbar {
+.voiceContainer {
     width: 1920px;
     height: 80px;
     top: 925px;
@@ -11,7 +11,7 @@
 
 .gameCapture {
 	width: 1500px;
-	height: 843.75px;
+	height: 844px;
 }
 
 #gameCapture1 {
@@ -51,10 +51,10 @@
 /* Run information stuff. */
 #runInfoContainer {
 	background-image: url("../../images/middle-info-background.png");
-	left: -3px;
-	top: 79px;
+	left: 0px;
+	top: 0px;
 	width: 420px;
-	height: 240px;
+	height: 280px;
 }
 
 #gameTitle {font-size: 31px;}
@@ -64,9 +64,9 @@
 bingo-container {
     flex-direction: column;
     justify-content: center;
-    left: 1px;
+    left: 0px;
     top: 504px;
-    width: 416px;
+    width: 420px;
     height: 418px;
 	--bingo-container-font-size: 20px;
 }
@@ -76,10 +76,10 @@ bingo-container {
 	background-image: url("../../images/middle-info-background.png");
 	flex-direction: column;
 	justify-content: center;
-	left: -3px;
-    top: 322px;
+	left: 0px;
+    top: 280px;
     width: 420px;
-    height: 179px;
+    height: 228px;
 }
 
 
