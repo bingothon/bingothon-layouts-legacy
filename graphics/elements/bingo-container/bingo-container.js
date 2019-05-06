@@ -86,7 +86,7 @@
                                 this.set(`rows.${rowIndex}.${columnIndex}.colors`, newColors);
                                 console.log(newColors);
                             } else {
-                                cell.colors = [];
+                                this.set(`rows.${rowIndex}.${columnIndex}.colors`, []);
                             }
                         }
                         idx++;
