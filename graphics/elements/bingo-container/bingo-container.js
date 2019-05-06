@@ -41,6 +41,7 @@
         constructor() {
             super();
             this.boardHidden = true;
+            this.splashActivated = "";
             this.rows = [];
             this.skewAngle=1;
             for (var i = 0;i<5;i++) {
@@ -91,6 +92,12 @@
                         idx++;
                     });
                 });
+            });
+            nodecg.listenFor('showBingoAnimation','speedcontrol-bingothon',()=>{
+                // if the animation is currently running do nothing
+                if (this.splashActivated != "") return;
+                this.splashActivated = "activated";
+                setTimeout(()=>this.splashActivated="",4000);
             });
 		}
 	}

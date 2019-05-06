@@ -13,11 +13,27 @@
                 position: absolute;
             }
 
+            @keyframes bingo-splash {
+                0% {opacity: 0;font-size: 1px}
+                40% {transform: rotate(3600deg); opacity: 1; font-size: 100px}
+                70% {transform: rotate(3600deg); opacity: 1; font-size: 100px}
+                100% {transform: rotate(3600deg) translateY(30%); opacity: 0; font-size: 100px}
+            }
+
             #bingo-board-hide {
                 width: 100%;
                 height: 100%;
                 background: black;
                 position: absolute;
+            }
+
+            #bingo-splash {
+                position: absolute;
+                opacity: 0;
+            }
+
+            #bingo-splash.activated {
+                animation: bingo-splash 4s;
             }
 
             td div.square {
@@ -58,6 +74,7 @@
             </template>
         </table>
         <div id="bingo-board-hide" hidden$=[[!boardHidden]]></div>
+        <div id="bingo-splash" class$="[[splashActivated]]">BINGO</div>
     </template>
     <script src="bingo-container.js"></script>
 </dom-module>
