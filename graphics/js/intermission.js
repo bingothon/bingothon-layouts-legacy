@@ -219,7 +219,15 @@ $(() => {
 			nextPolls[i].options.forEach(option => {
 				optionsFormatted.push(option.name+' ('+formatDollarAmount(option.amount_raised)+')');
 			});
-			newHtml += '<div class="pollOptions">'+optionsFormatted.join('/')+'</div>';
+			if (nextPolls[i].allow_custom_options) {
+				if (nextPolls[i].options.length == 0) {
+					newHtml += '<div class="pollOption">Submit your own options!</div>';
+				} else {
+					newHtml += '<div class="pollOptions">'+optionsFormatted.join('/')+' ...or submit your own option!</div>';
+				}
+			} else {
+				newHtml += '<div class="pollOptions">'+optionsFormatted.join('/')+'</div>';
+			}
 			newHtml += '</div>';
 		}
 		comingUpPollsBox.html(newHtml);
