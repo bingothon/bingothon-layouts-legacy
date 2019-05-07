@@ -27,6 +27,19 @@
         return orderedColors;
     }
 
+    const colorToGradient={
+        green: "#31D814",
+        red: "#FF4944",
+        orange: "#FF9C12",
+        blue: "#409CFF",
+        purple: "#822dbf",
+        pink: "#ed86aa",
+        brown: "#ab5c23",
+        teal: "#419695",
+        navy: "#0d48b5",
+        yellow: "#d8d014",
+    };
+
 	class bingoContainer extends Polymer.MutableData(Polymer.Element) {
 		static get is() {
 			return 'bingo-container';
@@ -43,7 +56,8 @@
             this.boardHidden = true;
             this.splashActivated = "";
             this.rows = [];
-            this.skewAngle=1;
+            this.skewAngle = 1;
+            this.bingoAnimColor = "black";
             for (var i = 0;i<5;i++) {
                 var row = [];
                 for (var j = 0;j<5;j++) {
@@ -93,9 +107,10 @@
                     });
                 });
             });
-            nodecg.listenFor('showBingoAnimation','speedcontrol-bingothon',()=>{
+            nodecg.listenFor('showBingoAnimation','speedcontrol-bingothon',data=>{
                 // if the animation is currently running do nothing
                 if (this.splashActivated != "") return;
+                this.bingoAnimColor = colorToGradient[data.color] || "black";
                 this.splashActivated = "activated";
                 setTimeout(()=>this.splashActivated="",4000);
             });

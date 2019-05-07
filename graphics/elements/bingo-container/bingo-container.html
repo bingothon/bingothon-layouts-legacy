@@ -15,9 +15,9 @@
 
             @keyframes bingo-splash {
                 0% {opacity: 0;font-size: 1px}
-                40% {transform: rotate(3600deg); opacity: 1; font-size: 100px}
-                70% {transform: rotate(3600deg); opacity: 1; font-size: 100px}
-                100% {transform: rotate(3600deg) translateY(30%); opacity: 0; font-size: 100px}
+                40% {transform: rotate(1800deg); opacity: 1; font-size: 100px;text-shadow: -5px -5px 10px white, 5px -5px 10px white, -5px 5px 10px white, 5px 5px 10px white;}
+                70% {transform: rotate(1800deg); opacity: 1; font-size: 100px;text-shadow: -5px -5px 10px white, 5px -5px 10px white, -5px 5px 10px white, 5px 5px 10px white;}
+                100% {transform: rotate(1800deg) translateY(30%); opacity: 0; font-size: 90px;text-shadow: -5px -5px 50px white, 5px -5px 50px white, -5px 5px 50px white, 5px 5px 50px white;}
             }
 
             #bingo-board-hide {
@@ -74,7 +74,7 @@
             </template>
         </table>
         <div id="bingo-board-hide" hidden$=[[!boardHidden]]></div>
-        <div id="bingo-splash" class$="[[splashActivated]]">BINGO</div>
+        <div id="bingo-splash" style$="color:[[bingoAnimColor]]" class$="[[splashActivated]]">BINGO!</div>
     </template>
     <script src="bingo-container.js"></script>
 </dom-module>
