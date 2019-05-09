@@ -12,8 +12,18 @@
 		<script src="../bower_components/moment/min/moment.min.js"></script>
 		<script src="js/utils.js"></script>
 		<script src="js/host-dashboard.js"></script>
+		<style>
+			#intermission-live-warning {
+				width:100%;
+				background-color: red;
+				display: none;
+				text-align: center;
+				font-size: 40px;
+			}
+		</style>
 	</head>
 	<body>
+		<div id="intermission-live-warning">You are currently live on stream</div>
 		<div id="columnsWrapper">
 			<div id="column1" class="column">
 				<div id="dwbInfoHeader">Doctors Without Borders Information</div>
@@ -31,8 +41,7 @@
 			<div id="column4" class="column">
 				<div id="donationTotalHeader">Donation Total:</div>
 				<div id="donationTotal">$10,000</div>
-				<div id="prizesHeader">Currently Available Prizes:</div>
-				<div id="prizesContainer"></div>
+				<div>Go live on stream during intermission:<br><button id="intermission-sound-button" disabled="true">(Disabled)</button></div>
 			</div>
 		</div>
 	</body>

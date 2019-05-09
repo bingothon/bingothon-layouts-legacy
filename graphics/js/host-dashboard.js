@@ -7,6 +7,8 @@ $(() => {
 	var bidsContainer = $('#bidsContainer');
 	var runsContainer = $('#runsContainer');
 	var dwbInfoContainer = $('#dwbInfoContainer');
+	var liveWarningText = $('#intermission-live-warning');
+	var intermissionSoundButton = $('#intermission-sound-button');
         var button = $('#Button');
         var dwbInfoIndex = 0;
 	
@@ -38,7 +40,47 @@ $(() => {
         dwbText[8] = "Doctors Without Borders has already helped many many people, but they also are researching medicine to help even more people in the future. If you want to help Doctors Without Borders help people, type !donate in the chat and a link will appear where you can give money to Doctors Without Borders."
         
         dwbText[9] = "Doctors Without Borders started off as 300 volunteers, who helped Nicaragua in an earthquake, and since then the organization has grown over 100-fold, and all over the world. If you want to support Doctors Without Borders, please consider donating to our marathon - all proceeds will go to the organization to help people all over the world."
-        
+		
+	// a hoster can unmute discord to talk on stream
+	const obsProgramSceneRep = nodecg.Replicant('obs:programScene',bingothonBundleName);
+	const obsDiscordAudioMuted = nodecg.Replicant('obsDiscordAudioMuted', bingothonBundleName);
+
+	// wait for both replicants to be ready
+	obsProgramSceneRep.once('change',() => {
+		obsDiscordAudioMuted.once('change',()=>{
+			obsProgramSceneRep.on('change',newVal=>{
+				setHosterVoiceButtonStatus(newVal,obsDiscordAudioMuted.value);
+			});
+			obsDiscordAudioMuted.on('change',newVal=>{
+				setHosterVoiceButtonStatus(obsProgramSceneRep.value,newVal);
+			});
+			intermissionSoundButton.on('click',()=>{
+				var scene = obsProgramSceneRep.value;
+				if (!scene || !scene.name || !scene.name.includes('Intermission')) {
+					// do nothing, clicking should be disabled anyways
+				} else {
+					obsDiscordAudioMuted.value = !obsDiscordAudioMuted.value;
+				}
+			});
+		});
+	});
+
+	// update button/banner for the different scenarios
+	function setHosterVoiceButtonStatus(scene, audioMuted) {
+		// check if we're currently on the intermission layout in OBS, if not disable the button
+		if (!scene || !scene.name || !scene.name.includes('Intermission')) {
+			intermissionSoundButton.prop('disabled',true).text('(Disabled)');
+			liveWarningText.hide();
+		} else {
+			if (audioMuted) {
+				intermissionSoundButton.prop('disabled',false).text('Unmute on stream');
+				liveWarningText.hide();
+			} else {
+				intermissionSoundButton.prop('disabled',false).text('Mute');
+				liveWarningText.show();
+			}
+		}
+	}
 	
 	// Keep donation total updated.
 	var donationTotal = nodecg.Replicant('donationTotal',bingothonBundleName);
