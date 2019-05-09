@@ -35,10 +35,11 @@ $(() => {
 
 	// When challenges/incentives changes load the next 4 into the cache to display them
 	openBidsReplicant.on('change',(newBids)=>{
-		// put next 4 bids that have a goal to challenges
+		// put next 4 bids that have a goal to challenges, they are closed if met so display them until the run starts
 		// and 4 without a goal to polls
-		nextChallenges = newBids.filter((bid)=>bid.goal!=null).slice(0,4);
-		nextPolls = newBids.filter((bid)=>bid.goal==null).slice(0,4);
+		nextChallenges = newBids.filter((bid)=>bid.goal!=null && !bid.run_started).slice(0,4);
+		// polls are manually closed, so display only the open ones
+		nextPolls = newBids.filter((bid)=>bid.goal==null && bid.state=='OPENED').slice(0,4);
 		refreshChallengesHtml();
 		refreshPollHtml();
 	});
@@ -221,7 +222,7 @@ $(() => {
 			});
 			if (nextPolls[i].allow_custom_options) {
 				if (nextPolls[i].options.length == 0) {
-					newHtml += '<div class="pollOption">Submit your own options!</div>';
+					newHtml += '<div class="pollOptions">Submit your own options!</div>';
 				} else {
 					newHtml += '<div class="pollOptions">'+optionsFormatted.join('/')+' ...or submit your own option!</div>';
 				}

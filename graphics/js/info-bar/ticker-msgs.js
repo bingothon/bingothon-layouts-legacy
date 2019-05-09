@@ -54,10 +54,11 @@ donationsReplicant.on('change', (newDonations)=>{
 
 // When challenges/incentives changes load the next 3 into the cache to display them
 openBidsReplicant.on('change',(newBids)=>{
-	// put next 4 bids that have a goal to challenges
-	// and 4 without a goal to polls
-	nextChallenges = newBids.filter((bid)=>bid.goal!=null).slice(0,3);
-	nextPolls = newBids.filter((bid)=>bid.goal==null).slice(0,3);
+	// put next 3 bids that have a goal to challenges
+	// and 3 without a goal to polls
+	nextChallenges = newBids.filter((bid)=>bid.goal!=null && !bid.run_started).slice(0,3);
+	// polls are manually closed, so display only the open ones
+	nextPolls = newBids.filter((bid)=>bid.goal==null && bid.state=='OPENED').slice(0,3);
 });
 
 // Donation test code below.
