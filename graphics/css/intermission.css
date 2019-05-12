@@ -46,7 +46,7 @@
     left: 0px;
     top: 828px;
     width: 417px;
-    height: 59px;
+    height: 251px;
 }
 .mcat {padding-right: 15px;}
 #musicTickerText {font-size: 26px;}
@@ -62,8 +62,33 @@
 #comingUpRunsHeaderText {
     left: 416.5px;
     top: 0px;
-    width: 1503px;
+    width: 860px;
     height: 63px;
+}
+
+#hostingBingoHeaderText {
+    left: 1276px;
+    top: 0px;
+    width: 644px;
+    height: 63px;
+    outline: 0;
+	background-color: #c52c30;
+	font-family: Bebas Kai;
+	font-size: 50px;
+	border-bottom
+}
+
+#hostingBingoHeaderTextSpan {
+	
+}
+
+#hostingBingoPlaceholder{
+	background-color: rgba(0,0,0,0.68);
+	width: 644px;
+	height: 644px;
+	left: 1277px;
+	top: 63px;
+	border-bottom: 4px solid #6e2c30;
 }
 
 #comingUpRunsHeaderTextSpan {
@@ -78,9 +103,10 @@ element {
     position: fixed;
     left: 416.5px;
     top: 63px;
-    width: 1503px;
-    height: 940px;
+    width: 852px;
+    height: 1080px;
     border-left: 4px solid #6e2c30;
+    border-right: 4px solid #6e2c30;
 }
 
 #comingUpRunsBox > div {
@@ -93,7 +119,7 @@ element {
 .comingUpRunContainer {
 	position: relative;
 	flex-direction: column;
-	width: 1503px;
+	width: 852px;
 	height: 255px;
 	
 	/* Remove the normal outlines and just use a bottom border instead. */
@@ -149,4 +175,13 @@ element {
 	font-size: 20px;
     padding-top: 25px;
 	color: #bfbfbf;
+}
+
+
+.voiceContainer{
+	background-image: url("../../images/middle-info-background.png");
+	left: 1277px;
+	top: 707px;
+	width: 642px;
+	height: 372px;
 }

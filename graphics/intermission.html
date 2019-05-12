@@ -30,6 +30,20 @@
 		<script src="js/intermission/tick-handler.js"></script>
 		<script src="js/intermission/donation-total.js"></script>
 		<script src="js/info-bar/ticker-msgs.js"></script>
+		<link rel="stylesheet" href="../bower_components/lato-font/css/lato-font.css">
+		<link rel="import" href="elements/discord-voice/discord-voice.html">
+		<style>
+			discord-voice {
+				position: relative;
+				z-index: 10;
+				bottom: 50px;
+				text-align: initial;
+				--discord-voice-fontWeight: 600;
+				--discord-voice-fontsize: 24px;
+				--discord-voice-font: Lato;
+				/*These three lines let you control the text in the discord overlay*/
+			}
+		</style>
 	</head>
 	<body>
 		<!-- Background image -->
@@ -74,7 +88,19 @@
 			</div>
 		</div>
 		
-		<!-- Sponsor Logos -->
-		<div id="sponsorContainer" class="storageBox flexContainer"></div>
+		<div id="hostingBingoHeaderText" class="storageBox flexContainer">
+			<span id="hostingHeaderTextSpan">hosting blackout bingo</span>
+		</div>
+		
+		<div style="outline: 0px solid;" id="hostingBingoPlaceholder" class="storageBox flexContainer">Bingocard placeholder</div>
+		
+		<div class="voiceContainer storageBox flexContainer">
+			<div style="width: 642px; height: 372px;"><discord-voice tableWidth="642" rowWidth="372" columnsperline="4"></discord-voice></div>
+			<!--These html parameters let you control the discord voice overlay. ColumsperLine controls how many voice members are shown in one row. The other elements control the overall size of the layout-->
+		</div>
+		
+		
+		<!-- Sponsor Logos
+		<div id="sponsorContainer" class="storageBox flexContainer"></div> -->
 	</body>
 </html>
