@@ -6,8 +6,8 @@ var esaBarLogoTicks = 0;
 
 function changeESALogo() {
 	// JQuery selectors.
-	var smallLogo = $('#esaBarLogoContainer #esaSmallLogo');
-	var hashtag = $('#esaBarLogoContainer #esaHashtagLogo');
+	var smallLogo = $('#bingothonBarLogoContainer #bingothonSmallLogo');
+	var hashtag = $('#bingothonBarLogoContainer #bingothonHashtagLogo');
 	
 	esaBarLogoTicks++;
 	

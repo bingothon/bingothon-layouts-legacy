@@ -101,15 +101,15 @@ img.emoji {
 }
 
 /* ESA Logo */
-#esaBarLogoContainer {
+#infoBarLogoContainer {
 	z-index: 2;
 	left: 0;
 	width: 406px;
 	background-image: url('../images/info-bar/logo-bg.png');
 	padding-right: 25px; /* This is for the shadow part of the image. */
 }
-#esaBarLogoContainer #esaSmallLogo {position: absolute;}
-#esaBarLogoContainer #esaHashtagLogo {position: absolute; opacity: 0;}
+#infoBarLogoContainer #bingothonSmallLogo {position: absolute; height: 80px; width: 431;}
+#infoBarLogoContainer #bingothonHashtagLogo {position: absolute; opacity: 0;}
 
 /* Donation Total */
 #donationTotalContainer {
@@ -146,9 +146,6 @@ img.emoji {
 #generalMessagesContainer div {
 	white-space: nowrap;
 }
-#generalMessagesContainer .line2 {
-	/*display: none;*/ /* You would need to do this if only 1 line needed to be shown. */
-}
 .messageUppercase {
 	text-transform: uppercase;
 	color: #bfbfbf;
@@ -156,17 +153,3 @@ img.emoji {
 .greyText {
 	color: #bfbfbf;
 }
-
-/* Clock 
-#clockContainer {
-	font-size: 33px;
-	z-index: 1;
-	left: 1771px;
-	width: 124px;
-	background-image: url('../images/info-bar/clock-bg.png');
-	padding-left: 25px; /* This is for the shadow part of the image. * /
-}
-
-#clockContainer span {
-	width: 0.3em;
-}*/
