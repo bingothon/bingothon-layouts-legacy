@@ -5,7 +5,9 @@ $(() => {
 	var bingothonBundleName = 'speedcontrol-bingothon';
 
 	// donation tracker replicants
-    const openBidsReplicant = nodecg.Replicant('trackerOpenBids', bingothonBundleName, {defaultValue: []});
+	const openBidsReplicant = nodecg.Replicant('trackerOpenBids', bingothonBundleName, {defaultValue: []});
+
+	const discordVoiceMutedRep = nodecg.Replicant('obsDiscordAudioMuted', bingothonBundleName, {defaultValue:true});
 	
 	// JQuery selectors.
 	var comingUpRunsBox = $('#comingUpRunsWrapper');
@@ -15,6 +17,7 @@ $(() => {
 	comingUpPollsBox.html('nothing here');
 	var musicTickerText = $('#musicTickerText');
 	var adTimerElement = $('#adTimer');
+	var discordVoiceContainer = $('#discord-voice-container');
 	
 	// Declaring other variables.
 	var isOBS = (window.obsstudio) ? true : false;
@@ -43,6 +46,14 @@ $(() => {
 		refreshChallengesHtml();
 		refreshPollHtml();
 	});
+
+	discordVoiceMutedRep.on('change',newVal=>{
+		if (newVal===false) {
+			discordVoiceContainer.show();
+		} else {
+			discordVoiceContainer.hide();
+		}
+	})
 
 	// This might have race condition issues, not the best, will see how it goes.
 	var runContainerElement = $('<div>').load('js/intermission-upcoming-box.html');
