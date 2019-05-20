@@ -44,7 +44,6 @@ $(() => {
 		soundOnTwitchStream.on('change',newVal=>{
 			if (runDataActiveRun.value.teams.length <= 0) return;
 			playerContainers.find('img.music-note').each((index, element)=>{
-				nodecg.log.info(`wanted ${index}, got ${newVal}`);
 				if (index == newVal) {
 					$(element).css('opacity',1);
 				} else {
