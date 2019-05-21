@@ -1,4 +1,10 @@
-
+.voiceContainer{
+	background-image: url("../../images/middle-info-background.png");
+	left: 1195px;
+    top: 621px;
+    width: 725px;
+	height: 160px;
+}
 
 /* Game area(s). */
 .gameCapture {
@@ -41,7 +47,7 @@
 /* Player information stuff. */
 .playerContainer {
 	left: 1173px;
-	width: 748px;
+	width: 960px;
 	
 }
 
@@ -57,7 +63,7 @@
 	background-image: url("../../images/player-info-header-1-2p-bg.png");
 	top: 0px;
 	height: 75px;
-	left: 1173px;
+	left: 960px;
 	
 }
 
@@ -74,16 +80,14 @@
 #gameCategory, #gameConsole {font-size: 21px;}
 
 /*BingoBoard */
-element {
-
-}
-#bingoContainer {
+bingo-container {
     flex-direction: column;
 	justify-content: center;
 	left: 723px;
 	top: 621px;
-	width: 472px;
+	width: 470px;
 	height: 379px;
+	--bingo-container-font-size: 15px;
 }
 
 /* Timer stuff. */
@@ -91,23 +95,8 @@ element {
     background-image: url("../../images/middle-info-background.png");
     flex-direction: column;
     justify-content: center;
-    left: 1198px;
-    top: 621px;
-    width: 722px;
-    height: 379px;
-}
-
-
-/* Sponsor logos. */
-#sponsorContainer {
-	left: 750px;
-	top: 0px;
-	width: 420px;
-	height: 76px;
-}
-
-.sponsorLogo {
-	padding: 10px 20px;
-	width: auto;
-	height: 100px;
+    left: 1195px;
+    top: 781px;
+    width: 725px;
+    height: 219px;
 }

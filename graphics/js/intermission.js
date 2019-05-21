@@ -5,7 +5,9 @@ $(() => {
 	var bingothonBundleName = 'speedcontrol-bingothon';
 
 	// donation tracker replicants
-    const openBidsReplicant = nodecg.Replicant('trackerOpenBids', bingothonBundleName, {defaultValue: []});
+	const openBidsReplicant = nodecg.Replicant('trackerOpenBids', bingothonBundleName, {defaultValue: []});
+
+	const discordVoiceMutedRep = nodecg.Replicant('obsDiscordAudioMuted', bingothonBundleName, {defaultValue:true});
 	
 	// JQuery selectors.
 	var comingUpRunsBox = $('#comingUpRunsWrapper');
@@ -15,6 +17,7 @@ $(() => {
 	comingUpPollsBox.html('nothing here');
 	var musicTickerText = $('#musicTickerText');
 	var adTimerElement = $('#adTimer');
+	var discordVoiceContainer = $('#discord-voice-container');
 	
 	// Declaring other variables.
 	var isOBS = (window.obsstudio) ? true : false;
@@ -35,17 +38,28 @@ $(() => {
 
 	// When challenges/incentives changes load the next 4 into the cache to display them
 	openBidsReplicant.on('change',(newBids)=>{
-		// put next 4 bids that have a goal to challenges
+		// put next 4 bids that have a goal to challenges, they are closed if met so display them until the run starts
 		// and 4 without a goal to polls
-		nextChallenges = newBids.filter((bid)=>bid.goal!=null).slice(0,4);
-		nextPolls = newBids.filter((bid)=>bid.goal==null).slice(0,4);
+		nextChallenges = newBids.filter((bid)=>bid.goal!=null && !bid.run_started).slice(0,4);
+		// polls are manually closed, so display only the open ones
+		nextPolls = newBids.filter((bid)=>bid.goal==null && bid.state=='OPENED').slice(0,4);
 		refreshChallengesHtml();
 		refreshPollHtml();
 	});
 
+	discordVoiceMutedRep.on('change',newVal=>{
+		if (newVal===false) {
+			discordVoiceContainer.show();
+		} else {
+			discordVoiceContainer.hide();
+		}
+	})
+
 	// This might have race condition issues, not the best, will see how it goes.
 	var runContainerElement = $('<div>').load('js/intermission-upcoming-box.html');
 	
+        
+        nodecg.sendMessageToBundle('twitchAdStarted', 'nodecg-speedcontrol', {duration: 180});
 	// If this is being viewed in OBS Studio, stuff in here can be triggered.
 	if (isOBS) {
 		// When we change to any scene, so we need to check it's relevant.
@@ -54,8 +68,14 @@ $(() => {
 			var sceneName = evt.detail.name;
 			if (sceneName.indexOf('(ads)') >= 0) {
 				nodecg.sendMessageToBundle('playTwitchAd', 'nodecg-speedcontrol', err => {
-					if (!err)
-						showAdTimer(true);
+					if (!err){
+                                            console.log('no error');
+                                            showAdTimer(true);
+                                        } else {
+                                            console.log('error');
+                                            console.log(err);
+                                            showAdTimer(true);
+                                        }
 				});
 			}
 		});
@@ -76,7 +96,7 @@ $(() => {
 		}
 		else if (adTicks > adTime) {
 			clearTimeout(adTimeout);
-			adTimerElement.css('opacity', '0');
+			adTimerElement.css('opacity', '1');
 			return;
 		}
 		
@@ -211,7 +231,15 @@ $(() => {
 			nextPolls[i].options.forEach(option => {
 				optionsFormatted.push(option.name+' ('+formatDollarAmount(option.amount_raised)+')');
 			});
-			newHtml += '<div class="pollOptions">'+optionsFormatted.join('/')+'</div>';
+			if (nextPolls[i].allow_custom_options) {
+				if (nextPolls[i].options.length == 0) {
+					newHtml += '<div class="pollOptions">Submit your own options!</div>';
+				} else {
+					newHtml += '<div class="pollOptions">'+optionsFormatted.join('/')+' ...or submit your own option!</div>';
+				}
+			} else {
+				newHtml += '<div class="pollOptions">'+optionsFormatted.join('/')+'</div>';
+			}
 			newHtml += '</div>';
 		}
 		comingUpPollsBox.html(newHtml);

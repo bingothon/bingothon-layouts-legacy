@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <script src="../bower_components/jquery/dist/jquery.js"></script>
+        <script>
+            $(()=>{
+                const $musicVolume = $('#music-volume');
+                const musicPlayerVolumeRep = nodecg.Replicant('musicPlayerVolume', {defaultValue:20});
+                $musicVolume.on('change', event=>{
+                    musicPlayerVolumeRep.value = parseInt(event.target.value);
+                });
+
+                musicPlayerVolumeRep.on('change', newVal => {
+                    $musicVolume.val(newVal);
+                });
+            });
+        </script>
+		<style>
+		</style>
+	</head>
+	<body>
+		<div>Volume:<input id="music-volume" type="range" min="0" max="100" value="100"></div>
+	</body>
+</html>

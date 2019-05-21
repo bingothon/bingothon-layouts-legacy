@@ -1,24 +1,15 @@
-/*.sidebar-left-4-2 {
-
+.voiceContainer {
     background-image: url("../../images/middle-info-background.png");
-    left: 0px;
-    top: 78px;
-    width: 231px;
-    height: 540px;
-
-}*/
-.sidebar-right-4-2 {
-    background-image: url("../../images/middle-info-background.png");
-    left: 821px;
-    top: 0px;
-    width: 270px;
-    height: 620px;
+    left: 1198px;
+    top: 795px;
+    width: 400px;
+    height: 204px;
 }
 
 /* Game area(s). */
 .gameCapture {
-	width: 827px;
-	height: 620px;
+	width: 960px;
+	height: 720px;
 }
 
 #gameCapture1 {
@@ -29,7 +20,7 @@
 }
 
 #gameCapture2 {
-	left: 1090px;
+	left: 961px;
 	top: 0px;
 	
 	/* This positions the finish time in this game feed. */
@@ -59,7 +50,7 @@
 
 #playerContainer1 {
 	background-image: url("../../images/player-info-header-1-2p-bg.png");
-	top: 621px;
+	top: 721px;
 	height: 75px;
 	left: 0px;
     
@@ -67,7 +58,7 @@
 
 #playerContainer2 {
 	background-image: url("../../images/player-info-header-1-2p-bg.png");
-	top: 621px;
+	top: 721px;
 	height: 75px;
 	left: 1193px;
 	
@@ -77,25 +68,23 @@
 #runInfoContainer {
     background-image: url("../../images/middle-info-background.png");
     left: 0px;
-    top: 695px;
+    top: 795px;
     width: 720px;
-    height: 304px;
+    height: 204px;
 }
 
 #gameTitle {font-size: 31px;}
 #gameCategory, #gameConsole {font-size: 21px;}
 
 /*BingoBoard */
-element {
-
-}
-#bingoContainer {
+bingo-container {
     flex-direction: column;
 	justify-content: center;
 	left: 723px;
-	top: 621px;
+	top: 721px;
 	width: 472px;
-	height: 379px;
+	height: 279px;
+	--bingo-container-font-size: 15px;
 }
 
 /* Timer stuff. */
@@ -103,23 +92,8 @@ element {
     background-image: url("../../images/middle-info-background.png");
     flex-direction: column;
     justify-content: center;
-    left: 1198px;
-    top: 695px;
-    width: 722px;
-    height: 304px;
+    left: 1598px;
+    top: 795px;
+    width: 322px;
+    height: 204px;
 }
-
-
-/* Sponsor logos. */
-/*#sponsorContainer {
-	left: 750px;
-	top: 0px;
-	width: 420px;
-	height: 76px;
-}
-
-.sponsorLogo {
-	padding: 10px 20px;
-	width: auto;
-	height: 100px;
-}*/

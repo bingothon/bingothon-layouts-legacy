@@ -5,7 +5,8 @@
     "type": "git",
     "url": "git+https://github.com/bingothon/bingothon-layouts.git"
   },
-  "author": "Tr1cksNL, Lepelog, Floha258, original base from zoton2",
+  "author": "zoton2",
+  "contributors": ["Tr1cksNL", "lepelog", "Floha258"],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/bingothon/bingothon-layouts/issues"
@@ -41,16 +42,6 @@
       },
       {
         "file": "intermission-hosts.html",
-        "width": 1920,
-        "height": 1080
-      },
-      {
-        "file": "dnd-timer.html",
-        "width": 1920,
-        "height": 1080
-      },
-      {
-        "file": "dnd-names.html",
         "width": 1920,
         "height": 1080
       },
@@ -95,7 +86,27 @@
         "height": 1080
       },
       {
+        "file": "3_2-2p-bingo.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "3_2-3p-bingo.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "3DS-15_9-2p-bingo.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
         "file": "3DS-15_9-3p-bingo.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "10_9-1p-bingo.html",
         "width": 1920,
         "height": 1080
       },
@@ -115,12 +126,12 @@
         "height": 1080
       },
       {
-        "file": "bingo.html",
+        "file": "interview-4p.html",
         "width": 1920,
         "height": 1080
       },
       {
-        "file": "interview-4p.html",
+        "file": "bingo.html",
         "width": 1920,
         "height": 1080
       }
@@ -133,6 +144,13 @@
         "file": "edit-hosts.html",
         "headerColor": "#008BB9",
         "workspace": "Scene Editing"
+      },
+      {
+        "name": "music-control",
+        "title": "Music Control",
+        "width": 2,
+        "file": "music-control.html",
+        "headerColor": "#008BB9"
       }
     ],
     "assetCategories": [

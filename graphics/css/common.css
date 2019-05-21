@@ -68,6 +68,9 @@ body {
 .nameLogo {content: url('../images/player-logo.png');}
 .twitchLogo {content: url('../images/twitch-logo.png');}
 /*.playerFlag {content: url('../images/flag.png');} /* Flag image is changed dynamically. */
+.music-note {
+	content: url('../images/music-note.png');
+}
 .playerCoOp {content: url('../images/team-icon.png');}
 .mcat {content: url('../images/mcat.png');}
 
@@ -76,7 +79,7 @@ body {
 .playerFlag, .playerCoOp {padding-left: 3px;}
 
 /* Makes these images fill up all the space they can. */
-.playerLogo, .playerFlag, .playerCoOp, .mCat {height: 100%; box-sizing: border-box;}
+.playerLogo, .playerFlag, .playerCoOp, .mCat, .music-note {height: 100%; box-sizing: border-box;}
 
 .playerText, #musicTickerText {
 	/* In case the player name is really long, stop it from ruining the box and just hide the end. */
@@ -207,6 +210,11 @@ body {
     left: 50%;
     transform: translate(-50%,-50%);
     float: left;
+}
+
+.goal-count {
+    font-size: 39px;
+    text-align: center;
 }
 
 /*Medal styles*/

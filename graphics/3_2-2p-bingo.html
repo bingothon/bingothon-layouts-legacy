@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html data-sceneid="3_2-2p-bingo">
+	<head>
+		<meta charset="UTF-8">
+		
+		<!-- CSS -->
+		<link href="css/common.css" rel="stylesheet"/>
+		<link href="css/games/3_2-2p-bingo.css" rel="stylesheet"/>
+		
+		<!-- JavaScript -->
+		<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="../bower_components/letteringjs/jquery.lettering.js"></script>
+		<script src="js/utils.js"></script>
+		<script src="js/animation.js"></script>
+		<script src="js/games/run-info.js"></script>
+		<script src="js/games/player-info.js"></script>
+		<script src="js/games/timer.js"></script>
+		<script src="js/sponsors.js"></script>
+		<script src= "https://player.twitch.tv/js/embed/v1.js"></script>
+                <script src= "js/twitch-player.js"></script>
+                <script src= "js/bingo-colors.js"></script>
+                
+                <!-- Stuff for the discord voice -->
+		<link rel="stylesheet" href="../bower_components/lato-font/css/lato-font.css">
+		<link rel="import" href="elements/discord-voice/discord-voice.html">
+		<style>
+			discord-voice {
+				position: relative;
+				z-index: 10;
+				text-align: initial;
+				top: -75px;
+				--discord-voice-fontWeight: 600;
+				--discord-voice-fontsize: 24px;
+				--discord-voice-font: Lato;
+				/*These three lines let you control the text in the discord overlay*/
+			}
+		</style>
+		<!-- Stuff for bingo board-->
+		<link rel="import" href="elements/bingo-container/bingo-container.html">
+	</head>
+	<body>
+		<!-- Background image -->
+		<div id="background"></div>
+		
+		<!-- Webcam(s) -->
+		<div id="webcam1" class="storageBox webcam"></div>
+		
+		<!-- Game area(s) -->
+		<div id="gameCapture1" class="storageBox gameCapture flexContainer">
+			<!-- Finish time -->
+			<div id="finishTimeContainer1" class="finishTimeContainer flexContainer">
+				<div class="medal"></div>
+				<div id="finishTime"></div>
+			</div>
+			<!-- Twitch 1-->
+			<div id="twitch-player0" class="twitch-player"></div>
+		</div>
+		<div id="gameCapture2" class="storageBox gameCapture flexContainer">
+			<!-- Finish time -->
+			<div id="finishTimeContainer2" class="finishTimeContainer flexContainer">
+				<div class="medal"></div>
+				<div id="finishTime"></div>
+			</div>
+			<!-- Twitch 2-->
+			<div id="twitch-player1" class="twitch-player"></div>
+		</div>
+		
+		
+		<!-- Player 1 information -->
+		<div id="playerContainer1" class="storageBox playerContainer flexContainer">
+			<img class="playerLogo nameLogo">
+			<div class="bingo-color" style="opacity: 1;"></div>
+			<div class="playerText"><!-- Player Name --></div>
+			<img class="playerFlag">
+			<img class="playerCoOp">
+		</div>
+		
+		<!-- Player 2 information -->
+		<div id="playerContainer2" class="storageBox playerContainer flexContainer">
+			<img class="playerLogo nameLogo">
+			<div class="bingo-color" style="opacity: 1;"></div>
+			<div class="playerText"><!-- Player Name --></div>
+			<img class="playerFlag">
+			<img class="playerCoOp">
+		</div>
+		
+		<!-- Run information -->
+		<div id="runInfoContainer" class="storageBox flexContainer">
+				<div style="width: 395px;height: 50px;"><discord-voice tableWidth="700" rowWidth="700" columnsperline="5"></discord-voice></div>
+			<div id="gameTitle"><!-- Game Name --></div>
+			<div>
+				<span id="gameCategory"><!-- Game Category --></span>
+				<span id="gameConsole"><!-- Game Console --></span>
+			</div>
+		</div>
+		
+		<!-- Timer -->
+		<div id="timerContainer" class="storageBox flexContainer">
+			<div id="timer"><!-- Timer --></div>
+			<div id="gameEstimate"><!-- Game Estimate --></div>
+		</div>
+		
+		<bingo-container class="storageBox flexContainer"></bingo-container>
+			<!--These html parameters let you control the discord voice overlay. ColumsperLine controls how many voice members are shown in one row. The other elements control the overall size of the layout-->
+		
+		<!-- Sponsor Logos -->
+		<div id="sponsorContainer" class="storageBox flexContainer"></div>
+	</body>
+</html>

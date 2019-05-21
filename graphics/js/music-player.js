@@ -9,6 +9,11 @@ $(function() {
 	var lastSongPlayed = '';
 	var audioPlayer = $('#audioPlayer');
 	var mp3Source = $('#mp3_src')[0];
+
+	var musicPlayerVolumeRep = nodecg.Replicant('musicPlayerVolume', {defaultValue:20});
+	musicPlayerVolumeRep.on('change',newVal=>{
+		audioPlayer[0].volume = newVal/100;
+	});
 	
 	// Stores song data to be displayed on layouts.
 	var songData = nodecg.Replicant('songData');
@@ -18,7 +23,6 @@ $(function() {
 		if (!init && songs.value.length) {
 			init = true;
 			
-			audioPlayer[0].volume = defaultVolume;
 			playNextSong();
 			
 			audioPlayer[0].onended = function() {
@@ -78,7 +82,7 @@ $(function() {
 		songData.value.playing = true;
 		audioPlayer[0].play();
 		audioPlayer.stop(); // stop any "animation" if it's going on
-		audioPlayer.animate({'volume': defaultVolume}, 5000, 'linear', function() {
+		audioPlayer.animate({'volume': musicPlayerVolumeRep.value/100}, 5000, 'linear', function() {
 			pausingSong = false;
 		});
 	}

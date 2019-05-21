@@ -1,0 +1,25 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/polymer/lib/utils/render-status.html">
+<link rel="import" href="../../../bower_components/polymer/lib/utils/debounce.html">
+
+<dom-module id="cell-text-fit">
+    <template>
+        <style>
+            #container {
+                width: 100%;
+                height: 100%;
+                text-align: center;
+            }
+            #fittedContent {
+                position: absolute;
+                left: 0;
+                font-size: var(--cell-text-fit-font-size, 10px);
+            }
+        </style>
+        <div id="container">
+            <div id="fittedContent">[[text]]</div>
+        </div>
+        
+    </template>
+    <script src="cell-text-fit.js"></script>
+</dom-module>

@@ -113,7 +113,7 @@ function animationCleanPlayerData(selector) {
 function animationChangePlayerData(selector, playerData, twitch, hideCoop, showCoop) {
 	// Get a URL for flag image if region is set, if old and new URL are the same, nothing is done.
 	if (playerData.region)
-		var flagURL = 'https://www.speedrun.com/images/flags/'+playerData.region.toLowerCase()+'.png';
+		var flagURL = './images/flags/'+playerData.region.toLowerCase()+'.png';
 	var leaveFlag = $('.playerFlag', selector).attr('src') === flagURL;
 	
 	// Configuring elements that need fading out this time.

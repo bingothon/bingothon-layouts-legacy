@@ -6,8 +6,6 @@
 		<!-- CSS -->
 		<link href="css/common.css" rel="stylesheet"/>
 		<link href="css/games/4_3-2p-bingo.css" rel="stylesheet"/>
-        <link href="https://bingosync.com/static/bingosync/style.css" rel="stylesheet"/>
-		<link href="css/bingo-board.css" rel="stylesheet"/>
 		
 		<!-- JavaScript -->
 		<script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -21,7 +19,6 @@
 		<script src= "https://player.twitch.tv/js/embed/v1.js"></script>
                 <script src= "js/twitch-player.js"></script>
                 <script src= "js/bingo-colors.js"></script>
-                <script src= "js/bingo-board.js"></script>
                 
                 <!-- Stuff for the discord voice -->
 		<link rel="stylesheet" href="../bower_components/lato-font/css/lato-font.css">
@@ -30,14 +27,16 @@
 			discord-voice {
 				position: relative;
 				z-index: 10;
-				left: 1000px;
 				text-align: initial;
+				top: -95px;
 				--discord-voice-fontWeight: 600;
 				--discord-voice-fontsize: 24px;
 				--discord-voice-font: Lato;
 				/*These three lines let you control the text in the discord overlay*/
 			}
 		</style>
+		<!-- Stuff for bingo board-->
+		<link rel="import" href="elements/bingo-container/bingo-container.html">
 	</head>
 	<body>
 		<!-- Background image -->
@@ -87,7 +86,7 @@
 		
 		<!-- Run information -->
 		<div id="runInfoContainer" class="storageBox flexContainer">
-			<div id="gameTitle"><!-- Game Name --></div>
+				<div id="gameTitle"><!-- Game Name --></div>
 			<div>
 				<span id="gameCategory"><!-- Game Category --></span>
 				<span id="gameConsole"><!-- Game Console --></span>
@@ -100,17 +99,14 @@
 			<div id="gameEstimate"><!-- Game Estimate --></div>
 		</div>
 		
-		<div id="bingoContainer" class="storageBox flexContainer">
-			<div id="bingo-container" style="width:100%;height:100%"></div>
-		</div>
-		
-		<!-- Sidebars -->		
-		<div class="sidebar-left-4-2 storageBox flexContainer"></div>
-		<div class="sidebar-right-4-2 storageBox flexContainer"></div>
-                    <div style="width: 395px;height: 50px;"><discord-voice tableWidth="700" rowWidth="700" columnsperline="1"></discord-voice></div>
 			<!--These html parameters let you control the discord voice overlay. ColumsperLine controls how many voice members are shown in one row. The other elements control the overall size of the layout-->
 		
-		<!-- Sponsor Logos -->
+
+			<bingo-container class="storageBox flexContainer"></bingo-container>	
+			<div class="voiceContainer storageBox flexContainer">
+				<div style="width: 395px;height: 50px;"><discord-voice tableWidth="400" rowWidth="400" columnsperline="3"></discord-voice></div>
+				</div>
+					<!-- Sponsor Logos -->
 		<div id="sponsorContainer" class="storageBox flexContainer"></div>
 	</body>
 </html>

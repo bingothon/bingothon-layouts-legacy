@@ -1,5 +1,3 @@
-
-
 /* Game area(s). */
 .gameCapture {
 	width: 748px;
@@ -105,16 +103,16 @@
 #runInfoContainer {
 	background-image: url("../../images/middle-info-background.png");
 	left: 750px;
-	top: 79px;
+	top: 0px;
 	width: 420px;
-	height: 240px;
+	height: 319px;
 }
 
 #gameTitle {font-size: 31px;}
 #gameCategory, #gameConsole {font-size: 21px;}
 
 /*BingoBoard */
-#donationContainer {
+.voiceContainer {
 	flex-direction: column;
 	justify-content: center;
 	left: 750px;
@@ -124,13 +122,14 @@
 	background-image: url("../../images/middle-info-background.png");
 }
 
-#bingoContainer {
+bingo-container {
     flex-direction: column;
     justify-content: center;
     left: 1174px;
     top: 502px;
     width: 746px;
     height: 498px;
+	--bingo-container-font-size: 20px;
 }
 
 /* Timer stuff. */
@@ -142,19 +141,4 @@
     top: 322px;
     width: 420px;
     height: 175px;
-}
-
-
-/* Sponsor logos. */
-#sponsorContainer {
-	left: 750px;
-	top: 0px;
-	width: 420px;
-	height: 76px;
-}
-
-.sponsorLogo {
-	padding: 10px 20px;
-	width: auto;
-	height: 100px;
 }

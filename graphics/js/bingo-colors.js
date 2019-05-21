@@ -16,7 +16,9 @@ $(()=>{
 
     bingoColors.on('change', (newColors, old)=>{
         colorContainers.each((index,element)=>{
-            $(element).attr('class', colorContainerClasses + ' bingo-'+newColors[index]);
+            if (index < newColors.length) {
+                $(element).attr('class', colorContainerClasses + ' bingo-'+newColors[index]);
+            }
         });
         // on init the bingoGoals are undefined and will be filled later, update happens there
         if (bingoBoard.value) {
@@ -45,7 +47,9 @@ $(()=>{
 
     function updateGoalCounts(newGoalCounts) {
         colorContainers.each((index,element)=>{
-            $(element).find('.goal-count').text(newGoalCounts[bingoColors.value[index]]);
+            if (index < bingoColors.value.length) {
+                $(element).find('.goal-count').text(newGoalCounts[bingoColors.value[index]]);
+            }
         });
     }
 });

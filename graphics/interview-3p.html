@@ -6,8 +6,6 @@
 		<!-- CSS -->
 		<link href="css/common.css" rel="stylesheet"/>
 		<link href="css/games/interview.css" rel="stylesheet"/>
-        <link href="https://bingosync.com/static/bingosync/style.css" rel="stylesheet"/>
-		<link href="css/bingo-board.css" rel="stylesheet"/>
 		
 		<!-- JavaScript -->
 		<script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -21,7 +19,6 @@
 		<script src= "https://player.twitch.tv/js/embed/v1.js"></script>
                 <script src= "js/twitch-player.js"></script>
                 <script src= "js/bingo-colors.js"></script>
-                <script src= "js/bingo-board.js"></script>
                 
                 <!-- Stuff for the discord voice -->
 		<link rel="stylesheet" href="../bower_components/lato-font/css/lato-font.css">
@@ -38,6 +35,8 @@
 				/*These three lines let you control the text in the discord overlay*/
 			}
 		</style>
+		<!-- Stuff for bingo board-->
+		<link rel="import" href="elements/bingo-container/bingo-container.html">
 	</head>
 	<body>
 		<!-- Background image -->
@@ -93,9 +92,7 @@
 			<div id="gameEstimate"><!-- Game Estimate --></div>
 		</div>
 		
-		<div id="bingoContainer" class="storageBox flexContainer">
-			<div id="bingo-container" style="width:100%;height:100%"></div>
-		</div>
+		<bingo-container class="storageBox flexContainer"></bingo-container>
 		
 		<div id="bingothonLogoContainer" class="storageBox flexContainer">
 		</div>

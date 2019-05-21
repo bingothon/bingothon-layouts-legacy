@@ -1,0 +1,80 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/polymer/lib/mixins/mutable-data.html">
+<link rel="import" href="../cell-text-fit/cell-text-fit.html">
+
+<dom-module id="bingo-container">
+    <template>
+        <link href="https://bingosync.com/static/bingosync/style.css" rel="stylesheet"/>
+        <style>
+            /** Mostly styled with bingosync but some fixes*/
+            table {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+            }
+
+            @keyframes bingo-splash {
+                0% {opacity: 0;font-size: 1px}
+                40% {transform: rotate(1800deg); opacity: 1; font-size: 100px;text-shadow: -5px -5px 10px white, 5px -5px 10px white, -5px 5px 10px white, 5px 5px 10px white;}
+                70% {transform: rotate(1800deg); opacity: 1; font-size: 100px;text-shadow: -5px -5px 10px white, 5px -5px 10px white, -5px 5px 10px white, 5px 5px 10px white;}
+                100% {transform: rotate(1800deg) translateY(30%); opacity: 0; font-size: 90px;text-shadow: -5px -5px 50px white, 5px -5px 50px white, -5px 5px 50px white, 5px 5px 50px white;}
+            }
+
+            #bingo-board-hide {
+                width: 100%;
+                height: 100%;
+                background: black;
+                position: absolute;
+            }
+
+            #bingo-splash {
+                position: absolute;
+                opacity: 0;
+            }
+
+            #bingo-splash.activated {
+                animation: bingo-splash 4s;
+            }
+
+            td div.square {
+                width: 100%;
+                height: 100%;
+                /*Remove padding cause the board is kinda small*/
+                padding: 0;
+                border: 0;
+            }
+
+            .text-container {
+                left: 0px;
+                right: 0px;
+            }
+            .bingo-table{
+                border-collapse:collapse;
+            }
+
+            cell-text-fit {
+                --cell-text-fit-font-size: var(--bingo-container-font-size, 10px);
+                width: 100%;
+                height: 100%;
+            }
+
+            </style>
+        <table>
+            <template is="dom-repeat" items="[[rows]]" mutable-data>
+                <tr>
+                    <template is="dom-repeat" items="[[item]]" mutable-data>
+                            <td><div class="square">
+                                <template is="dom-repeat" items="[[item.colors]]" mutable-data>
+                                    <div class$="bg-color [[item.color]]square" style$="[[item.style]]"></div>
+                                </template>
+                                <div class="shadow"></div>
+                                <cell-text-fit text="[[item.name]]"></cell-text-fit></div></td>
+                    </template>
+                </tr>
+            </template>
+        </table>
+        <div id="bingo-board-hide" hidden$=[[!boardHidden]]></div>
+        <div id="bingo-splash" style$="color:[[bingoAnimColor]]" class$="[[splashActivated]]">BINGO!</div>
+    </template>
+    <script src="bingo-container.js"></script>
+</dom-module>

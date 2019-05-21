@@ -142,13 +142,14 @@
 #gameCategory, #gameConsole {font-size: 21px;}
 
 /*BingoBoard */
-#bingoContainer {
+bingo-container {
     flex-direction: column;
     justify-content: center;
     left: 1500px;
     top: 500px;
     width: 420px;
     height: 425px;
+	--bingo-container-font-size: 20px;
 }
 
 #bingoContainer1 {

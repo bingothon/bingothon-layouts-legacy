@@ -137,13 +137,14 @@
 	background-image: url("../../images/middle-info-background.png");
 }
 
-#bingoContainer {
+bingo-container {
     flex-direction: column;
     justify-content: center;
     left: 1218px;
     top: 502px;
     width: 702px;
     height: 498px;
+	--bingo-container-font-size: 20px;
 }
 
 /* Timer stuff. */

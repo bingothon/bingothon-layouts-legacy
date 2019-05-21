@@ -6,7 +6,7 @@ $(function() {
     // stores all quality options available
     const streamQualities = nodecg.Replicant('stream-qualities', bingothonBundleName, {'defaultValue':[[],[],[],[]]});
     // keeps track of which channel has sound, cause only one at a time can have sound, -1 is all muted
-    const soundOnTwitchStream = nodecg.Replicant('sound-on-twitch-stream', bingothonBundleName, {'persistent':false,'defaultValue':-1});
+    const soundOnTwitchStream = nodecg.Replicant('sound-on-twitch-stream', bingothonBundleName, {defaultValue:-1});
     // main control panel for streams
     const streams = nodecg.Replicant('twitch-streams', bingothonBundleName);
     // streams.values is an array that consists of elements with the following attributes;
@@ -131,26 +131,6 @@ $(function() {
         } else {
             playerList[id].play();
         }
-        function getTwitchQualities() {
-            const qual = playerList[id].getQualities();
-            nodecg.log.info(qual);
-            if (!qual || qual.length == 0) {
-                setTimeout(getTwitchQualities, 500);
-            }
-            streamQualities.value[id] = qual;
-            // set quality of stream to specified value if thats a valid quality for the stream
-            if (streamQualities.value[id].includes(stream.quality)) {
-                playerList[id].setQuality(strema.quality);
-            } else {
-                playerList[id].setQuality('chunked');
-            }
-        }
-        // Twitch has a nice broken event system, if you request
-        // the qualities if the stream claims to be ready, it isn't ready
-        // play and playing are fired once every seconds so.. yea no
-        playerList[id].addEventListener(Twitch.Player.READY, ()=>{
-            getTwitchQualities();
-        });
     }
 
     // check the delay for each stream and output it to the replicant
@@ -160,10 +140,32 @@ $(function() {
             if (curPlayer) {
                 let stats = curPlayer.getPlaybackStats();
                 if (stats) {
-                    nodecg.log.info(JSON.stringify(stats));
+                    nodecg.log.info("playback stats:",stats);
                     streamDelay.value[i] = stats.hlsLatencyBroadcaster;
                 }
             }
         }
     },delayCheckIntervalMs);
+
+    // check available qualities
+    setInterval(()=>{
+        for (var i in playerList) {
+            const curPlayer = playerList[i];
+            const stream = streams.value[i];
+            if (curPlayer) {
+                const qual = curPlayer.getQualities();
+                nodecg.log.info("stream qualities",qual);
+                if (!qual || qual.length == 0) {
+                    continue;
+                }
+                streamQualities.value[id] = qual;
+                // set quality of stream to specified value if thats a valid quality for the stream
+                if (qual.includes(stream.quality)) {
+                    playerList[id].setQuality(stream.quality);
+                } else {
+                    playerList[id].setQuality('chunked');
+                }
+            }
+        }
+    },2000);
 });

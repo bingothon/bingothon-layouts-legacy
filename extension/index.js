@@ -25,7 +25,7 @@ module.exports = function(nodecg) {
 	require('./emotes');
 	
 	// Get and keep an eye on the songs directory to update the replicant.
-	var mp3Dir = __dirname+'/../graphics/mp3/';
+/*	var mp3Dir = __dirname+'/../graphics/mp3/';
 	chokidar.watch(mp3Dir).on('all', (event, path) => {
 		var songsList = [];
 		fs.readdir(mp3Dir, (err, files) => {
@@ -34,5 +34,5 @@ module.exports = function(nodecg) {
 			songs.value = songsList;
 			//nodecg.log.info('Songs list was updated to reflect folder changes.');
 		});
-	});
+	});*/
 }

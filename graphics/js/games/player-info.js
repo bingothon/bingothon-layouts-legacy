@@ -23,6 +23,7 @@ $(() => {
 	var runDataActiveRunCache = {};
 	
 	var runDataActiveRun = nodecg.Replicant('runDataActiveRun', speedcontrolBundle);
+	var soundOnTwitchStream = nodecg.Replicant('sound-on-twitch-stream', 'speedcontrol-bingothon', {defaultValue:-1});
 	runDataActiveRun.on('change', (newVal, oldVal) => {
 		if (newVal) {
 			// Dumb comparison to stop the data refreshing if the server restarts.
@@ -31,6 +32,25 @@ $(() => {
 				runDataActiveRunCache = newVal;
 			}
 		}
+	});
+
+	// add the sound icon (but hidden) to every player container
+	playerContainers.each(e=>{
+		$('img.playerFlag',e).before('<img class="music-note">');
+	});
+
+	// catch where the sound is and make that stream visible (if there are multiple)
+	runDataActiveRun.once('change',()=>{
+		soundOnTwitchStream.on('change',newVal=>{
+			if (runDataActiveRun.value.teams.length <= 0) return;
+			playerContainers.find('img.music-note').each((index, element)=>{
+				if (index == newVal) {
+					$(element).css('opacity',1);
+				} else {
+					$(element).css('opacity',0);
+				}
+			});
+		});
 	});
 	
 	function updateSceneFields(runData) {

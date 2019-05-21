@@ -54,10 +54,11 @@ donationsReplicant.on('change', (newDonations)=>{
 
 // When challenges/incentives changes load the next 3 into the cache to display them
 openBidsReplicant.on('change',(newBids)=>{
-	// put next 4 bids that have a goal to challenges
-	// and 4 without a goal to polls
-	nextChallenges = newBids.filter((bid)=>bid.goal!=null).slice(0,3);
-	nextPolls = newBids.filter((bid)=>bid.goal==null).slice(0,3);
+	// put next 3 bids that have a goal to challenges
+	// and 3 without a goal to polls
+	nextChallenges = newBids.filter((bid)=>bid.goal!=null && !bid.run_started).slice(0,3);
+	// polls are manually closed, so display only the open ones
+	nextPolls = newBids.filter((bid)=>bid.goal==null && bid.state=='OPENED').slice(0,3);
 });
 
 // Donation test code below.
@@ -139,7 +140,7 @@ function showTickerMessages() {
 	// bingothon promotional message.
 	if (messageIndex === 11) {
 		if (lastMessageType !== 4) {
-			displayMessage('<span class="textGlow">This is Bingothon 2018, enjoy your stay!</span>', null, 30, null, true);
+			displayMessage('<span class="textGlow">This is Bingothon 2019, enjoy your stay!</span>', null, 30, null, true);
 			lastMessageType = 4;
 		}
 		else retry = true;
@@ -157,7 +158,7 @@ function showTickerMessages() {
 	// Donation URL message.
 	if (messageIndex === 13) {
 		if (lastMessageType !== 6) {
-			displayMessage('<span class="textGlow">Donate @ <span class="greyText">tiltify.com/@bingothon</span></span>', null, 30, null, true);
+			displayMessage('<span class="textGlow">Donate @ <span class="greyText">https://donations.bingothon.com</span></span>', null, 30, null, true);
 			lastMessageType = 6;
 		}
 		else retry = true;
