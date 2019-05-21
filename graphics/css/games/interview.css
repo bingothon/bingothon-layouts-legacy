@@ -87,13 +87,13 @@
 }
 
 .playerContainer {
-	width: 385px;
+	width: 600px;
 	
 }
 
 #playerContainer1 {
     background-image: url(../../images/player-info-header-1-2p-bg.png);
-    top: 250px;
+    top: 350px;
     height: 75px;
     left: 0px;
     align-items: flex-end; /* Bottom of viewport. */
@@ -102,7 +102,7 @@
 
 #playerContainer2 {
     background-image: url(../../images/player-info-header-1-2p-bg.png);
-    top: 250px;
+    top: 350px;
     height: 75px;
     left: 1535px;
     align-items: flex-end; /* Bottom of viewport. */
@@ -111,7 +111,7 @@
 
 #playerContainer3 {
     background-image: url(../../images/player-info-header-1-2p-bg.png);
-    top: 375px;
+    top: 475px;
     height: 75px;
     left: 0px;
     align-items: flex-end; /* Bottom of viewport. */
@@ -120,7 +120,7 @@
 
 #playerContainer4 {
     background-image: url(../../images/player-info-header-1-2p-bg.png);
-    top: 375px;
+    top: 475px;
     height: 75px;
     left: 1535px;
     align-items: flex-end; /* Bottom of viewport. */
@@ -129,7 +129,7 @@
 
 #playerContainer5 {
     background-image: url(../../images/player-info-header-1-2p-bg.png);
-    top: 500px;
+    top: 600px;
     height: 75px;
     left: 0px;
     align-items: flex-end; /* Bottom of viewport. */
@@ -138,7 +138,7 @@
 
 #playerContainer6 {
     background-image: url(../../images/player-info-header-1-2p-bg.png);
-    top: 500px;
+    top: 600px;
     height: 75px;
     left: 1535px;
     align-items: flex-end; /* Bottom of viewport. */
@@ -147,7 +147,7 @@
 
 #playerContainer7 {
     background-image: url(../../images/player-info-header-1-2p-bg.png);
-    top: 625px;
+    top: 725px;
     height: 75px;
     left: 0px;
     align-items: flex-end; /* Bottom of viewport. */
@@ -156,7 +156,7 @@
 
 #playerContainer8 {
     background-image: url(../../images/player-info-header-1-2p-bg.png);
-    top: 625px;
+    top: 725px;
     height: 75px;
     left: 1535px;
     align-items: flex-end; /* Bottom of viewport. */
@@ -166,7 +166,7 @@
 #runInfoContainer {
     background-image: url(../../images/middle-info-background.png);
     left: 165px;
-    top: 79px;
+    top: 170px;
     width: 1593px;
     height: 135px;
 }
@@ -178,7 +178,7 @@
 bingo-container {
 	flex-direction: column;
 	justify-content: center;
-	left: 985px;
+	left: 710px;
 	top: 250px;
 	width: 500px;
 	height: 500px;
@@ -187,13 +187,22 @@ bingo-container {
 
 
 #bingothonLogoContainer {
-	background-image: url("../../images/bingothon-interview-logo.png");
+	background-image: url("../../images/middle-info-background.png");
 	flex-direction: column;
 	justify-content: center;
-	left: 435px;
-	top: 250px;
-	width: 500px;
-	height: 500px;
+	left: 0px;
+	top: 0px;
+	width: 1920px;
+	height: 120px;
+}
+
+#LogoContainer {
+	flex-direction: column;
+	justify-content: center;
+	left: 636.5px;
+	top: 0px;
+	width: 646.5px;
+	height: 120px;	
 }
 
 /* Timer stuff. */
@@ -202,7 +211,7 @@ bingo-container {
 	flex-direction: column;
 	justify-content: center;
 	left: 710px;
-    top: 800px;
+    top: 825px;
     width: 500px;
     height: 145px;
 }
