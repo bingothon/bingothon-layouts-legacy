@@ -10,7 +10,7 @@
   "bugs": {
     "url": "https://github.com/bingothon/bingothon-layouts/issues"
   },
-  "homepage": "https://github.com/esamarathon/bingothon-layouts#readme",
+  "homepage": "https://github.com/bingothon/bingothon-layouts#readme",
   "nodecg": {
     "compatibleRange": "~1.2.2",
     "bundleDependencies": {

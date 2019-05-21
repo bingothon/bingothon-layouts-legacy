@@ -87,7 +87,7 @@
 }
 
 .playerContainer {
-	width: 500px;
+	width: 385px;
 	
 }
 
@@ -95,34 +95,70 @@
     background-image: url(../../images/player-info-header-1-2p-bg.png);
     top: 250px;
     height: 75px;
-    left: 1258px;
+    left: 0px;
     align-items: flex-end; /* Bottom of viewport. */
 	justify-content: flex-start; /* Left of viewport. */
 }
 
 #playerContainer2 {
     background-image: url(../../images/player-info-header-1-2p-bg.png);
-    top: 375px;
+    top: 250px;
     height: 75px;
-    left: 1258px;
+    left: 1535px;
     align-items: flex-end; /* Bottom of viewport. */
 	justify-content: flex-start; /* Left of viewport. */
 }
 
 #playerContainer3 {
     background-image: url(../../images/player-info-header-1-2p-bg.png);
-    top: 500px;
+    top: 375px;
     height: 75px;
-    left: 1258px;
+    left: 0px;
     align-items: flex-end; /* Bottom of viewport. */
 	justify-content: flex-start; /* Left of viewport. */
 }
 
 #playerContainer4 {
     background-image: url(../../images/player-info-header-1-2p-bg.png);
+    top: 375px;
+    height: 75px;
+    left: 1535px;
+    align-items: flex-end; /* Bottom of viewport. */
+	justify-content: flex-start; /* Left of viewport. */
+}
+
+#playerContainer5 {
+    background-image: url(../../images/player-info-header-1-2p-bg.png);
+    top: 500px;
+    height: 75px;
+    left: 0px;
+    align-items: flex-end; /* Bottom of viewport. */
+	justify-content: flex-start; /* Left of viewport. */
+}
+
+#playerContainer6 {
+    background-image: url(../../images/player-info-header-1-2p-bg.png);
+    top: 500px;
+    height: 75px;
+    left: 1535px;
+    align-items: flex-end; /* Bottom of viewport. */
+	justify-content: flex-start; /* Left of viewport. */
+}
+
+#playerContainer7 {
+    background-image: url(../../images/player-info-header-1-2p-bg.png);
     top: 625px;
     height: 75px;
-    left: 1258px;
+    left: 0px;
+    align-items: flex-end; /* Bottom of viewport. */
+	justify-content: flex-start; /* Left of viewport. */
+}
+
+#playerContainer8 {
+    background-image: url(../../images/player-info-header-1-2p-bg.png);
+    top: 625px;
+    height: 75px;
+    left: 1535px;
     align-items: flex-end; /* Bottom of viewport. */
 	justify-content: flex-start; /* Left of viewport. */
 }
@@ -142,7 +178,7 @@
 #bingoContainer {
 	flex-direction: column;
 	justify-content: center;
-	left: 710px;
+	left: 985px;
 	top: 250px;
 	width: 500px;
 	height: 500px;
@@ -154,7 +190,7 @@
 	background-image: url("../../images/bingothon-interview-logo.png");
 	flex-direction: column;
 	justify-content: center;
-	left: 165px;
+	left: 435px;
 	top: 250px;
 	width: 500px;
 	height: 500px;
