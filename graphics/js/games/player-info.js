@@ -46,10 +46,10 @@ $(() => {
 			playerContainers.find('img.music-note').each((index, element)=>{
 				if (index == newVal) {
 					$(element).css('opacity',1);
-					$(element).css('display',"none");
+					$(element).css('display',"inline");
 				} else {
 					$(element).css('opacity',0);
-					$(element).css('display',"inline");
+					$(element).css('display',"none");
 				}
 			});
 		});
