@@ -110,6 +110,17 @@ img.emoji {
 }
 #infoBarLogoContainer #bingothonSmallLogo {position: absolute; height: 80px; width: 431;}
 #infoBarLogoContainer #bingothonHashtagLogo {position: absolute; opacity: 0;}
+#infoBarLogoContainer #bingothonCommands {
+  opacity: 0;
+  padding-left: 7px;
+  font-size: 30px;
+  text-align: center;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  flex-direction: column;
+}
 
 /* Donation Total */
 #donationTotalContainer {
