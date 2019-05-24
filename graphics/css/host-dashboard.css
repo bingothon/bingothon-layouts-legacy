@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:600&subset=cyrillic,cyrillic-ext,latin-ext,vietnamese');
 
 body {
-	height: 90vh;
+	height: 100vh;
 	width: 90hw;
 	font-family: 'Montserrat', sans-serif;
 	color: white;
@@ -22,6 +22,7 @@ body {
 	align-items: center; /* Aligns horizontally centre. */
 	flex-direction: column;
 	padding: 0 10px;
+	overflow: scroll;
 }
 
 #donationTotalHeader, #prizesHeader, #bidsHeader, #scheduleHeader, #dwbInfoHeader {
