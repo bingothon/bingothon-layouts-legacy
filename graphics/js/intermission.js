@@ -107,12 +107,14 @@ $(() => {
 	
 	var runDataArray = nodecg.Replicant('runDataArray', speedcontrolBundle);
 	var runDataActiveRun = nodecg.Replicant('runDataActiveRun', speedcontrolBundle);
-	runDataActiveRun.on('change', (newVal, oldVal) => {
-		if (!pageInit) {
-			pageInit = true;
-			refreshNextRunsData();
-			refreshNextRunsDisplay();
-		}
+	runDataArray.once('change',()=>{
+		runDataActiveRun.on('change', (newVal, oldVal) => {
+			if (!pageInit) {
+				pageInit = true;
+				refreshNextRunsData();
+				refreshNextRunsDisplay();
+			}
+		});
 	});
 	
 	// (As of writing) triggered from a dashboard button and also when a run's timer ends
@@ -157,7 +159,7 @@ $(() => {
 		// Checks if the run data array is actually imported yet by checking if it's an array.
 		if ($.isArray(runDataArray.value) && !refreshingNextRunsData) {
 			refreshingNextRunsData = true;
-			nextRuns = getNextRuns(runDataActiveRun.value, 4);
+			nextRuns = getNextRuns(runDataActiveRun.value, runDataArray.value, 4);
 			refreshingNextRunsData = false;
 		}
 	}

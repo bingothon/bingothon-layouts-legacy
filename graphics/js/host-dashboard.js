@@ -161,7 +161,7 @@ $(() => {
 	
 	function setRuns() {
 		runsContainer.html('');
-		var indexOfCurrentRun = findIndexInRunDataArray(runDataActiveRun.value);
+		var indexOfCurrentRun = findIndexInRunDataArray(runDataActiveRun.value, runDataArray.value);
 		for (var i = -1; i < 3; i++) {
 			var run = runDataArray.value[indexOfCurrentRun+i];
 			if (run) {

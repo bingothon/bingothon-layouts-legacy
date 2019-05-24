@@ -120,7 +120,7 @@ function showTickerMessages() {
 	// Upcoming Run
 	if (messageIndex === 6 || messageIndex === 7 || messageIndex === 8) {
 		// Will only trigger this if there's at least 1 run still to come.
-		var indexOfCurrentRun = findIndexInRunDataArray(runDataActiveRun.value);
+		var indexOfCurrentRun = findIndexInRunDataArray(runDataActiveRun.value, runDataArray.value);
 		if (runDataArray.value[indexOfCurrentRun+1] && lastMessageType !== 2) {
 			showUpcomingRun();
 		lastMessageType = 2;
@@ -242,7 +242,7 @@ function showPrize() {
 // Pick an upcoming run and display it.
 function showUpcomingRun() {
 	// Refill cache if empty.
-	if (!nextRunsCache.length) nextRunsCache = getNextRuns(runDataActiveRun.value, 4);
+	if (!nextRunsCache.length) nextRunsCache = getNextRuns(runDataActiveRun.value, runDataArray.value, 4);
 	
 	// Need a while loop in case the run we pick can't be shown.
 	var randomRun;

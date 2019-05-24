@@ -5,12 +5,13 @@ var emotes = nodecg.Replicant('emotes');
 var runDataArray = nodecg.Replicant('runDataArray', 'nodecg-speedcontrol');
 
 // Get the next X runs in the schedule.
-function getNextRuns(runData, amount) {
+function getNextRuns(runData, runDataArray, amount) {
 	var nextRuns = [];
-	var indexOfCurrentRun = findIndexInRunDataArray(runData);
+	var indexOfCurrentRun = findIndexInRunDataArray(runData, runDataArray);
+	console.log(`we are at run ${indexOfCurrentRun}`);
 	for (var i = 1; i <= amount; i++) {
-		if (!runDataArray.value[indexOfCurrentRun+i]) break;
-		nextRuns.push(runDataArray.value[indexOfCurrentRun+i]);
+		if (!runDataArray[indexOfCurrentRun+i]) break;
+		nextRuns.push(runDataArray[indexOfCurrentRun+i]);
 	}
 	return nextRuns;
 }
@@ -61,13 +62,13 @@ function formPlayerNamesString(runData) {
 }
 
 // Find array index of current run based on it's ID.
-function findIndexInRunDataArray(run) {
+function findIndexInRunDataArray(run, runDataArray) {
 	var indexOfRun = -1;
 	
 	// Completely skips this if the run variable isn't defined.
 	if (run) {
-		for (var i = 0; i < runDataArray.value.length; i++) {
-			if (run.runID === runDataArray.value[i].runID) {
+		for (var i = 0; i < runDataArray.length; i++) {
+			if (run.id === runDataArray[i].id) {
 				indexOfRun = i; break;
 			}
 		}
