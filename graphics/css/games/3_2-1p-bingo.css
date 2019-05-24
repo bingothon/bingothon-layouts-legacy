@@ -1,0 +1,79 @@
+.voiceContainer {
+    width: 190px;
+    height: 501px;
+    top: 0px;
+    left: 344px;
+    background-image: url("../../images/middle-info-background.png");
+}
+
+/* Game area(s). */
+
+.gameCapture {
+	width: 1386px;
+	height: 924px;
+}
+
+#gameCapture1 {
+	left: 534px;
+	top: 78px;
+	
+	/* This positions the finish time in this game feed. */
+	align-items: flex-start; /* Top of viewport. */
+	justify-content: flex-start; /* Left of viewport. */
+}
+
+/* Finish timer stuff */
+.finishTimeContainer img {padding-right: 5px;}
+.finishTimeContainer {
+	font-size: 25px;
+	height: 30px;
+}
+#finishTimeContainer1 {
+	padding: 0 3px 3px 0; /* No padding needed where this box touches the border. */
+}
+
+/* Player information stuff. */
+.playerContainer {
+	width: 1386px;
+}
+
+#playerContainer1 {
+	background-image: url("../../images/player-info-header-1-2p-bg.png");
+	top: 0px;
+	height: 75px;
+	left: 534px;
+}
+
+/* Run information stuff. */
+#runInfoContainer {
+	background-image: url("../../images/middle-info-background.png");
+	left: 0px;
+	top: 0px;
+	width: 344px;
+	height: 300px;
+}
+
+#gameTitle {font-size: 31px;}
+#gameCategory, #gameConsole {font-size: 21px;}
+
+/*BingoBoard */
+bingo-container {
+    flex-direction: column;
+    justify-content: center;
+    left: 0px;
+    top: 504px;
+    width: 534px;
+	height: 500px;
+	--bingo-container-font-size: 20px;
+}
+
+/* Timer stuff. */
+#timerContainer {
+	background-image: url("../../images/middle-info-background.png");
+	flex-direction: column;
+	justify-content: center;
+	left: 0px;
+    top: 300px;
+    width: 344px;
+    height: 204px;
+}
