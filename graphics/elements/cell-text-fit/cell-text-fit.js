@@ -46,13 +46,20 @@
 			);
 		}
 		
-		_fit() {
+		_fit(depth=0) {
+			if (depth>10) return;
 			Polymer.RenderStatus.beforeNextRender(this, () => {
 				this.$.fittedContent.style.transform = `scaleX(1) scaleY(1)`;
 				this.$.fittedContent.style.top = "0";
 				// get width height of parent and text container to calc scaling
 				var scaleX = this.$.container.scrollWidth / this.$.fittedContent.scrollWidth;
 				var scaleY = this.$.container.scrollHeight / this.$.fittedContent.scrollHeight;
+				const fontSize = window.getComputedStyle(this.$.fittedContent).fontSize;
+				console.log(fontSize);
+				if (scaleY < 0.6) {
+					this.$.fittedContent.style.fontSize = `calc(${fontSize} * 0.7)`;
+					this._fit(depth+1);
+				}
 				// limit max scale to 1
 				scaleX = Math.min(1,scaleX);
 				scaleY = Math.min(1,scaleY);
