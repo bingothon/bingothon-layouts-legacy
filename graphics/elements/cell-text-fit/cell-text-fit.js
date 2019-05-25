@@ -57,7 +57,7 @@
 				const fontSize = window.getComputedStyle(this.$.fittedContent).fontSize;
 				console.log(fontSize);
 				if (scaleY < 0.6) {
-					this.$.fittedContent.style.fontSize = `calc(${fontSize} * 0.7)`;
+					this.$.fittedContent.style.fontSize = `calc(${fontSize} * 0.8)`;
 					this._fit(depth+1);
 				}
 				// limit max scale to 1
