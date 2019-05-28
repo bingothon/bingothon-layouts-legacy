@@ -85,7 +85,7 @@
 #hostingBingoPlaceholder{
 	background-color: rgba(0,0,0,0.68);
 	width: 644px;
-	height: 644px;
+	height: 592px;
 	left: 1277px;
 	top: 63px;
 	border-bottom: 4px solid #6e2c30;
@@ -181,7 +181,7 @@ element {
 .voiceContainer{
 	background-image: url("../../images/middle-info-background.png");
 	left: 1277px;
-	top: 707px;
-	width: 642px;
-	height: 372px;
+	top: 654px;
+	width: 645px;
+	height: 450px;
 }

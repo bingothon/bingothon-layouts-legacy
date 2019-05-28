@@ -67,7 +67,7 @@
     left: 0px;
     top: 657px;
     width: 720px;
-    height: 379px;
+    height: 343px;
 }
 
 #gameTitle {font-size: 31px;}
@@ -80,7 +80,7 @@ bingo-container {
 	left: 723px;
 	top: 657px;
 	width: 641px;
-	height: 379px;
+	height: 343px;
 	--bingo-container-font-size: 15px;
 }
 
@@ -92,7 +92,7 @@ bingo-container {
     left: 1362px;
     top: 657px;
     width: 558px;
-    height: 379px;
+    height: 343px;
 }
 
 
